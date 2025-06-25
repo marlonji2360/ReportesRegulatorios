@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\users\\marlon_jimenez\\onedrive - banco de los trabajadores (bantrab)\\repos\\reportesregulatorios\\reportesregulatorios\\modelos\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\users\\marlon_jimenez\\onedrive - banco de los trabajadores (bantrab)\\repos\\reportesregulatorios\\reportesregulatorios\\vistas\\frmcargando.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmcargando.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\users\\marlon_jimenez\\onedrive - banco de los trabajadores (bantrab)\\repos\\reportesregulatorios\\reportesregulatorios\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmcargando.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmcargando.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmregproblemas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmregproblemas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmdv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmdv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmdv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmdv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,27 +50,64 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Conexion.cs",
-              "DocumentMoniker": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\Conexion.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\Conexion.cs",
-              "ToolTip": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\Conexion.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\Conexion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA8AAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "frmRegProblemas.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmRegProblemas.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmRegProblemas.cs",
+              "ToolTip": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmRegProblemas.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmRegProblemas.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T19:36:54.163Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T18:37:56.123Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Form1.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Form1.cs",
-              "ToolTip": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ReportesRegulatorios\\Form1.cs [Dise\u00F1o]",
+              "Title": "frmCargando.cs",
+              "DocumentMoniker": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmCargando.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmCargando.cs",
+              "ToolTip": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmCargando.cs",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmCargando.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T19:34:03.04Z",
+              "WhenOpened": "2025-06-25T18:23:44.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmCargando.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmCargando.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmCargando.cs",
+              "ToolTip": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmCargando.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmCargando.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T18:23:39.397Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmDv17.cs",
+              "DocumentMoniker": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmDv17.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmDv17.cs",
+              "ToolTip": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmDv17.cs",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmDv17.cs",
+              "ViewState": "AgIAAM8CAAAAAAAAAAAAAIcBAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T18:14:20.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmDv17.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmDv17.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmDv17.cs",
+              "ToolTip": "C:\\Users\\marlon_jimenez\\OneDrive - Banco de los Trabajadores (bantrab)\\repos\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmDv17.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmDv17.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T18:12:42.65Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]
