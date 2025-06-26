@@ -302,6 +302,7 @@
             this.btnArchivoIve.TabIndex = 22;
             this.btnArchivoIve.Text = "Archivo IVE";
             this.btnArchivoIve.UseVisualStyleBackColor = false;
+            this.btnArchivoIve.Click += new System.EventHandler(this.btnArchivoIve_Click);
             // 
             // btnFinalizar
             // 

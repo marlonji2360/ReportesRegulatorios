@@ -21,7 +21,111 @@ namespace ReportesRegulatorios.Modelos
         {
 
             DataTable dt = new DataTable();
-            string consulta = "SELECT * FROM DL_CUMPLIMIENTO.rrdv17_detalle WHERE AnioMes = @AnioMes";
+            string consulta = @"SELECT  AnioMes, 
+                                        Fecha_Transaccion, 
+                                        Tipo_Transaccion, 
+                                        TIPO_PERSONA, 
+                                        Tipo_Identificacion_persona, 
+                                        No_Orden_Cedula, 
+                                        Numero_Identificacion_persona, 
+                                        Municipio_emision_Cedula, 
+                                        Primer_Apellido, 
+                                        Segundo_Apellido, 
+                                        Apellido_Casada, 
+                                        Primer_Nombre, 
+                                        Segundo_Nombre, 
+                                        Nombre_Persona_Juridica, 
+                                        Fecha_Nacimiento_Constitucion, 
+                                        Pais_Nacionalidad_Constitucion, 
+                                        Actividad_Economica_Persona, 
+                                        REPLACE(Direccion, ';', ' ') AS Direccion, 
+                                        Zona, 
+                                        Departamento, 
+                                        Municipio, 
+                                        Origen_Fondos, 
+                                        Tipo_Moneda, 
+                                        Monto_Moneda_Orginal, 
+                                        Monto_Dolares, 
+                                        Codigo_Agencia, 
+                                        Estado, 
+                                        Usuario_registro, 
+                                        Fecha_Registro, 
+                                        Usuario_Modifico, 
+                                        Fecha_Modifico, 
+                                        REPLACE(Justificacion, ';', ' ') AS Justificacion, 
+                                        Numero_transaccion, 
+                                        codigo_cliente, 
+                                        mov58_boveda, 
+                                        mov59_boveda, 
+                                        mov53TC_boveda, 
+                                        mon53TC_boveda, 
+                                        movmixto_paralelo, 
+                                        Trxmixto_paralelo, 
+                                        MONTO_mixtoparalelo, 
+                                        movotrocli_paralelo, 
+                                        Trxotrocli_paralelo, 
+                                        Nomotrocli_paralelo, 
+                                        hora_trx, 
+                                        cajero
+                                    FROM EDW.DL_CUMPLIMIENTO.rrdv17_detalle
+                                    WHERE AnioMes = @AnioMes";
+
+            try
+            {
+                Conexion conexion = new Conexion();
+                using (SqlConnection conn = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                {
+                    cmd.Parameters.AddWithValue("@AnioMes", anioMes);
+
+                    using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                    {
+                        adaptador.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Puedes registrar el error en un log en lugar de solo imprimirlo
+                Console.WriteLine($"Error al obtener datos: {ex.Message}");
+            }
+
+            return dt;
+
+        }
+
+        public DataTable ObtenerDetalleTxt(int anioMes)
+        {
+
+            DataTable dt = new DataTable();
+            string consulta = @"SELECT  LEFT(CONVERT(CHAR(8), Fecha_Transaccion, 112) + REPLICATE(' ', 8), 8)  + '&&' +
+                                        LEFT(ISNULL(Tipo_Transaccion, '') + REPLICATE(' ', 3), 3)   + '&&' +
+                                        LEFT(ISNULL(TIPO_PERSONA, '') + ' ', 1)    + '&&' +
+                                        LEFT(ISNULL(Tipo_Identificacion_persona, '') + ' ', 1)    + '&&' +
+                                        LEFT(ISNULL(No_Orden_Cedula, '') + REPLICATE(' ', 3), 3)    + '&&' +
+                                        LEFT(ISNULL(Numero_Identificacion_persona, '') + REPLICATE(' ', 20), 20)    + '&&' +
+                                        LEFT(ISNULL(Municipio_emision_Cedula, '') + REPLICATE(' ', 2), 2)    + '&&' +
+                                        LEFT(ISNULL(Primer_Apellido, '') + REPLICATE(' ', 15), 15)    + '&&' +
+                                        LEFT(ISNULL(Segundo_Apellido, '') + REPLICATE(' ', 15), 15)    + '&&' +
+                                        LEFT(ISNULL(Apellido_Casada, '') + REPLICATE(' ', 15), 15)    + '&&' +
+                                        LEFT(ISNULL(Primer_Nombre, '') + REPLICATE(' ', 15), 15)    + '&&' +
+                                        LEFT(ISNULL(Segundo_Nombre, '') + REPLICATE(' ', 30), 30)    + '&&' +
+                                        LEFT(ISNULL(Nombre_Persona_Juridica, '') + REPLICATE(' ', 150), 150)    + '&&' +
+                                        LEFT(CONVERT(CHAR(8), Fecha_Nacimiento_Constitucion, 112) + REPLICATE(' ', 8), 8)    + '&&' +
+                                        LEFT(ISNULL(Pais_Nacionalidad_Constitucion, '') + REPLICATE(' ', 2), 2)    + '&&' +
+                                        LEFT(ISNULL(Actividad_Economica_Persona, '') + REPLICATE(' ', 3), 3)    + '&&' +
+                                        LEFT(ISNULL(Direccion, '') + REPLICATE(' ', 150), 150)    + '&&' +
+                                        LEFT(ISNULL(Zona, '') + REPLICATE(' ', 2), 2)    + '&&' +
+                                        LEFT(ISNULL(Departamento, '') + REPLICATE(' ', 2), 2)    + '&&' +
+                                        LEFT(ISNULL(Municipio, '') + REPLICATE(' ', 2), 2)    + '&&' +
+                                        LEFT(ISNULL(Origen_Fondos, '') + REPLICATE(' ', 2), 2)    + '&&' +
+                                        LEFT(ISNULL(Tipo_Moneda, '') + REPLICATE(' ', 3), 3)    + '&&' +
+                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(Monto_Moneda_Orginal AS VARCHAR), ''), 14)    + '&&' +
+                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(Monto_Dolares AS VARCHAR), ''), 14)    + '&&' +
+                                        LEFT(ISNULL(Codigo_Agencia, '') + REPLICATE(' ', 10), 10)    + '&&'
+                                        Trama
+                                      FROM EDW.DL_CUMPLIMIENTO.RRDV17_DETALLE
+                                      WHERE Estado  = 'P' and Aniomes = @anioMes";
 
             try
             {

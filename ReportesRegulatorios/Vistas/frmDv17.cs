@@ -358,13 +358,13 @@ namespace ReportesRegulatorios.Vistas
 
                             // Escribir encabezados
                             IEnumerable<string> columnNames = dataTable.Columns.Cast<DataColumn>().Select(column => column.ColumnName);
-                            sb.AppendLine(string.Join("|", columnNames));
+                            sb.AppendLine(string.Join(";", columnNames));
 
                             // Escribir filas
                             foreach (DataRow row in dataTable.Rows)
                             {
                                 IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
-                                sb.AppendLine(string.Join("|", fields));
+                                sb.AppendLine(string.Join(";", fields));
                             }
 
                             File.WriteAllText(sfd.FileName, sb.ToString(), Encoding.UTF8);
@@ -385,6 +385,60 @@ namespace ReportesRegulatorios.Vistas
                 MessageBox.Show("No hay datos para Exportar !!!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void ExportarDataTableATxt(DataTable dataTable)
+        {
+            if (dataTable == null || dataTable.Rows.Count <= 1)
+            {
+                PlayNotificationSound();
+                MessageBox.Show("No hay suficientes datos para exportar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Archivo de texto (*.txt)|*.txt";
+                sfd.FileName = "Resultado.txt";
+
+                if (sfd.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string filePath = sfd.FileName;
+
+                try
+                {
+                    // Si ya existe, eliminarlo
+                    if (File.Exists(filePath))
+                        File.Delete(filePath);
+
+                    StringBuilder sb = new StringBuilder();
+
+                    // Exportar desde la fila 2 (índice 1)
+                    for (int i = 1; i < dataTable.Rows.Count; i++)
+                    {
+                        DataRow row = dataTable.Rows[i];
+                        var fields = row.ItemArray.Select(field => field?.ToString()?.Replace("\r", "").Replace("\n", "").Trim());
+                        sb.AppendLine(string.Join("|", fields));
+                    }
+
+                    File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
+
+                    PlayNotificationSound();
+                    MessageBox.Show("Datos exportados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (IOException ioEx)
+                {
+                    PlayNotificationSound();
+                    MessageBox.Show("Error de archivo: " + ioEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    PlayNotificationSound();
+                    MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
 
 
         private void btnConsultar_Click(object sender, EventArgs e)
@@ -712,6 +766,26 @@ namespace ReportesRegulatorios.Vistas
                 dt = detalleDv17BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
 
                 ExportarDataTableACsv(dt);
+
+            }
+        }
+
+        private void btnArchivoIve_Click(object sender, EventArgs e)
+        {
+            if (cmbMes.Text != "" && txtAnio.Text != "")
+            {
+
+                string anioMes = null;
+                string mes = null;
+                DataTable dt = new DataTable();
+                DetalleDv17Controller detalleDv17Controller = new DetalleDv17Controller();
+
+                mes = NumeroMes(cmbMes.Text);
+
+                anioMes = txtAnio.Text + mes;
+                dt = detalleDv17Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+
+                ExportarDataTableATxt(dt);
 
             }
         }

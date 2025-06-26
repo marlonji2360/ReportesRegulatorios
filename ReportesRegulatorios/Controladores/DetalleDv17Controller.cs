@@ -16,6 +16,12 @@ namespace ReportesRegulatorios.Controladores
             return detalleDv17.ObtenerDetalleCsv(anioMes);
         }
 
+        public DataTable ObtenerDetalleTxt(int anioMes)
+        {
+            DetalleDv17 detalleDv17 = new DetalleDv17();
+            return detalleDv17.ObtenerDetalleTxt(anioMes);
+        }
+
         public bool InsertarDetalleDv17(DataTable tabla)
         {
             DetalleDv17 detalleDv17 = new DetalleDv17 ();
