@@ -161,17 +161,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\DetalleBa12BitController.cs" />
+    <Compile Include="Controladores\DetalleBa12Controller.cs" />
+    <Compile Include="Controladores\DetalleBa12TmpController.cs" />
     <Compile Include="Controladores\DetalleDv17BitController.cs" />
     <Compile Include="Controladores\DetalleDv17Controller.cs" />
     <Compile Include="Controladores\DetalleDv17TmpController.cs" />
     <Compile Include="Controladores\EncabezadoController.cs" />
     <Compile Include="Modelos\Conexion.cs" />
+    <Compile Include="Modelos\DetalleBa12.cs" />
+    <Compile Include="Modelos\DetalleBa12Bit.cs" />
+    <Compile Include="Modelos\DetalleBa12Temp.cs" />
     <Compile Include="Modelos\DetalleDv17.cs" />
     <Compile Include="Modelos\DetalleDv17Bit.cs" />
     <Compile Include="Modelos\DetalleDV17Temp.cs" />
     <Compile Include="Modelos\Encabezado.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vistas\frmBa12.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmBa12.Designer.cs">
+      <DependentUpon>frmBa12.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmRegProblemas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +211,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Vistas\frmBa12.resx">
+      <DependentUpon>frmBa12.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmRegProblemas.resx">
       <DependentUpon>frmRegProblemas.cs</DependentUpon>
     </EmbeddedResource>

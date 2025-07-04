@@ -119,16 +119,16 @@
             "Octubre",
             "Noviembre",
             "Diciembre"});
-            this.cmbMes.Location = new System.Drawing.Point(298, 63);
+            this.cmbMes.Location = new System.Drawing.Point(304, 63);
             this.cmbMes.Name = "cmbMes";
-            this.cmbMes.Size = new System.Drawing.Size(121, 21);
+            this.cmbMes.Size = new System.Drawing.Size(115, 21);
             this.cmbMes.TabIndex = 4;
             // 
             // txtAnio
             // 
-            this.txtAnio.Location = new System.Drawing.Point(298, 90);
+            this.txtAnio.Location = new System.Drawing.Point(304, 90);
             this.txtAnio.Name = "txtAnio";
-            this.txtAnio.Size = new System.Drawing.Size(121, 20);
+            this.txtAnio.Size = new System.Drawing.Size(115, 20);
             this.txtAnio.TabIndex = 5;
             // 
             // btnConsultar
@@ -168,9 +168,9 @@
             // 
             // txtLink
             // 
-            this.txtLink.Location = new System.Drawing.Point(298, 159);
+            this.txtLink.Location = new System.Drawing.Point(304, 159);
             this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(254, 20);
+            this.txtLink.Size = new System.Drawing.Size(248, 20);
             this.txtLink.TabIndex = 9;
             // 
             // label6

@@ -89,12 +89,112 @@ C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\Rep
 C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.csproj.AssemblyReference.cache
 C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Properties.Resources.resources
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmRegProblemas.resources
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmDv17.resources
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmCargando.resources
 C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.csproj.GenerateResource.cache
 C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.csproj.CoreCompileInputs.cache
 C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\Reportes.738ECD47.Up2Date
 C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.exe
 C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.pdb
-C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmRegProblemas.resources
-C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmDv17.resources
-C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.exe.config
-C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmCargando.resources
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\ReportesRegulatorios.exe.config
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\ReportesRegulatorios.exe
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\ReportesRegulatorios.pdb
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Azure.Core.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Azure.Identity.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Bcl.Cryptography.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Data.SqlClient.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Identity.Client.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Protocols.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Buffers.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.ClientModel.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.IO.FileSystem.AccessControl.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.IO.Pipelines.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Memory.Data.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Memory.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Security.AccessControl.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Security.Cryptography.Pkcs.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Security.Cryptography.ProtectedData.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Text.Json.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.ValueTuple.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Azure.Core.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Azure.Identity.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Bcl.Cryptography.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Data.SqlClient.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Caching.Memory.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Identity.Client.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Logging.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Protocols.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Buffers.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.ClientModel.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.IO.FileSystem.AccessControl.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.IO.Pipelines.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Memory.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Memory.Data.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Security.AccessControl.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Security.Cryptography.Pkcs.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Security.Cryptography.ProtectedData.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Text.Json.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\cs\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\de\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\es\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\fr\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\it\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\ja\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\ko\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\pl\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\pt-BR\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\tr\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.csproj.AssemblyReference.cache
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.exe.config
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Properties.Resources.resources
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmBa12.resources
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmRegProblemas.resources
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmDv17.resources
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmCargando.resources
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.csproj.GenerateResource.cache
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.csproj.CoreCompileInputs.cache
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\Reportes.738ECD47.Up2Date
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.exe
+C:\Users\marlon_jimenez\OneDrive - Banco de los Trabajadores (bantrab)\Core i7\repos\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.pdb

@@ -17,7 +17,7 @@ namespace ReportesRegulatorios
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmDv17());
+            Application.Run(new frmBa12());
         }
     }
 }
