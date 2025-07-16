@@ -17,7 +17,7 @@ namespace ReportesRegulatorios
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmTf21());
+            Application.Run(new frmPantallaPrincipal());
         }
     }
 }

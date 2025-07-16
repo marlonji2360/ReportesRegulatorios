@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Local\\ReportesRegulatorios\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\vistas\\frmpantallaprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmpantallaprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\vistas\\frmpantallaprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmpantallaprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmPantallaPrincipal.cs",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAADwv0MAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T22:48:03.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmPantallaPrincipal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T22:48:01.384Z",
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }

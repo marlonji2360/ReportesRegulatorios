@@ -343,11 +343,11 @@ namespace ReportesRegulatorios.Modelos
                                                     Isnull(Convert(Varchar,DRDD.hora_trx),'') + 
                                                     Isnull(Convert(Varchar,DRDD.cajero),'') + 
                                                     Isnull(Convert(Varchar,DRDD.cod_proceso_origen),'') KeyOri,'' KeyRev
-		 FROM EDW.DL_CUMPLIMIENTO.RRDV17_DETALLE DRDD
+		 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta DRDD
 		 WHERE DRDD.ANIOMES = @anioMes
 	),
 		 TB_Y AS
-  (		 SELECT SELECT DRDDT.Numero_transaccion,
+  (		 SELECT DRDDT.Numero_transaccion,
                                                     Isnull(Convert(Varchar,DRDDT.AnioMes),'') + 
                                                     Isnull(Convert(Varchar,DRDDT.FECHA),'') + 
                                                     Isnull(Convert(Varchar,DRDDT.TIPO_TRANSFERENCIA),'') + 

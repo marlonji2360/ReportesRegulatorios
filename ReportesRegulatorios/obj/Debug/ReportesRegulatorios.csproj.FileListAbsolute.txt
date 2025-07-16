@@ -301,3 +301,5 @@ C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorio
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.exe.config
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmEf14.resources
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmTf21.resources
+C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmPantallaPrincipal.resources
+C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.Vistas.frmMe13.resources

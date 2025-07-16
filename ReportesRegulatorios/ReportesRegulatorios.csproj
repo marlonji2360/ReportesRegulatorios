@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AIR_ICON.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Azure.Core, Version=1.46.2.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Azure.Core.1.46.2\lib\net472\Azure.Core.dll</HintPath>
@@ -161,8 +164,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\DetalleMe13BitController.cs" />
     <Compile Include="Controladores\DetalleTf21BitController.cs" />
+    <Compile Include="Controladores\DetalleMe13Controller.cs" />
     <Compile Include="Controladores\DetalleTf21Controller.cs" />
+    <Compile Include="Controladores\DetalleMe13TmpController.cs" />
     <Compile Include="Controladores\DetalleTf21TmpController.cs" />
     <Compile Include="Controladores\DetalleEf14TmpController.cs" />
     <Compile Include="Controladores\DetalleEf14BitController.cs" />
@@ -173,6 +179,7 @@
     <Compile Include="Controladores\DetalleDv17BitController.cs" />
     <Compile Include="Controladores\DetalleDv17Controller.cs" />
     <Compile Include="Controladores\DetalleDv17TmpController.cs" />
+    <Compile Include="Controladores\EncaMe13Controller.cs" />
     <Compile Include="Controladores\EncaTf21Controller.cs" />
     <Compile Include="Controladores\EncaEf14Controller.cs" />
     <Compile Include="Controladores\EncaBa12Controller.cs" />
@@ -183,6 +190,9 @@
     <Compile Include="Modelos\DetalleBa12Temp.cs" />
     <Compile Include="Modelos\DetalleDv17.cs" />
     <Compile Include="Modelos\DetalleDv17Bit.cs" />
+    <Compile Include="Modelos\DetalleMe13.cs" />
+    <Compile Include="Modelos\DetalleMe13Bit.cs" />
+    <Compile Include="Modelos\DetalleMe13Temp.cs" />
     <Compile Include="Modelos\DetalleTf21Temp.cs" />
     <Compile Include="Modelos\DetalleDv17Temp.cs" />
     <Compile Include="Modelos\DetalleEf14Temp.cs" />
@@ -190,6 +200,7 @@
     <Compile Include="Modelos\DetalleEf14.cs" />
     <Compile Include="Modelos\DetalleTf21.cs" />
     <Compile Include="Modelos\DetalleTf21Bit.cs" />
+    <Compile Include="Modelos\EncaMe13.cs" />
     <Compile Include="Modelos\EncaTf21.cs" />
     <Compile Include="Modelos\EncaEf14.cs" />
     <Compile Include="Modelos\EncaBa12.cs" />
@@ -207,6 +218,18 @@
     </Compile>
     <Compile Include="Vistas\frmEf14.Designer.cs">
       <DependentUpon>frmEf14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\frmMe13.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmMe13.Designer.cs">
+      <DependentUpon>frmMe13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\frmPantallaPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmPantallaPrincipal.Designer.cs">
+      <DependentUpon>frmPantallaPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\frmRegProblemas.cs">
       <SubType>Form</SubType>
@@ -247,6 +270,12 @@
     <EmbeddedResource Include="Vistas\frmEf14.resx">
       <DependentUpon>frmEf14.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmMe13.resx">
+      <DependentUpon>frmMe13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmPantallaPrincipal.resx">
+      <DependentUpon>frmPantallaPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmRegProblemas.resx">
       <DependentUpon>frmRegProblemas.cs</DependentUpon>
     </EmbeddedResource>
@@ -274,6 +303,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AIR_ICON.ico" />
     <Content Include="Loading.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
