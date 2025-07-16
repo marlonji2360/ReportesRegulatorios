@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReportesRegulatorios.Modelos
 {
-    internal class DetalleDV17Temp
+    internal class DetalleDv17Temp
     {
         public DataTable ObtenerDetalleTmpCsv(int anioMes)
         {

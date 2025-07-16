@@ -14,11 +14,12 @@ using System.Windows.Forms;
 
 namespace ReportesRegulatorios.Vistas
 {
-    public partial class frmBa12 : Form
+    public partial class frmTf21 : Form
     {
-        public frmBa12()
+        public frmTf21()
         {
             InitializeComponent();
+
             btnNuevosRegistros.BackColor = Color.DarkGray;
             btnVerificarModificaciones.BackColor = Color.DarkGray;
             btnBitacoras.BackColor = Color.DarkGray;
@@ -340,39 +341,39 @@ namespace ReportesRegulatorios.Vistas
 
         private void VerificarModificaciones(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
-            EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
-            DetalleBa12TmpController detalleBa12TmpController = new DetalleBa12TmpController();
-            DetalleBa12BitController detalleBa12BitController = new DetalleBa12BitController();
-            DetalleBa12Controller detalleBa12Controller = new DetalleBa12Controller();
+            EncaTf21Controller encaTf21Controller = new EncaTf21Controller();
+            DetalleTf21TmpController detalleTf21TmpController = new DetalleTf21TmpController();
+            DetalleTf21BitController detalleTf21BitController = new DetalleTf21BitController();
+            DetalleTf21Controller detalleTf21Controller = new DetalleTf21Controller();
 
             bool resultado = false;
 
-            detalleBa12TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
-            resultado = detalleBa12TmpController.InsertarDetalleBa12TmpBulk(tabla);
+            detalleTf21TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
+            resultado = detalleTf21TmpController.InsertarDetalleTf21TmpBulk(tabla);
 
-            DataTable validacionCantidadRegistros = detalleBa12TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
+            DataTable validacionCantidadRegistros = detalleTf21TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
             string resultadoCantidadRegistros = validacionCantidadRegistros.Rows[0]["RESULTADO"].ToString();
             string detalleCantidadRegistros = validacionCantidadRegistros.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionConteoDetalle = detalleBa12TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes));
+            DataTable validacionConteoDetalle = detalleTf21TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes));
             string resultadoConteoDetalle = validacionConteoDetalle.Rows[0]["RESULTADO"].ToString();
             string detalleConteoDetalle = validacionConteoDetalle.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionJustificacion = detalleBa12TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes));
+            DataTable validacionJustificacion = detalleTf21TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes));
 
             if (resultado && resultadoCantidadRegistros == "1" && resultadoConteoDetalle == "1" && validacionJustificacion.Rows.Count == 0)
             {
                 PlayNotificationSound();
                 MessageBox.Show("Datos Validados Correctamente, Espere mientras se guardan los cambios", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                encaBa12Controller.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link);
+                encaTf21Controller.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link);
 
-                DataTable dtVerificacion = detalleBa12BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes));
-                detalleBa12BitController.InsertarDetalleBa12VerBitBulk(dtVerificacion, usuario);
-                detalleBa12BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes));
+                DataTable dtVerificacion = detalleTf21BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes));
+                detalleTf21BitController.InsertarDetalleTf21VerBitBulk(dtVerificacion, usuario);
+                detalleTf21BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes));
 
-                DataTable dtNuevosRegistrosEnDetalle = detalleBa12BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes));
-                detalleBa12Controller.InsertarDetalleBa12Bulk(dtNuevosRegistrosEnDetalle);
+                DataTable dtNuevosRegistrosEnDetalle = detalleTf21BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes));
+                detalleTf21Controller.InsertarDetalleTf21Bulk(dtNuevosRegistrosEnDetalle);
 
                 PlayNotificationSound();
                 MessageBox.Show("Cambios guardados correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -417,8 +418,8 @@ namespace ReportesRegulatorios.Vistas
                 mes = NumeroMes(cmbMes.Text);
                 anioMes = txtAnio.Text + mes;
 
-                EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
-                dt = encaBa12Controller.ObtenerEncabezado(Convert.ToInt32(anioMes));
+                EncaTf21Controller encaTf21Controller = new EncaTf21Controller();
+                dt = encaTf21Controller.ObtenerEncabezado(Convert.ToInt32(anioMes));
                 if (dt.Rows.Count > 0)
                 {
 
@@ -503,15 +504,15 @@ namespace ReportesRegulatorios.Vistas
 
         private void ProcesoNuevosRegistros(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
-            DetalleBa12Controller detalleBa12Controller = new DetalleBa12Controller();
-            bool resultado = detalleBa12Controller.InsertarDetalleBa12Bulk(tabla);
+            DetalleTf21Controller detalleTf21Controller = new DetalleTf21Controller();
+            bool resultado = detalleTf21Controller.InsertarDetalleTf21Bulk(tabla);
 
             if (resultado)
             {
-                EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
-                DetalleBa12BitController detalleBa12BitController = new DetalleBa12BitController();
+                EncaTf21Controller encaTf21Controller = new EncaTf21Controller();
+                DetalleTf21BitController detalleTf21BitController = new DetalleTf21BitController();
 
-                encaBa12Controller.ActualizarEncabezado(Convert.ToInt32(anioMes),
+                encaTf21Controller.ActualizarEncabezado(Convert.ToInt32(anioMes),
                                                           "V",
                                                           usuarioOperado,
                                                           fechaOperado,
@@ -521,7 +522,7 @@ namespace ReportesRegulatorios.Vistas
                                                           null,
                                                           link);
 
-                detalleBa12BitController.InsertarDetalleBa12BitBulk(tabla, usuario);
+                detalleTf21BitController.InsertarDetalleTf21BitBulk(tabla, usuario);
 
                 PlayNotificationSound();
                 MessageBox.Show("Datos Exportados Correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -534,7 +535,18 @@ namespace ReportesRegulatorios.Vistas
             }
         }
 
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            Boolean consultar = false;
+            consultar = Consultar();
 
+            if (!consultar)
+            {
+                DeshabilitarBotones();
+                btnConsultar.Enabled = true;
+                btnConsultar.BackColor = Color.DarkBlue;
+            }
+        }
 
         private async void btnNuevosRegistros_Click(object sender, EventArgs e)
         {
@@ -584,19 +596,6 @@ namespace ReportesRegulatorios.Vistas
             }
 
             HabilitarBotonoes();
-        }
-
-        private void btnConsultar_Click(object sender, EventArgs e)
-        {
-            Boolean consultar = false;
-            consultar = Consultar();
-
-            if (!consultar)
-            {
-                DeshabilitarBotones();
-                btnConsultar.Enabled = true;
-                btnConsultar.BackColor = Color.DarkBlue;
-            }
         }
 
         private async void btnVerificarModificaciones_Click(object sender, EventArgs e)
@@ -658,12 +657,12 @@ namespace ReportesRegulatorios.Vistas
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
-                DetalleBa12BitController detalleBa12BitController = new DetalleBa12BitController();
+                DetalleTf21BitController detalleTf21BitController = new DetalleTf21BitController();
 
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleBa12BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+                dt = detalleTf21BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
 
                 ExportarDataTableACsv(dt);
 
@@ -678,12 +677,12 @@ namespace ReportesRegulatorios.Vistas
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
-                DetalleBa12Controller detalleBa12Controller = new DetalleBa12Controller();
+                DetalleTf21Controller detalleTf21Controller = new DetalleTf21Controller();
 
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleBa12Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+                dt = detalleTf21Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
 
                 ExportarDataTableACsv(dt);
 
@@ -698,12 +697,12 @@ namespace ReportesRegulatorios.Vistas
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
-                DetalleBa12Controller detalleBa12Controller = new DetalleBa12Controller();
+                DetalleTf21Controller detalleTf21Controller = new DetalleTf21Controller();
 
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleBa12Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+                dt = detalleTf21Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
 
                 ExportarDataTableATxt(dt);
 
@@ -714,7 +713,7 @@ namespace ReportesRegulatorios.Vistas
         {
             if (!txtLink.Text.Equals(""))
             {
-                EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
+                EncaTf21Controller encaTf21Controller = new EncaTf21Controller();
                 string mes = "00";
                 string anioMes;
 
@@ -745,7 +744,7 @@ namespace ReportesRegulatorios.Vistas
                     fechaOperado = txtFechaOperado.Text;
                 }
 
-                encaBa12Controller.ActualizarEncabezado(Convert.ToInt32(anioMes),
+                encaTf21Controller.ActualizarEncabezado(Convert.ToInt32(anioMes),
                                                                 "F",
                                                                 usuarioOperado,
                                                                 fechaOperado,

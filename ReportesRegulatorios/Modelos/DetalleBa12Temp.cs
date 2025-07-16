@@ -396,7 +396,7 @@ namespace ReportesRegulatorios.Modelos
                 {
                     using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
                     {
-                        bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.rrdv17_detalle_tmp";
+                        bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_ba12_deta_tmp";
 
                         // Mapeo explícito de columnas
                         bulkCopy.ColumnMappings.Add("AnioMes", "AnioMes");

@@ -217,7 +217,7 @@ namespace ReportesRegulatorios.Vistas
                 mes = NumeroMes(cmbMes.Text);
                 anioMes = txtAnio.Text + mes;
 
-                EncabezadoController encabezadoController = new EncabezadoController();
+                EncaDv17Controller encabezadoController = new EncaDv17Controller();
                 dt = encabezadoController.ObtenerEncabezado(Convert.ToInt32(anioMes));
                 if (dt.Rows.Count > 0)
                 {
@@ -500,7 +500,7 @@ namespace ReportesRegulatorios.Vistas
 
             if (resultado)
             {
-                EncabezadoController encabezadoController = new EncabezadoController();
+                EncaDv17Controller encabezadoController = new EncaDv17Controller();
                 DetalleDv17BitController detalleDv17BitController = new DetalleDv17BitController();
 
                 encabezadoController.ActualizarEncabezado(Convert.ToInt32(anioMes),
@@ -581,7 +581,7 @@ namespace ReportesRegulatorios.Vistas
         {
             if(!txtLink.Text.Equals(""))
             {
-                EncabezadoController encabezadoController = new EncabezadoController();
+                EncaDv17Controller encabezadoController = new EncaDv17Controller();
                 string mes = "00";
                 string anioMes;
 
@@ -634,7 +634,7 @@ namespace ReportesRegulatorios.Vistas
 
         private void VerificarModificaciones(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
-            EncabezadoController encabezadoController = new EncabezadoController();
+            EncaDv17Controller encabezadoController = new EncaDv17Controller();
             DetalleDv17TmpController detalleDv17TmpController = new DetalleDv17TmpController();
             DetalleDv17BitController detalleDv17BitController = new DetalleDv17BitController();
             DetalleDv17Controller detalleDv17Controller = new DetalleDv17Controller();

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ReportesRegulatorios.Controladores
 {
-    internal class EncabezadoController
+    internal class EncaDv17Controller
     {
         public DataTable ObtenerEncabezado(int anioMes)
         {
-            Encabezado encabezado = new Encabezado();
-            return encabezado.ObtenerEncabezado(anioMes);
+            EncaDv17 encaDv17 = new EncaDv17();
+            return encaDv17.ObtenerEncabezado(anioMes);
         }
 
         public bool ActualizarEncabezado(    int anioMes,
@@ -27,8 +27,8 @@ namespace ReportesRegulatorios.Controladores
                                                 string Doc_cierre
                                             )
         {
-            Encabezado encabezado = new Encabezado();
-            return encabezado.ActualizarEncabezado(anioMes, estado,Usuario_genera, Fecha_genera, Usuario_upd, Fecha_upd, Usuario_Cierre, Fecha_Cierre, Doc_cierre);
+            EncaDv17 encaDv17 = new EncaDv17();
+            return encaDv17.ActualizarEncabezado(anioMes, estado,Usuario_genera, Fecha_genera, Usuario_upd, Fecha_upd, Usuario_Cierre, Fecha_Cierre, Doc_cierre);
         }
             
     }

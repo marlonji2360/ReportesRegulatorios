@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace ReportesRegulatorios.Vistas
 {
-    public partial class frmBa12 : Form
+    public partial class frmEf14 : Form
     {
-        public frmBa12()
+        public frmEf14()
         {
             InitializeComponent();
             btnNuevosRegistros.BackColor = Color.DarkGray;
@@ -201,6 +201,104 @@ namespace ReportesRegulatorios.Vistas
             return numeroMes;
         }
 
+        private Boolean Consultar()
+        {
+            //DeshabilitarBotones();
+            btnConsultar.BackColor = Color.DarkBlue;
+            btnConsultar.Enabled = true;
+
+            if (cmbMes.Text != "" && txtAnio.Text != "")
+            {
+                string mes = "00";
+                string anioMes;
+                DataTable dt = new DataTable();
+                mes = NumeroMes(cmbMes.Text);
+                anioMes = txtAnio.Text + mes;
+
+                EncaEf14Controller encabezadoController = new EncaEf14Controller();
+                dt = encabezadoController.ObtenerEncabezado(Convert.ToInt32(anioMes));
+                if (dt.Rows.Count > 0)
+                {
+
+
+                    string dtAnioMes = dt.Rows[0]["AnioMes"].ToString();
+                    string dtEstado = dt.Rows[0]["Estado"].ToString();
+                    string dtUsuario_genera = dt.Rows[0]["Usuario_genera"].ToString();
+                    string dtFecha_genera = dt.Rows[0]["Fecha_genera"].ToString();
+                    string dtUsuario_upd = dt.Rows[0]["Usuario_upd"].ToString();
+                    string dtFecha_upd = dt.Rows[0]["Fecha_upd"].ToString();
+                    string dtUsuario_Cierre = dt.Rows[0]["Usuario_Cierre"].ToString();
+                    string dtFecha_Cierre = dt.Rows[0]["Fecha_Cierre"].ToString();
+                    string dtDoc_cierre = dt.Rows[0]["Doc_cierre"].ToString();
+                    string dtAnio = dtAnioMes.Substring(0, 4);
+                    string dtMes = dtAnioMes.Substring(4, 2);
+
+                    NombreMes(dtMes);
+                    CalcularEstado(dtEstado);
+
+
+
+
+                    txtAnio.Text = dtAnio;
+
+                    txtFechaOperado.Text = dtFecha_genera;
+                    txtUsuarioOperado.Text = dtUsuario_genera;
+                    txtFechaUltimaMod.Text = dtFecha_upd;
+                    txtUsuarioUltimaMod.Text = dtUsuario_upd;
+                    txtFechaFinalizado.Text = dtFecha_Cierre;
+                    txtUsuarioFinalizado.Text = dtUsuario_Cierre;
+
+                    return true;
+
+                    //HabilitarBotonoes();
+
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron datos para la fecha indicada", "Información", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Limpiar();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe de ingresar los datos de consulta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Limpiar();
+                return false;
+            }
+
+        }
+        private DataTable LeerCsvEnDataTable(string rutaArchivo)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (StreamReader reader = new StreamReader(rutaArchivo))
+            {
+                bool esPrimeraLinea = true;
+                while (!reader.EndOfStream)
+                {
+                    string linea = reader.ReadLine();
+                    string[] valores = linea.Split('|');
+
+                    if (esPrimeraLinea)
+                    {
+                        foreach (string columna in valores)
+                        {
+                            dataTable.Columns.Add(columna);
+                        }
+                        esPrimeraLinea = false;
+                    }
+                    else
+                    {
+                        dataTable.Rows.Add(valores);
+                    }
+                }
+            }
+
+            return dataTable;
+        }
+
+
         private void PlayNotificationSound()
         {
             bool found = false;
@@ -225,6 +323,7 @@ namespace ReportesRegulatorios.Vistas
             if (!found)
                 SystemSounds.Beep.Play(); // consolation prize
         }
+
 
         private void ExportarDataTableACsv(DataTable dataTable)
         {
@@ -338,41 +437,74 @@ namespace ReportesRegulatorios.Vistas
             }
         }
 
+        private void ProcesoNuevosRegistros(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
+        {
+            DetalleEf14Controller detalleEf14Controller = new DetalleEf14Controller();
+            bool resultado = detalleEf14Controller.InsertarDetalleEf14Bulk(tabla);
+
+            if (resultado)
+            {
+                EncaEf14Controller encabezadoController = new EncaEf14Controller();
+                DetalleEf14BitController detalleEf14BitController = new DetalleEf14BitController();
+
+                encabezadoController.ActualizarEncabezado(Convert.ToInt32(anioMes),
+                                                          "V",
+                                                          usuarioOperado,
+                                                          fechaOperado,
+                                                          usuario,
+                                                          fechaActual,
+                                                          null,
+                                                          null,
+                                                          link);
+
+                detalleEf14BitController.InsertarDetalleEf14BitBulk(tabla, usuario);
+
+                PlayNotificationSound();
+                MessageBox.Show("Datos Exportados Correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Consultar();
+            }
+            else
+            {
+                PlayNotificationSound();
+                MessageBox.Show("Datos NO Exportados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void VerificarModificaciones(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
-            EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
-            DetalleBa12TmpController detalleBa12TmpController = new DetalleBa12TmpController();
-            DetalleBa12BitController detalleBa12BitController = new DetalleBa12BitController();
-            DetalleBa12Controller detalleBa12Controller = new DetalleBa12Controller();
+            EncaEf14Controller encabezadoController = new EncaEf14Controller();
+            DetalleEf14TmpController detalleEf14TmpController = new DetalleEf14TmpController();
+            DetalleEf14BitController detalleEf14BitController = new DetalleEf14BitController();
+            DetalleEf14Controller detalleEf14Controller = new DetalleEf14Controller();
 
             bool resultado = false;
 
-            detalleBa12TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
-            resultado = detalleBa12TmpController.InsertarDetalleBa12TmpBulk(tabla);
+            detalleEf14TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
+            resultado = detalleEf14TmpController.InsertarDetalleEf14TmpBulk(tabla);
 
-            DataTable validacionCantidadRegistros = detalleBa12TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
+            DataTable validacionCantidadRegistros = detalleEf14TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
             string resultadoCantidadRegistros = validacionCantidadRegistros.Rows[0]["RESULTADO"].ToString();
             string detalleCantidadRegistros = validacionCantidadRegistros.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionConteoDetalle = detalleBa12TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes));
+            DataTable validacionConteoDetalle = detalleEf14TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes));
             string resultadoConteoDetalle = validacionConteoDetalle.Rows[0]["RESULTADO"].ToString();
             string detalleConteoDetalle = validacionConteoDetalle.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionJustificacion = detalleBa12TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes));
+            DataTable validacionJustificacion = detalleEf14TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes));
 
             if (resultado && resultadoCantidadRegistros == "1" && resultadoConteoDetalle == "1" && validacionJustificacion.Rows.Count == 0)
             {
                 PlayNotificationSound();
                 MessageBox.Show("Datos Validados Correctamente, Espere mientras se guardan los cambios", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                encaBa12Controller.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link);
+                encabezadoController.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link);
 
-                DataTable dtVerificacion = detalleBa12BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes));
-                detalleBa12BitController.InsertarDetalleBa12VerBitBulk(dtVerificacion, usuario);
-                detalleBa12BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes));
+                DataTable dtVerificacion = detalleEf14BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes));
+                detalleEf14BitController.InsertarDetalleEf14VerBitBulk(dtVerificacion, usuario);
+                detalleEf14BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes));
 
-                DataTable dtNuevosRegistrosEnDetalle = detalleBa12BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes));
-                detalleBa12Controller.InsertarDetalleBa12Bulk(dtNuevosRegistrosEnDetalle);
+                DataTable dtNuevosRegistrosEnDetalle = detalleEf14BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes));
+                detalleEf14Controller.InsertarDetalleEf14Bulk(dtNuevosRegistrosEnDetalle);
 
                 PlayNotificationSound();
                 MessageBox.Show("Cambios guardados correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -403,138 +535,35 @@ namespace ReportesRegulatorios.Vistas
 
         }
 
-        private Boolean Consultar()
+        private void btnConsultar_Click(object sender, EventArgs e)
         {
-            //DeshabilitarBotones();
-            btnConsultar.BackColor = Color.DarkBlue;
-            btnConsultar.Enabled = true;
+            Boolean consultar = false;
+            consultar = Consultar();
 
-            if (cmbMes.Text != "" && txtAnio.Text != "")
+            if (!consultar)
             {
-                string mes = "00";
-                string anioMes;
-                DataTable dt = new DataTable();
-                mes = NumeroMes(cmbMes.Text);
-                anioMes = txtAnio.Text + mes;
-
-                EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
-                dt = encaBa12Controller.ObtenerEncabezado(Convert.ToInt32(anioMes));
-                if (dt.Rows.Count > 0)
-                {
-
-
-                    string dtAnioMes = dt.Rows[0]["AnioMes"].ToString();
-                    string dtEstado = dt.Rows[0]["Estado"].ToString();
-                    string dtUsuario_genera = dt.Rows[0]["Usuario_genera"].ToString();
-                    string dtFecha_genera = dt.Rows[0]["Fecha_genera"].ToString();
-                    string dtUsuario_upd = dt.Rows[0]["Usuario_upd"].ToString();
-                    string dtFecha_upd = dt.Rows[0]["Fecha_upd"].ToString();
-                    string dtUsuario_Cierre = dt.Rows[0]["Usuario_Cierre"].ToString();
-                    string dtFecha_Cierre = dt.Rows[0]["Fecha_Cierre"].ToString();
-                    string dtDoc_cierre = dt.Rows[0]["Doc_cierre"].ToString();
-                    string dtAnio = dtAnioMes.Substring(0, 4);
-                    string dtMes = dtAnioMes.Substring(4, 2);
-
-                    NombreMes(dtMes);
-                    CalcularEstado(dtEstado);
-
-
-
-
-                    txtAnio.Text = dtAnio;
-
-                    txtFechaOperado.Text = dtFecha_genera;
-                    txtUsuarioOperado.Text = dtUsuario_genera;
-                    txtFechaUltimaMod.Text = dtFecha_upd;
-                    txtUsuarioUltimaMod.Text = dtUsuario_upd;
-                    txtFechaFinalizado.Text = dtFecha_Cierre;
-                    txtUsuarioFinalizado.Text = dtUsuario_Cierre;
-
-                    return true;
-
-                    //HabilitarBotonoes();
-
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron datos para la fecha indicada", "Información", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    Limpiar();
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe de ingresar los datos de consulta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Limpiar();
-                return false;
+                DeshabilitarBotones();
+                btnConsultar.Enabled = true;
+                btnConsultar.BackColor = Color.DarkBlue;
             }
 
         }
 
-        private DataTable LeerCsvEnDataTable(string rutaArchivo)
+        private void btnCopiarConclusion_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = new DataTable();
-
-            using (StreamReader reader = new StreamReader(rutaArchivo))
+            try
             {
-                bool esPrimeraLinea = true;
-                while (!reader.EndOfStream)
-                {
-                    string linea = reader.ReadLine();
-                    string[] valores = linea.Split('|');
-
-                    if (esPrimeraLinea)
-                    {
-                        foreach (string columna in valores)
-                        {
-                            dataTable.Columns.Add(columna);
-                        }
-                        esPrimeraLinea = false;
-                    }
-                    else
-                    {
-                        dataTable.Rows.Add(valores);
-                    }
-                }
+                Clipboard.SetDataObject(txtLink.Text, true);
+                MessageBox.Show("Texto copiado al portapapeles de Windows.",
+                    "Copiado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            return dataTable;
-        }
-
-        private void ProcesoNuevosRegistros(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
-        {
-            DetalleBa12Controller detalleBa12Controller = new DetalleBa12Controller();
-            bool resultado = detalleBa12Controller.InsertarDetalleBa12Bulk(tabla);
-
-            if (resultado)
+            catch (Exception err)
             {
-                EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
-                DetalleBa12BitController detalleBa12BitController = new DetalleBa12BitController();
-
-                encaBa12Controller.ActualizarEncabezado(Convert.ToInt32(anioMes),
-                                                          "V",
-                                                          usuarioOperado,
-                                                          fechaOperado,
-                                                          usuario,
-                                                          fechaActual,
-                                                          null,
-                                                          null,
-                                                          link);
-
-                detalleBa12BitController.InsertarDetalleBa12BitBulk(tabla, usuario);
-
-                PlayNotificationSound();
-                MessageBox.Show("Datos Exportados Correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Consultar();
-            }
-            else
-            {
-                PlayNotificationSound();
-                MessageBox.Show("Datos NO Exportados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error al copiar texto al portapapeles: " +
+                    Environment.NewLine + err.Message, "Error al copiar",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
         private async void btnNuevosRegistros_Click(object sender, EventArgs e)
         {
@@ -584,19 +613,6 @@ namespace ReportesRegulatorios.Vistas
             }
 
             HabilitarBotonoes();
-        }
-
-        private void btnConsultar_Click(object sender, EventArgs e)
-        {
-            Boolean consultar = false;
-            consultar = Consultar();
-
-            if (!consultar)
-            {
-                DeshabilitarBotones();
-                btnConsultar.Enabled = true;
-                btnConsultar.BackColor = Color.DarkBlue;
-            }
         }
 
         private async void btnVerificarModificaciones_Click(object sender, EventArgs e)
@@ -658,12 +674,12 @@ namespace ReportesRegulatorios.Vistas
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
-                DetalleBa12BitController detalleBa12BitController = new DetalleBa12BitController();
+                DetalleEf14BitController detalleEf14BitController = new DetalleEf14BitController();
 
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleBa12BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+                dt = detalleEf14BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
 
                 ExportarDataTableACsv(dt);
 
@@ -678,12 +694,12 @@ namespace ReportesRegulatorios.Vistas
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
-                DetalleBa12Controller detalleBa12Controller = new DetalleBa12Controller();
+                DetalleEf14Controller detalleEf14Controller = new DetalleEf14Controller();
 
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleBa12Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+                dt = detalleEf14Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
 
                 ExportarDataTableACsv(dt);
 
@@ -698,12 +714,12 @@ namespace ReportesRegulatorios.Vistas
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
-                DetalleBa12Controller detalleBa12Controller = new DetalleBa12Controller();
+                DetalleEf14Controller detalleEf14Controller = new DetalleEf14Controller();
 
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleBa12Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+                dt = detalleEf14Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
 
                 ExportarDataTableATxt(dt);
 
@@ -714,7 +730,7 @@ namespace ReportesRegulatorios.Vistas
         {
             if (!txtLink.Text.Equals(""))
             {
-                EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
+                EncaEf14Controller encabezadoController = new EncaEf14Controller();
                 string mes = "00";
                 string anioMes;
 
@@ -745,7 +761,7 @@ namespace ReportesRegulatorios.Vistas
                     fechaOperado = txtFechaOperado.Text;
                 }
 
-                encaBa12Controller.ActualizarEncabezado(Convert.ToInt32(anioMes),
+                encabezadoController.ActualizarEncabezado(Convert.ToInt32(anioMes),
                                                                 "F",
                                                                 usuarioOperado,
                                                                 fechaOperado,
@@ -763,22 +779,6 @@ namespace ReportesRegulatorios.Vistas
                 MessageBox.Show("Favor ingresar el link del resguardo del archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             Consultar();
-        }
-
-        private void btnCopiarConclusion_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Clipboard.SetDataObject(txtLink.Text, true);
-                MessageBox.Show("Texto copiado al portapapeles de Windows.",
-                    "Copiado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show("Error al copiar texto al portapapeles: " +
-                    Environment.NewLine + err.Message, "Error al copiar",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }

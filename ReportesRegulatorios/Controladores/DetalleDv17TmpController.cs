@@ -12,43 +12,43 @@ namespace ReportesRegulatorios.Controladores
     {
         public DataTable ObtenerDetalleTempCsv(int anioMes)
         {
-            DetalleDV17Temp detalleDv17Temp = new DetalleDV17Temp();
+            DetalleDv17Temp detalleDv17Temp = new DetalleDv17Temp();
             return detalleDv17Temp.ObtenerDetalleTmpCsv(anioMes);
         }
 
         public bool InsertarDetalleTempDv17(DataTable tabla)
         {
-            DetalleDV17Temp detalleDv17Temp = new DetalleDV17Temp();
+            DetalleDv17Temp detalleDv17Temp = new DetalleDv17Temp();
             return detalleDv17Temp.InsertarDetalleDv17Tmp(tabla);
         }
 
         public bool InsertarDetalleDv17TmpBulk(DataTable tabla)
         {
-            DetalleDV17Temp detalleDv17Temp = new DetalleDV17Temp();
+            DetalleDv17Temp detalleDv17Temp = new DetalleDv17Temp();
             return detalleDv17Temp.InsertarDetalleDv17TmpBulk(tabla);
         }
 
         public DataTable ValidacionCantidadRegistros(int anioMes)
         {
-            DetalleDV17Temp detalleDv17Temp = new DetalleDV17Temp();
+            DetalleDv17Temp detalleDv17Temp = new DetalleDv17Temp();
             return detalleDv17Temp.ValidacionCantidadRegistros(anioMes);
         }
 
         public DataTable ValidacionConteoDetalle(int anioMes)
         {
-            DetalleDV17Temp detalleDv17Temp = new DetalleDV17Temp();
+            DetalleDv17Temp detalleDv17Temp = new DetalleDv17Temp();
             return detalleDv17Temp.ValidacionConteoDetalle(anioMes);
         }
 
         public DataTable ValidacionCampoJustificacion(int anioMes)
         {
-            DetalleDV17Temp detalleDv17Temp = new DetalleDV17Temp();
+            DetalleDv17Temp detalleDv17Temp = new DetalleDv17Temp();
             return detalleDv17Temp.ValidacionCampoJustificacion(anioMes);
         }
 
         public bool EliminarCamposDetalleTmp(int anioMes)
         {
-            DetalleDV17Temp detalleDv17Temp = new DetalleDV17Temp();
+            DetalleDv17Temp detalleDv17Temp = new DetalleDv17Temp();
             return detalleDv17Temp.EliminarCamposDetalleTmp(anioMes);
         }
     }

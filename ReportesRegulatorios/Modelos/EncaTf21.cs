@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReportesRegulatorios.Modelos
 {
-    internal class Encabezado
+    internal class EncaTf21
     {
         int AnioMes;
         string Estado ;
@@ -20,7 +20,7 @@ namespace ReportesRegulatorios.Modelos
         string Fecha_Cierre ;
         string Doc_cierre;
 
-        public Encabezado()
+        public EncaTf21()
         {
 
         }
@@ -28,7 +28,7 @@ namespace ReportesRegulatorios.Modelos
         public DataTable ObtenerEncabezado(int anioMes)
         {
             DataTable dt = new DataTable();
-            string consulta = "select * from DL_CUMPLIMIENTO.rrdv17_detalle_enca where AnioMes=" + anioMes;
+            string consulta = "select AnioMes, Estado, Usuario_genera, Fecha_genera, Usuario_upd, Fecha_upd, Usuario_Cierre, Fecha_Cierre, Doc_cierre from DL_CUMPLIMIENTO.dw_repreg_tf21_deta_enca where AnioMes=" + anioMes;
             try
             {
                 Conexion conexion = new Conexion();
@@ -59,7 +59,7 @@ namespace ReportesRegulatorios.Modelos
                 using (SqlConnection conn = conexion.AbrirConexion())
                 {
                    
-                    using (SqlCommand cmd = new SqlCommand("DL_CUMPLIMIENTO.PRC_Actualizar_DV17_ENCA", conn))
+                    using (SqlCommand cmd = new SqlCommand("DL_CUMPLIMIENTO.PRC_Actualizar_TF21_ENCA", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
