@@ -40,32 +40,43 @@ namespace ReportesRegulatorios.Vistas
 
         private void frmPantallaPrincipal_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void lblBa12_Click(object sender, EventArgs e)
         {
+            imgBantrab.Visible = false;
             AbrirFormularioEnPanel(new frmBa12());
         }
 
         private void lblEf14_Click(object sender, EventArgs e)
         {
+            imgBantrab.Visible = false;
             AbrirFormularioEnPanel(new frmEf14());
         }
 
         private void lblDv17_Click(object sender, EventArgs e)
         {
+            imgBantrab.Visible = false;
             AbrirFormularioEnPanel(new frmDv17());
         }
 
         private void lblTf21_Click(object sender, EventArgs e)
         {
+            imgBantrab.Visible = false;
             AbrirFormularioEnPanel(new frmTf21());
         }
 
         private void lblMe13_Click(object sender, EventArgs e)
         {
+            imgBantrab.Visible = false;
             AbrirFormularioEnPanel(new frmMe13());
+        }
+
+        private void lblMenu_Click(object sender, EventArgs e)
+        {
+            
+            imgBantrab.Visible = true;
         }
     }
 }
