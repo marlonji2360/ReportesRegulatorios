@@ -104,33 +104,63 @@ namespace ReportesRegulatorios.Modelos
         {
 
             DataTable dt = new DataTable();
-            string consulta = @"SELECT  LEFT(CONVERT(CHAR(8), Fecha_Transaccion, 112) + REPLICATE(' ', 8), 8)  + '&&' +
-                                        LEFT(ISNULL(Tipo_Transaccion, '') + REPLICATE(' ', 3), 3)   + '&&' +
-                                        LEFT(ISNULL(TIPO_PERSONA, '') + ' ', 1)    + '&&' +
-                                        LEFT(ISNULL(Tipo_Identificacion_persona, '') + ' ', 1)    + '&&' +
-                                        LEFT(ISNULL(No_Orden_Cedula, '') + REPLICATE(' ', 3), 3)    + '&&' +
-                                        LEFT(ISNULL(Numero_Identificacion_persona, '') + REPLICATE(' ', 20), 20)    + '&&' +
-                                        LEFT(ISNULL(Municipio_emision_Cedula, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Primer_Apellido, '') + REPLICATE(' ', 15), 15)    + '&&' +
-                                        LEFT(ISNULL(Segundo_Apellido, '') + REPLICATE(' ', 15), 15)    + '&&' +
-                                        LEFT(ISNULL(Apellido_Casada, '') + REPLICATE(' ', 15), 15)    + '&&' +
-                                        LEFT(ISNULL(Primer_Nombre, '') + REPLICATE(' ', 15), 15)    + '&&' +
-                                        LEFT(ISNULL(Segundo_Nombre, '') + REPLICATE(' ', 30), 30)    + '&&' +
-                                        LEFT(ISNULL(Nombre_Persona_Juridica, '') + REPLICATE(' ', 150), 150)    + '&&' +
-                                        LEFT(CONVERT(CHAR(8), Fecha_Nacimiento_Constitucion, 112) + REPLICATE(' ', 8), 8)    + '&&' +
-                                        LEFT(ISNULL(Pais_Nacionalidad_Constitucion, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Actividad_Economica_Persona, '') + REPLICATE(' ', 3), 3)    + '&&' +
-                                        LEFT(ISNULL(Direccion, '') + REPLICATE(' ', 150), 150)    + '&&' +
-                                        LEFT(ISNULL(Zona, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Departamento, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Municipio, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Origen_Fondos, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Tipo_Moneda, '') + REPLICATE(' ', 3), 3)    + '&&' +
-                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(Monto_Moneda_Orginal AS VARCHAR), ''), 14)    + '&&' +
-                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(Monto_Dolares AS VARCHAR), ''), 14)    + '&&' +
-                                        LEFT(ISNULL(Codigo_Agencia, '') + REPLICATE(' ', 10), 10)    + '&&'
-                                        Trama
-                                      FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta
+            string consulta = @"select
+		LEFT(CONVERT(CHAR(8), Fecha, 112) + REPLICATE(' ', 8), 8)  + '&&' +
+		LEFT(ISNULL(TIPO_TRANSFERENCIA, '') + REPLICATE(' ', 1), 1)   + '&&' +
+		LEFT(ISNULL(TRANSFERENCIA, '') + REPLICATE(' ', 1), 1)   + '&&' +
+		LEFT(ISNULL(TIPO_PERSONA_ORD, '') + REPLICATE(' ', 1), 1)   + '&&' +
+		LEFT(ISNULL(TIPO_IDENTIFICACION_ORD, '') + REPLICATE(' ', 1), 1)   + '&&' +
+		LEFT(ISNULL(ORDEN_CEDULA_ORD, '') + REPLICATE(' ', 3), 3)   + '&&' +
+		LEFT(ISNULL(NUMERO_IDENTIFICACION_ORD, '') + REPLICATE(' ', 20), 20)   + '&&' +
+		LEFT(ISNULL(MUNICIPIO_EMISION_ORD, '') + REPLICATE(' ', 4), 4)   + '&&' +
+	   CASE
+           WHEN TIPO_PERSONA_ORD = 'J' THEN
+		       	LEFT(ISNULL(SUBSTRING(Nombre_Juridico_ORD, 1, 15) , '') + REPLICATE(' ', 15), 15)   + '&&' +
+                LEFT(ISNULL(SUBSTRING(Nombre_Juridico_ORD, 16, 15) , '') + REPLICATE(' ', 15), 15)   + '&&' +
+                LEFT(ISNULL(SUBSTRING(Nombre_Juridico_ORD, 31, 15) , '') + REPLICATE(' ', 15), 15)   + '&&' +
+                LEFT(ISNULL(SUBSTRING(Nombre_Juridico_ORD, 46, 15) , '') + REPLICATE(' ', 15), 15)   + '&&' +
+			    LEFT(ISNULL(SUBSTRING(Nombre_Juridico_ORD, 61, 30) , '') + REPLICATE(' ', 30), 30)
+		   WHEN TIPO_PERSONA_ORD != 'J' THEN
+				LEFT(ISNULL(PRIMER_APELLIDO_ORD, '') + REPLICATE(' ', 15), 15)   + '&&' +
+				LEFT(ISNULL(SEGUNDO_APELLIDO_ORD, '') + REPLICATE(' ', 15), 15)   + '&&' +
+				LEFT(ISNULL(APELLIDO_CASADA_ORD, '') + REPLICATE(' ', 15), 15)   + '&&' +
+				LEFT(ISNULL(PRIMER_NOMBRE_ORD, '') + REPLICATE(' ', 15), 15)   + '&&' +
+				LEFT(ISNULL(SEGUNDO_NOMBRE_ORD, '') + REPLICATE(' ', 30), 30)   
+		END + '&&' +
+		LEFT(ISNULL(CUENTA_A_DEBITAR_ORD, '') + REPLICATE(' ', 28), 28)   + '&&' +
+		LEFT(ISNULL(TIPO_PERSONA_BEN, '') + REPLICATE(' ', 1), 1)   + '&&' +
+		LEFT(ISNULL(TIPO_IDENTIFICACION_BEN, '') + REPLICATE(' ', 1), 1)   + '&&' +
+		LEFT(ISNULL(ORDEN_CEDULA_BEN, '') + REPLICATE(' ', 3), 3)   + '&&' +
+		LEFT(ISNULL(NUMERO_IDENTIFICACION_BEN, '') + REPLICATE(' ', 20), 20)   + '&&' +
+		LEFT(ISNULL(MUNICIPIO_EMSION_BEN, '') + REPLICATE(' ', 4), 4)   + '&&' +
+		CASE
+           WHEN TIPO_PERSONA_BEN = 'J' THEN
+		       	LEFT(ISNULL(SUBSTRING(Nombre_Juridico_BEN, 1, 15) , '') + REPLICATE(' ', 15), 15)   + '&&' +
+                LEFT(ISNULL(SUBSTRING(Nombre_Juridico_BEN, 16, 15) , '') + REPLICATE(' ', 15), 15)   + '&&' +
+                LEFT(ISNULL(SUBSTRING(Nombre_Juridico_BEN, 31, 15) , '') + REPLICATE(' ', 15), 15)   + '&&' +
+                LEFT(ISNULL(SUBSTRING(Nombre_Juridico_BEN, 46, 15) , '') + REPLICATE(' ', 15), 15)   + '&&' +
+			    LEFT(ISNULL(SUBSTRING(Nombre_Juridico_BEN, 61, 30) , '') + REPLICATE(' ', 30), 30)
+		   WHEN TIPO_PERSONA_BEN != 'J' THEN
+			    LEFT(ISNULL(PRIMER_APELLIDO_BEN, '') + REPLICATE(' ', 15), 15)   + '&&' +
+		        LEFT(ISNULL(SEGUNDO_APELLIDO_BEN, '') + REPLICATE(' ', 15), 15)   + '&&' +
+		        LEFT(ISNULL(APELLIDO_CASADA_BEN, '') + REPLICATE(' ', 15), 15)   + '&&' +
+		        LEFT(ISNULL(PRIMER_NOMBRE_BEN, '') + REPLICATE(' ', 15), 15)   + '&&' +
+		        LEFT(ISNULL(SEGUNDO_NOMBRE_BEN, '') + REPLICATE(' ', 30), 30)
+		END + '&&' +
+	    LEFT(ISNULL(CUENTA_A_ABONAR_BEN, '') + REPLICATE(' ', 28), 28)   + '&&' +
+		LEFT(ISNULL(CODIGO_INSTITUCION_BANCARIA, '') + REPLICATE(' ', 5), 5)   + '&&' +
+		LEFT(ISNULL(NUMERO_REFERENCIA, '') + REPLICATE(' ', 50), 50)   + '&&' +
+		LEFT(ISNULL(PAIS, '') + REPLICATE(' ', 2), 2)   + '&&' +
+		LEFT(ISNULL(CODIGO_DEPTO_origen, '') + REPLICATE(' ', 2), 2)   + '&&' +
+		LEFT(ISNULL(CODIGO_DEPTO_destino, '') + REPLICATE(' ', 2), 2)   + '&&' +
+		LEFT(ISNULL(CODIGO_AGENCIA, '') + REPLICATE(' ', 10), 10)   + '&&' +
+		--RIGHT(REPLICATE('0', 14) + ISNULL(CAST(MONTO_EN_MONEDA_ORIGINAL AS VARCHAR), ''), 14)    + '&&' +
+		LEFT(CONVERT(CHAR(14), MONTO_EN_MONEDA_ORIGINAL*100, 112) + REPLICATE(' ', 14), 14) + '&&' +
+		LEFT(ISNULL(TIPO_MONEDA, '') + REPLICATE(' ', 3), 3)   + '&&' +
+		--RIGHT(REPLICATE('0', 14) + ISNULL(CAST(MONTO_EN_DOLARES AS VARCHAR), ''), 14)    + '&&'
+		LEFT(CONVERT(CHAR(14), MONTO_EN_DOLARES*100, 112) + REPLICATE(' ', 14), 14) + '&&'
+    Trama
+                                     FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta
                                       WHERE Estado  = 'P' and Aniomes = @anioMes";
 
             try
@@ -217,6 +247,7 @@ namespace ReportesRegulatorios.Modelos
                         bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
                         bulkCopy.ColumnMappings.Add("Numero_transaccion", "Numero_transaccion");
                         bulkCopy.ColumnMappings.Add("codigo_cliente_ord", "codigo_cliente_ord");
+                        bulkCopy.ColumnMappings.Add("codigo_cliente_ben", "codigo_cliente_ben");
                         bulkCopy.ColumnMappings.Add("mov58_boveda", "mov58_boveda");
                         bulkCopy.ColumnMappings.Add("mov59_boveda", "mov59_boveda");
                         bulkCopy.ColumnMappings.Add("mov53TC_boveda", "mov53TC_boveda");
@@ -248,7 +279,7 @@ namespace ReportesRegulatorios.Modelos
         {
             string[] columnasInt = new string[]
             {
-            "AnioMes", "FECHA", "Fecha_Nacimiento_Constitucion",
+            "AnioMes", "FECHA", "Fecha_Nacimiento_Constitucion", "Fecha_modifico",
             "Fecha_Registro", "Numero_transaccion", "cod_proceso_origen",  "hora_trx"
             };
 

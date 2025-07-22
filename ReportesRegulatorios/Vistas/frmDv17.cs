@@ -358,13 +358,13 @@ namespace ReportesRegulatorios.Vistas
 
                             // Escribir encabezados
                             IEnumerable<string> columnNames = dataTable.Columns.Cast<DataColumn>().Select(column => column.ColumnName);
-                            sb.AppendLine(string.Join(";", columnNames));
+                            sb.AppendLine(string.Join("|", columnNames));
 
                             // Escribir filas
                             foreach (DataRow row in dataTable.Rows)
                             {
                                 IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
-                                sb.AppendLine(string.Join(";", fields));
+                                sb.AppendLine(string.Join("|", fields));
                             }
 
                             File.WriteAllText(sfd.FileName, sb.ToString(), Encoding.UTF8);
@@ -472,9 +472,9 @@ namespace ReportesRegulatorios.Vistas
             }
         }
 
-        private void btnGeneraCsv_Click(object sender, EventArgs e)
+        private async void btnGeneraCsv_Click(object sender, EventArgs e)
         {
-
+            DeshabilitarBotones();
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
                 
@@ -488,9 +488,14 @@ namespace ReportesRegulatorios.Vistas
                 anioMes = txtAnio.Text + mes;
                 dt = detalleDv17Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
 
-                ExportarDataTableACsv(dt);
+                await Task.Run(() =>
+                {
+                    ExportarDataTableACsv(dt);
+                });
+                
 
             }
+            HabilitarBotonoes();
         }
 
         private void ProcesoNuevosRegistros(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
@@ -770,8 +775,9 @@ namespace ReportesRegulatorios.Vistas
             }
         }
 
-        private void btnArchivoIve_Click(object sender, EventArgs e)
+        private async void btnArchivoIve_Click(object sender, EventArgs e)
         {
+            DeshabilitarBotones();
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
 
@@ -785,9 +791,15 @@ namespace ReportesRegulatorios.Vistas
                 anioMes = txtAnio.Text + mes;
                 dt = detalleDv17Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
 
-                ExportarDataTableATxt(dt);
+                await Task.Run(() =>
+                {
+                    ExportarDataTableATxt(dt);
+                });
+
+                
 
             }
+            HabilitarBotonoes();
         }
     }
 }

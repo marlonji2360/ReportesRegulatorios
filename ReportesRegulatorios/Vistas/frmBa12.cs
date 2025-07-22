@@ -11,6 +11,8 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ReportesRegulatorios.Vistas
 {
@@ -257,13 +259,13 @@ namespace ReportesRegulatorios.Vistas
 
                             // Escribir encabezados
                             IEnumerable<string> columnNames = dataTable.Columns.Cast<DataColumn>().Select(column => column.ColumnName);
-                            sb.AppendLine(string.Join(";", columnNames));
+                            sb.AppendLine(string.Join("|", columnNames));
 
                             // Escribir filas
                             foreach (DataRow row in dataTable.Rows)
                             {
                                 IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
-                                sb.AppendLine(string.Join(";", fields));
+                                sb.AppendLine(string.Join("|", fields));
                             }
 
                             File.WriteAllText(sfd.FileName, sb.ToString(), Encoding.UTF8);
@@ -650,7 +652,7 @@ namespace ReportesRegulatorios.Vistas
             HabilitarBotonoes();
         }
 
-        private void btnBitacoras_Click(object sender, EventArgs e)
+        private async void btnBitacoras_Click(object sender, EventArgs e)
         {
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
@@ -663,18 +665,27 @@ namespace ReportesRegulatorios.Vistas
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleBa12BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+
+                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                cargando.Show();
+
+                await Task.Run(() =>
+                {
+                    dt = detalleBa12BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+                });
 
                 ExportarDataTableACsv(dt);
+
+                cargando.Close();
 
             }
         }
 
-        private void btnGeneraCsv_Click(object sender, EventArgs e)
+        private async void btnGeneraCsv_Click(object sender, EventArgs e)
         {
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
-
+                DeshabilitarBotones();
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
@@ -683,18 +694,30 @@ namespace ReportesRegulatorios.Vistas
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleBa12Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+
+                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                cargando.Show();
+
+                await Task.Run(() =>
+                {
+                    dt = detalleBa12Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+                });
 
                 ExportarDataTableACsv(dt);
 
+                cargando.Close();
+
+
             }
+            Consultar();
         }
 
-        private void btnArchivoIve_Click(object sender, EventArgs e)
+        private async void btnArchivoIve_Click(object sender, EventArgs e)
         {
+            
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
-
+                DeshabilitarBotones();
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
@@ -703,11 +726,22 @@ namespace ReportesRegulatorios.Vistas
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleBa12Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+
+                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                cargando.Show();
+
+                await Task.Run(() =>
+                {
+                    dt = detalleBa12Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+                });
 
                 ExportarDataTableATxt(dt);
 
+                cargando.Close();
+
+
             }
+            Consultar();
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)

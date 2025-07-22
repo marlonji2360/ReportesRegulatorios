@@ -258,13 +258,13 @@ namespace ReportesRegulatorios.Vistas
 
                             // Escribir encabezados
                             IEnumerable<string> columnNames = dataTable.Columns.Cast<DataColumn>().Select(column => column.ColumnName);
-                            sb.AppendLine(string.Join(";", columnNames));
+                            sb.AppendLine(string.Join("|", columnNames));
 
                             // Escribir filas
                             foreach (DataRow row in dataTable.Rows)
                             {
                                 IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
-                                sb.AppendLine(string.Join(";", fields));
+                                sb.AppendLine(string.Join("|", fields));
                             }
 
                             File.WriteAllText(sfd.FileName, sb.ToString(), Encoding.UTF8);
@@ -378,22 +378,22 @@ namespace ReportesRegulatorios.Vistas
                 PlayNotificationSound();
                 MessageBox.Show("Cambios guardados correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if (!resultado)
+             if (!resultado)
             {
                 PlayNotificationSound();
                 MessageBox.Show("Datos NO ingresados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (resultadoCantidadRegistros == "0")
+             if (resultadoCantidadRegistros == "0")
             {
                 PlayNotificationSound();
                 MessageBox.Show("Cantidad de Registros No Coinciden: " + detalleCantidadRegistros, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (resultadoConteoDetalle == "0")
+             if (resultadoConteoDetalle == "0")
             {
                 PlayNotificationSound();
                 MessageBox.Show("Cantidad de Registros No Coinciden: " + detalleConteoDetalle, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (validacionJustificacion.Rows.Count > 0)
+             if (validacionJustificacion.Rows.Count > 0)
             {
                 PlayNotificationSound();
                 MessageBox.Show("Cantidad de Registros Sin cambios en la justificación: " + validacionJustificacion.Rows.Count.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -649,8 +649,9 @@ namespace ReportesRegulatorios.Vistas
             HabilitarBotonoes();
         }
 
-        private void btnBitacoras_Click(object sender, EventArgs e)
+        private async void btnBitacoras_Click(object sender, EventArgs e)
         {
+            DeshabilitarBotones();
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
 
@@ -662,15 +663,27 @@ namespace ReportesRegulatorios.Vistas
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleTf21BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+
+                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                cargando.Show();
+
+                await Task.Run(() =>
+                {
+                    dt = detalleTf21BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+                });
+                
 
                 ExportarDataTableACsv(dt);
 
+                cargando.Close();
+
             }
+            Consultar();
         }
 
-        private void btnGeneraCsv_Click(object sender, EventArgs e)
+        private async void btnGeneraCsv_Click(object sender, EventArgs e)
         {
+            DeshabilitarBotones();
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
 
@@ -682,15 +695,26 @@ namespace ReportesRegulatorios.Vistas
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleTf21Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+
+                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                cargando.Show();
+
+                await Task.Run(() =>
+                {
+                    dt = detalleTf21Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+                });
 
                 ExportarDataTableACsv(dt);
 
+                cargando.Close();
+
             }
+            Consultar();
         }
 
-        private void btnArchivoIve_Click(object sender, EventArgs e)
+        private async void btnArchivoIve_Click(object sender, EventArgs e)
         {
+            DeshabilitarBotones();
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
 
@@ -702,11 +726,23 @@ namespace ReportesRegulatorios.Vistas
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleTf21Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
 
-                ExportarDataTableATxt(dt);
+                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                cargando.Show();
+
+                await Task.Run(() =>
+                {
+                    dt = detalleTf21Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+                });
+                
+
+                 ExportarDataTableATxt(dt);
+
+                cargando.Close();
+
 
             }
+            Consultar();
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)

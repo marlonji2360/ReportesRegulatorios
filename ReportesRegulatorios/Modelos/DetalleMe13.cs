@@ -76,34 +76,42 @@ namespace ReportesRegulatorios.Modelos
         {
 
             DataTable dt = new DataTable();
-            string consulta = @"SELECT  LEFT(CONVERT(CHAR(8), Fecha_Transaccion, 112) + REPLICATE(' ', 8), 8)  + '&&' +
-                                        LEFT(ISNULL(Tipo_Transaccion, '') + REPLICATE(' ', 3), 3)   + '&&' +
-                                        LEFT(ISNULL(TIPO_PERSONA, '') + ' ', 1)    + '&&' +
-                                        LEFT(ISNULL(Tipo_Identificacion_persona, '') + ' ', 1)    + '&&' +
-                                        LEFT(ISNULL(No_Orden_Cedula, '') + REPLICATE(' ', 3), 3)    + '&&' +
-                                        LEFT(ISNULL(Numero_Identificacion_persona, '') + REPLICATE(' ', 20), 20)    + '&&' +
-                                        LEFT(ISNULL(Municipio_emision_Cedula, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Primer_Apellido, '') + REPLICATE(' ', 15), 15)    + '&&' +
-                                        LEFT(ISNULL(Segundo_Apellido, '') + REPLICATE(' ', 15), 15)    + '&&' +
-                                        LEFT(ISNULL(Apellido_Casada, '') + REPLICATE(' ', 15), 15)    + '&&' +
-                                        LEFT(ISNULL(Primer_Nombre, '') + REPLICATE(' ', 15), 15)    + '&&' +
-                                        LEFT(ISNULL(Segundo_Nombre, '') + REPLICATE(' ', 30), 30)    + '&&' +
-                                        LEFT(ISNULL(Nombre_Persona_Juridica, '') + REPLICATE(' ', 150), 150)    + '&&' +
-                                        LEFT(CONVERT(CHAR(8), Fecha_Nacimiento_Constitucion, 112) + REPLICATE(' ', 8), 8)    + '&&' +
-                                        LEFT(ISNULL(Pais_Nacionalidad_Constitucion, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Actividad_Economica_Persona, '') + REPLICATE(' ', 3), 3)    + '&&' +
-                                        LEFT(ISNULL(Direccion, '') + REPLICATE(' ', 150), 150)    + '&&' +
-                                        LEFT(ISNULL(Zona, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Departamento, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Municipio, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Origen_Fondos, '') + REPLICATE(' ', 2), 2)    + '&&' +
-                                        LEFT(ISNULL(Tipo_Moneda, '') + REPLICATE(' ', 3), 3)    + '&&' +
-                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(Monto_Moneda_Orginal AS VARCHAR), ''), 14)    + '&&' +
-                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(Monto_Dolares AS VARCHAR), ''), 14)    + '&&' +
-                                        LEFT(ISNULL(Codigo_Agencia, '') + REPLICATE(' ', 10), 10)    + '&&'
-                                        Trama
-                                      FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta
-                                      WHERE Estado  = 'P' and Aniomes = @anioMes";
+            string consulta = @"With tb_rrme13 as (
+                                    SELECT
+                                        -- Base36 calculado a mano en 3 caracteres
+                                        CONCAT(
+                                            SUBSTRING('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', ((RN / (36 * 36)) % 36) + 1, 1),
+                                            SUBSTRING('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', ((RN / 36) % 36) + 1, 1),
+                                            SUBSTRING('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', (RN % 36) + 1, 1)
+                                        ) AS Indificador_de_linea,
+                                        t.*
+                                    FROM (
+                                      SELECT ROW_NUMBER() OVER (ORDER BY e.Fecha_Transaccion) AS RN,
+                                            e.Fecha_Transaccion,
+                                            e.TRANS ,
+                                            e.MONEDA,
+                                            FORMAT(CAST(SUM(e.MONTO_MONEDA_ORIGEN) AS DECIMAL(10,2)), '0.00', 'en-US') AS MONTO_ORIGINAL,
+                                            FORMAT(CAST(SUM(e.MONTO_EN_DOLARES) AS DECIMAL(10,2)), '0.00', 'en-US') AS MONTO_DOLARES,
+                                            COUNT(e.MONTO_MONEDA_ORIGEN) AS CANTIDAD_TRX,
+                                            e.Codigo_Agencia
+                                        FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta e
+                                        WHERE e.Estado = 'P'
+                                          AND e.AnioMes = @anioMes
+                                        GROUP BY
+                                            e.Fecha_Transaccion,
+                                            e.TRANS,
+                                            e.MONEDA,
+                                            e.Codigo_Agencia
+                                    ) as t )
+                                    select RIGHT(REPLICATE('0', 16) + ISNULL(m13.Indificador_de_linea, '')  , 16)   +  + '&&' +
+                                           LEFT(CONVERT(CHAR(8), m13.Fecha_Transaccion, 112) + REPLICATE(' ', 8), 8)  + '&&' +
+                                           LEFT(ISNULL(m13.TRANS, '') + REPLICATE(' ', 1), 1)                         + '&&' +
+                                           LEFT(ISNULL(m13.MONEDA, '') + REPLICATE(' ', 3), 3)                        + '&&' +
+                                           RIGHT(REPLICATE('0', 15) + ISNULL(CAST(m13.MONTO_ORIGINAL AS VARCHAR), ''), 15)    + '&&' +
+                                           RIGHT(REPLICATE('0', 15) + ISNULL(CAST(m13.MONTO_DOLARES AS VARCHAR), ''), 15)    + '&&' +
+                                           RIGHT(REPLICATE('0', 10) + ISNULL(CAST(m13.CANTIDAD_TRX AS VARCHAR), ''), 10)    + '&&' +
+                                           LEFT(ISNULL(m13.Codigo_Agencia, '') + REPLICATE(' ', 10), 10)             + '&&' Trama
+                                       from tb_rrme13 m13;";
 
             try
             {

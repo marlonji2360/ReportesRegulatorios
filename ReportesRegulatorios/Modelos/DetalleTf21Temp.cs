@@ -124,7 +124,7 @@ namespace ReportesRegulatorios.Modelos
                                          WHERE DRDD.AnioMes = @anioMes 
 		                                 UNION 
 		                                 SELECT 0 CASOS_ORIGEN, COUNT(*) CASOS_REVISAR
-		                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_tmp DRDDT
+		                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta_tmp DRDDT
                                          WHERE DRDDT.AnioMes = @anioMes 
 		                                  ) XX
 		                                  ) RR";
@@ -178,9 +178,10 @@ namespace ReportesRegulatorios.Modelos
 										                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta DRDD,
 										                                      EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta_tmp DRDDT
 										                                WHERE DRDD.AnioMes  = DRDDT.AnioMes
+                                                                         AND  DRDD.TIPO_MONEDA = DRDDT.TIPO_MONEDA
 										                                 AND  DRDD.Codigo_Agencia  = DRDDT.Codigo_Agencia
 										                                 AND  DRDD.cajero  = DRDDT.cajero
-										                                 AND  DRDD.Fecha_Transaccion  = DRDDT.Fecha_Transaccion
+										                                 AND  DRDD.FECHA  = DRDDT.FECHA
 										                                 AND  DRDD.Numero_transaccion = DRDDT.Numero_transaccion
                                                                          AND DRDD.AnioMes =@aniomes
                                                                          AND DRDDT.AnioMes =@aniomes
@@ -245,7 +246,7 @@ namespace ReportesRegulatorios.Modelos
         {
             string[] columnasInt = new string[]
             {
-            "AnioMes", "FECHA", "Fecha_Nacimiento_Constitucion",
+            "AnioMes", "FECHA", "Fecha_Nacimiento_Constitucion", "Fecha_Modifico",
             "Fecha_Registro", "Numero_transaccion", "cod_proceso_origen",  "hora_trx"
             };
 
@@ -344,7 +345,7 @@ namespace ReportesRegulatorios.Modelos
                                                     Isnull(Convert(Varchar,DRDD.cajero),'') + 
                                                     Isnull(Convert(Varchar,DRDD.cod_proceso_origen),'') KeyOri,'' KeyRev
 		 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta DRDD
-		 WHERE DRDD.ANIOMES = @anioMes
+		 WHERE DRDD.ANIOMES = @AnioMes
 	),
 		 TB_Y AS
   (		 SELECT DRDDT.Numero_transaccion,
@@ -408,7 +409,7 @@ namespace ReportesRegulatorios.Modelos
                                                     Isnull(Convert(Varchar,DRDDT.cajero),'') + 
                                                     Isnull(Convert(Varchar,DRDDT.cod_proceso_origen),'')  KeyRev
 		 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta_tmp DRDDT
-		  WHERE DRDDT.ANIOMES = @anioMes
+		  WHERE DRDDT.ANIOMES = @AnioMes
 ),
 TB_CHANGE AS (
 SELECT 'ORIGEN' TP,DRDD2.*
@@ -422,7 +423,7 @@ SELECT 'ORIGEN' TP,DRDD2.*
 														  WHERE TB_X.KeyOri = TB_Y.KeyRev
 												 		) RR
 									     )
-	AND DRDD2.ANIOMES = @anioMes
+	AND DRDD2.ANIOMES = @AnioMes
 			 )
 ,
 TB_CHANGE_BIS AS (			
@@ -432,7 +433,7 @@ UNION
 SELECT 'NEW' TP,DRDDT2.*
   FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta_tmp DRDDT2
   WHERE DRDDT2.NUMERO_TRANSACCION IN (SELECT C2.Numero_transaccion  FROM TB_CHANGE C2)
-  AND DRDDT2.ANIOMES = @anioMes
+  AND DRDDT2.ANIOMES = @AnioMes
   )
   SELECT RRJJ.*
    FROM (
@@ -443,20 +444,22 @@ SELECT 'NEW' TP,DRDDT2.*
   FROM   (
 		  SELECT CB.Numero_transaccion,
 		        Isnull(Convert(Varchar,CB.Codigo_Agencia),'') +
-				Isnull(Convert(Varchar,CB.Fecha_Transaccion),'') +
-				Isnull(Convert(Varchar,CB.codigo_cliente),'') +
+				Isnull(Convert(Varchar,CB.FECHA),'') +
+				Isnull(Convert(Varchar,CB.codigo_cliente_ben),'') +
+				Isnull(Convert(Varchar,CB.codigo_cliente_ord),'') +
 				Isnull(Convert(Varchar,CB.Numero_transaccion),'') +
-				Isnull(Convert(Varchar,CB.Tipo_Transaccion),'') +
+				Isnull(Convert(Varchar,CB.Tipo_Moneda),'') +
 				Isnull(Convert(Varchar,CB.cajero),'') kEYjUST,CB.JUSTIFICACION JUSTIFICACION_NEW,' ' JUSTIFICACION_ORIGEN
 		    FROM TB_CHANGE_BIS CB
 		    WHERE CB.TP = 'NEW'
 		    UNION
 		    SELECT CB.Numero_transaccion,
 		        Isnull(Convert(Varchar,CB.Codigo_Agencia),'') +
-				Isnull(Convert(Varchar,CB.Fecha_Transaccion),'') +
-				Isnull(Convert(Varchar,CB.codigo_cliente),'') +
+				Isnull(Convert(Varchar,CB.FECHA),'') +
+				Isnull(Convert(Varchar,CB.codigo_cliente_ben),'') +
+				Isnull(Convert(Varchar,CB.codigo_cliente_ord),'') +
 				Isnull(Convert(Varchar,CB.Numero_transaccion),'') +
-				Isnull(Convert(Varchar,CB.Tipo_Transaccion),'') +
+				Isnull(Convert(Varchar,CB.Tipo_Moneda),'') +
 				Isnull(Convert(Varchar,CB.cajero),'') kEYjUST,
 				' ' JUSTIFICACION_NEW,
 				CB.JUSTIFICACION JUSTIFICACION_ORIGEN
@@ -553,6 +556,7 @@ WHERE ISNULL(RRJJ.JUSTIFICACION_NEW,' ') = ISNULL(RRJJ.JUSTIFICACION_ORIGEN,' ')
                         bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
                         bulkCopy.ColumnMappings.Add("Numero_transaccion", "Numero_transaccion");
                         bulkCopy.ColumnMappings.Add("codigo_cliente_ord", "codigo_cliente_ord");
+                        bulkCopy.ColumnMappings.Add("codigo_cliente_ben", "codigo_cliente_ben");
                         bulkCopy.ColumnMappings.Add("mov58_boveda", "mov58_boveda");
                         bulkCopy.ColumnMappings.Add("mov59_boveda", "mov59_boveda");
                         bulkCopy.ColumnMappings.Add("mov53TC_boveda", "mov53TC_boveda");
@@ -566,6 +570,7 @@ WHERE ISNULL(RRJJ.JUSTIFICACION_NEW,' ') = ISNULL(RRJJ.JUSTIFICACION_ORIGEN,' ')
                         bulkCopy.ColumnMappings.Add("hora_trx", "hora_trx");
                         bulkCopy.ColumnMappings.Add("cajero", "cajero");
                         bulkCopy.ColumnMappings.Add("cod_proceso_origen", "cod_proceso_origen");
+
 
                         bulkCopy.WriteToServer(dataTable);
                     }

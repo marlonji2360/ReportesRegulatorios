@@ -223,6 +223,7 @@ namespace ReportesRegulatorios.Modelos
                         bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
                         bulkCopy.ColumnMappings.Add("Numero_transaccion", "Numero_transaccion");
                         bulkCopy.ColumnMappings.Add("codigo_cliente_ord", "codigo_cliente_ord");
+                        bulkCopy.ColumnMappings.Add("codigo_cliente_ben", "codigo_cliente_ben");
                         bulkCopy.ColumnMappings.Add("mov58_boveda", "mov58_boveda");
                         bulkCopy.ColumnMappings.Add("mov59_boveda", "mov59_boveda");
                         bulkCopy.ColumnMappings.Add("mov53TC_boveda", "mov53TC_boveda");
@@ -285,7 +286,7 @@ namespace ReportesRegulatorios.Modelos
 
         public bool EliminarCamposDetalle(int anioMes)
         {
-            string consulta = @"DELETE FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta 
+            string consulta = @"DELETE FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta
                                 WHERE Numero_transaccion IN ( 
                                                                 SELECT rdb.Numero_transaccion 
                                                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta_bit rdb 
@@ -474,7 +475,7 @@ namespace ReportesRegulatorios.Modelos
                                                         FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta DRDD WHERE DRDD.anioMes=@anioMes
 	                                            ),
 		                                                TB_Y AS 
-                                                (		 SELECT SELECT DRDDT.Numero_transaccion,
+                                                (		 SELECT DRDDT.Numero_transaccion,
                                                     Isnull(Convert(Varchar,DRDDT.AnioMes),'') + 
                                                     Isnull(Convert(Varchar,DRDDT.FECHA),'') + 
                                                     Isnull(Convert(Varchar,DRDDT.TIPO_TRANSFERENCIA),'') + 

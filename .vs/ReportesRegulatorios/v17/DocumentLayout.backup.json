@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Local\\ReportesRegulatorios\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\modelos\\detalleme13bit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detalleme13bit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\vistas\\frmtf21.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmtf21.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\modelos\\detalleme13temp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detalleme13temp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmpantallaprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmpantallaprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\vistas\\frmregproblemas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmregproblemas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\vistas\\frmtf21.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmtf21.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,51 +23,26 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DetalleMe13Bit.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleMe13Bit.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleMe13Bit.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleMe13Bit.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleMe13Bit.cs",
-              "ViewState": "AgIAAJcBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "frmTf21.cs",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmTf21.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmTf21.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmTf21.cs",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmTf21.cs",
+              "ViewState": "AgIAAI0CAAAAAAAAAAAQwKQCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T20:52:57.569Z",
+              "WhenOpened": "2025-07-21T17:51:58.912Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DetalleMe13Temp.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleMe13Temp.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleMe13Temp.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleMe13Temp.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleMe13Temp.cs",
-              "ViewState": "AgIAAMQBAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Title": "frmTf21.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmTf21.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmTf21.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmTf21.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmTf21.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T20:52:40.057Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frmRegProblemas.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmRegProblemas.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmRegProblemas.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmRegProblemas.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmRegProblemas.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T20:29:34.028Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmPantallaPrincipal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmPantallaPrincipal.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T22:48:01.384Z",
+              "WhenOpened": "2025-07-21T17:51:57.171Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]
