@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using ClosedXML.Excel;
+using Microsoft.Win32;
 using ReportesRegulatorios.Controladores;
 using System;
 using System.Collections.Generic;
@@ -228,6 +229,43 @@ namespace ReportesRegulatorios.Vistas
                 SystemSounds.Beep.Play(); // consolation prize
         }
 
+        private void ExportarDataTableAExcel(DataTable dataTable)
+        {
+            if (dataTable.Rows.Count > 0)
+            {
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                    FileName = "Datos.xlsx"
+                };
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook wb = new XLWorkbook())
+                        {
+                            wb.Worksheets.Add(dataTable, "Datos");
+                            wb.SaveAs(sfd.FileName);
+                        }
+
+                        PlayNotificationSound();
+                        MessageBox.Show("Datos Exportados Correctamente !!!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        PlayNotificationSound();
+                        MessageBox.Show("Error al exportar a Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                PlayNotificationSound();
+                MessageBox.Show("No hay datos para Exportar !!!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
         private void ExportarDataTableACsv(DataTable dataTable)
         {
             if (dataTable.Rows.Count > 0)
@@ -340,7 +378,7 @@ namespace ReportesRegulatorios.Vistas
             }
         }
 
-        private void VerificarModificaciones(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
+        private DataTable VerificarModificaciones(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
             EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
             DetalleBa12TmpController detalleBa12TmpController = new DetalleBa12TmpController();
@@ -378,31 +416,36 @@ namespace ReportesRegulatorios.Vistas
 
                 PlayNotificationSound();
                 MessageBox.Show("Cambios guardados correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                return null;
             }
             else if (!resultado)
             {
                 PlayNotificationSound();
                 MessageBox.Show("Datos NO ingresados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
             }
             else if (resultadoCantidadRegistros == "0")
             {
                 PlayNotificationSound();
                 MessageBox.Show("Cantidad de Registros No Coinciden: " + detalleCantidadRegistros, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return validacionCantidadRegistros;
             }
             else if (resultadoConteoDetalle == "0")
             {
                 PlayNotificationSound();
                 MessageBox.Show("Cantidad de Registros No Coinciden: " + detalleConteoDetalle, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return validacionConteoDetalle;
             }
             else if (validacionJustificacion.Rows.Count > 0)
             {
                 PlayNotificationSound();
                 MessageBox.Show("Cantidad de Registros Sin cambios en la justificación: " + validacionJustificacion.Rows.Count.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                frmRegProblemas frm = new frmRegProblemas(validacionJustificacion);
-                frm.ShowDialog();
+                return validacionJustificacion;
             }
 
-
+            return null;
+           
         }
 
         private Boolean Consultar()
@@ -471,6 +514,41 @@ namespace ReportesRegulatorios.Vistas
                 return false;
             }
 
+        }
+
+        private DataTable LeerExcelEnDataTable(string rutaArchivo)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (var workbook = new XLWorkbook(rutaArchivo))
+            {
+                var hoja = workbook.Worksheet(1); // Lee la primera hoja
+                bool esPrimeraFila = true;
+
+                foreach (var fila in hoja.RowsUsed())
+                {
+                    if (esPrimeraFila)
+                    {
+                        foreach (var celda in fila.Cells())
+                        {
+                            dataTable.Columns.Add(celda.Value.ToString());
+                        }
+                        esPrimeraFila = false;
+                    }
+                    else
+                    {
+                        DataRow row = dataTable.NewRow();
+                        int i = 0;
+                        foreach (var celda in fila.Cells(1, dataTable.Columns.Count))
+                        {
+                            row[i++] = celda.Value.ToString();
+                        }
+                        dataTable.Rows.Add(row);
+                    }
+                }
+            }
+
+            return dataTable;
         }
 
         private DataTable LeerCsvEnDataTable(string rutaArchivo)
@@ -544,8 +622,8 @@ namespace ReportesRegulatorios.Vistas
             DataTable tabla = null;
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-            openFileDialog.Title = "Selecciona un archivo CSV";
+            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            openFileDialog.Title = "Selecciona un archivo Excel";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -553,7 +631,8 @@ namespace ReportesRegulatorios.Vistas
                 if (res == DialogResult.Yes)
                 {
                     string rutaArchivo = openFileDialog.FileName;
-                    tabla = LeerCsvEnDataTable(rutaArchivo);
+                    //tabla = LeerCsvEnDataTable(rutaArchivo);
+                    tabla = LeerExcelEnDataTable(rutaArchivo);
 
                     if (tabla.Rows.Count > 0)
                     {
@@ -605,10 +684,11 @@ namespace ReportesRegulatorios.Vistas
         {
             DeshabilitarBotones();
             DataTable tabla = new DataTable();
+            DataTable error = new DataTable();
             tabla = null;
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-            openFileDialog.Title = "Selecciona un archivo CSV";
+            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            openFileDialog.Title = "Selecciona un archivo Excel";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -617,7 +697,8 @@ namespace ReportesRegulatorios.Vistas
                 {
                     // Acción a realizar si el usuario hace clic en Sí
                     string rutaArchivo = openFileDialog.FileName;
-                    tabla = LeerCsvEnDataTable(rutaArchivo);
+                    //tabla = LeerCsvEnDataTable(rutaArchivo);
+                    tabla = LeerExcelEnDataTable(rutaArchivo);
 
                     if (tabla.Rows.Count > 0)
                     {
@@ -635,10 +716,16 @@ namespace ReportesRegulatorios.Vistas
 
                         await Task.Run(() =>
                         {
-                            VerificarModificaciones(tabla, anioMes, usuario, fechaActual, usuarioOperado, fechaOperado, link);
+                            error=VerificarModificaciones(tabla, anioMes, usuario, fechaActual, usuarioOperado, fechaOperado, link);
                         });
 
                         cargando.Close();
+                        if(error != null && error.Rows.Count > 0)
+                        {
+                            frmRegProblemas frm = new frmRegProblemas(error);
+                            frm.ShowDialog();
+                        }
+                            
                     }
                     else
                     {
@@ -666,7 +753,7 @@ namespace ReportesRegulatorios.Vistas
 
                 anioMes = txtAnio.Text + mes;
 
-                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                frmCargando cargando = new frmCargando("Generando Bitacoras...");
                 cargando.Show();
 
                 await Task.Run(() =>
@@ -674,7 +761,8 @@ namespace ReportesRegulatorios.Vistas
                     dt = detalleBa12BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
                 });
 
-                ExportarDataTableACsv(dt);
+                //ExportarDataTableACsv(dt);
+                ExportarDataTableAExcel(dt);
 
                 cargando.Close();
 
@@ -695,7 +783,7 @@ namespace ReportesRegulatorios.Vistas
 
                 anioMes = txtAnio.Text + mes;
 
-                frmCargando cargando = new frmCargando("Descagando csv...");
+                frmCargando cargando = new frmCargando("Descagando Excel...");
                 cargando.Show();
 
                 await Task.Run(() =>
@@ -705,7 +793,8 @@ namespace ReportesRegulatorios.Vistas
 
                 cargando.Close();
 
-                ExportarDataTableACsv(dt);
+                //ExportarDataTableACsv(dt);
+                ExportarDataTableAExcel(dt);
 
                 
 

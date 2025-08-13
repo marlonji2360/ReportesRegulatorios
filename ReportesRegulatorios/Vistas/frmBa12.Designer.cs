@@ -150,7 +150,7 @@
             this.btnGeneraCsv.Name = "btnGeneraCsv";
             this.btnGeneraCsv.Size = new System.Drawing.Size(130, 65);
             this.btnGeneraCsv.TabIndex = 117;
-            this.btnGeneraCsv.Text = "Genera CSV";
+            this.btnGeneraCsv.Text = "Genera Excel";
             this.btnGeneraCsv.UseVisualStyleBackColor = false;
             this.btnGeneraCsv.Click += new System.EventHandler(this.btnGeneraCsv_Click);
             // 

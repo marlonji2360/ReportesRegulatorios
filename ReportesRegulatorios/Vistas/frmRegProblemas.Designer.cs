@@ -30,6 +30,7 @@
         {
             this.lblTitulo = new System.Windows.Forms.Label();
             this.dgvListado = new System.Windows.Forms.DataGridView();
+            this.btnConsultar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,12 +56,27 @@
             this.dgvListado.Size = new System.Drawing.Size(739, 321);
             this.dgvListado.TabIndex = 2;
             // 
+            // btnConsultar
+            // 
+            this.btnConsultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnConsultar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
+            this.btnConsultar.Location = new System.Drawing.Point(26, 74);
+            this.btnConsultar.Name = "btnConsultar";
+            this.btnConsultar.Size = new System.Drawing.Size(92, 37);
+            this.btnConsultar.TabIndex = 103;
+            this.btnConsultar.Text = "Exportar";
+            this.btnConsultar.UseVisualStyleBackColor = false;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            // 
             // frmRegProblemas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.dgvListado);
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmRegProblemas";
@@ -76,5 +92,6 @@
 
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.DataGridView dgvListado;
+        private System.Windows.Forms.Button btnConsultar;
     }
 }
