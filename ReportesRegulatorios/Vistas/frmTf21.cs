@@ -526,7 +526,7 @@ namespace ReportesRegulatorios.Vistas
 
                 PlayNotificationSound();
                 MessageBox.Show("Datos Exportados Correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Consultar();
+                
             }
             else
             {
@@ -586,6 +586,7 @@ namespace ReportesRegulatorios.Vistas
                         });
 
                         cargando.Close();
+                        Consultar();
                     }
                     else
                     {
@@ -696,7 +697,7 @@ namespace ReportesRegulatorios.Vistas
 
                 anioMes = txtAnio.Text + mes;
 
-                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                frmCargando cargando = new frmCargando("Descagando csv...");
                 cargando.Show();
 
                 await Task.Run(() =>

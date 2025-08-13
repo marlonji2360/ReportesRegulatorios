@@ -110,8 +110,8 @@ namespace ReportesRegulatorios.Modelos
                                                   LEFT(ISNULL(CSegundoNombre, '') + REPLICATE(' ', 15), 15)   
                                         END +
                                         LEFT(ISNULL(TipoMoneda, '') + REPLICATE(' ', 3), 3)   +
-                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(MontoMonedaOriginal AS VARCHAR), ''), 14)    +
-                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(MontoDolares AS VARCHAR), ''), 14)    +
+                                        LEFT(CAST(CAST(MontoMonedaOriginal AS DECIMAL(38,0)) AS VARCHAR(14)) + REPLICATE(' ', 14), 14)    +
+                                        LEFT(CAST(CAST(MontoDolares AS DECIMAL(38,0)) AS VARCHAR(14)) + REPLICATE(' ', 14), 14)    +
                                         LEFT(ISNULL(MedioPagoUtilizado, '') + REPLICATE(' ', 1), 1)   +
                                         LEFT(ISNULL(MedioPago, '') + REPLICATE(' ', 500), 500)
                                         Trama
@@ -213,7 +213,7 @@ namespace ReportesRegulatorios.Modelos
         {
             string[] columnasInt = new string[]
             {
-                "AnioMes", "FECHA", "Fecha_Registro", 
+                "AnioMes", "FECHA", "Fecha_Registro", "NUM_SOLICITUD",
                 "Fecha_Modifico", "NOCHEQUE"
             };
 

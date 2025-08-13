@@ -683,12 +683,20 @@ namespace ReportesRegulatorios.Vistas
                 mes = NumeroMes(cmbMes.Text);
 
                 anioMes = txtAnio.Text + mes;
-                dt = detalleMe13Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+
+                frmCargando cargando = new frmCargando("Descagando csv...");
+                cargando.Show();
 
                 await Task.Run(() =>
                 {
-                    ExportarDataTableACsv(dt);
+                    dt = detalleMe13Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
                 });
+
+                cargando.Close();
+
+                ExportarDataTableACsv(dt);
+
+                
 
             }
             HabilitarBotonoes();

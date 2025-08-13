@@ -280,7 +280,7 @@ namespace ReportesRegulatorios.Modelos
             string[] columnasInt = new string[]
             {
             "AnioMes", "FECHA", "Fecha_Nacimiento_Constitucion", "Fecha_modifico",
-            "Fecha_Registro", "Numero_transaccion", "cod_proceso_origen",  "hora_trx"
+            "Fecha_Registro", "cod_proceso_origen",  "hora_trx"
             };
 
             string[] columnasFloat = new string[]

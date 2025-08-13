@@ -289,7 +289,7 @@ namespace ReportesRegulatorios.Vistas
 
         private void ExportarDataTableATxt(DataTable dataTable)
         {
-            if (dataTable == null || dataTable.Rows.Count <= 1)
+            if (dataTable == null || dataTable.Rows.Count <= 0)
             {
                 PlayNotificationSound();
                 MessageBox.Show("No hay suficientes datos para exportar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -315,7 +315,7 @@ namespace ReportesRegulatorios.Vistas
                     StringBuilder sb = new StringBuilder();
 
                     // Exportar desde la fila 2 (índice 1)
-                    for (int i = 1; i < dataTable.Rows.Count; i++)
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
                     {
                         DataRow row = dataTable.Rows[i];
                         var fields = row.ItemArray.Select(field => field?.ToString()?.Replace("\r", "").Replace("\n", "").Trim());
@@ -695,7 +695,7 @@ namespace ReportesRegulatorios.Vistas
 
                 anioMes = txtAnio.Text + mes;
 
-                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                frmCargando cargando = new frmCargando("Descagando csv...");
                 cargando.Show();
 
                 await Task.Run(() =>
@@ -703,9 +703,11 @@ namespace ReportesRegulatorios.Vistas
                     dt = detalleBa12Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
                 });
 
+                cargando.Close();
+
                 ExportarDataTableACsv(dt);
 
-                cargando.Close();
+                
 
 
             }

@@ -87,7 +87,7 @@ namespace ReportesRegulatorios.Modelos
 	                                   1
 	                              ELSE 
 	                                    0
-	                              END RESULTADOok,
+	                              END DETALLE,
 	                              CASE
 	                              WHEN RR.CASOS_ORIGEN = RR.CASOS_REVISAR THEN 
 	                                   'NUMERO DE CASOS CORRECTOS '  + Convert(Varchar,RR.CASOS_ORIGEN)

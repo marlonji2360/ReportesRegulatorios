@@ -14,7 +14,7 @@ namespace ReportesRegulatorios.Modelos
         {
             string[] columnasInt = new string[]
             {
-                "AnioMes", "FECHA", "Fecha_Registro",
+                "AnioMes", "FECHA", "Fecha_Registro", "NUM_SOLICITUD",
                 "Fecha_Modifico", "NOCHEQUE"
             };
 
@@ -244,8 +244,8 @@ namespace ReportesRegulatorios.Modelos
         public bool EliminarCamposDetalle(int anioMes)
         {
             string consulta = @"DELETE FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta 
-                                WHERE Numero_transaccion IN ( 
-                                                                SELECT rdb.Numero_transaccion 
+                                WHERE NOCHEQUE IN ( 
+                                                                SELECT rdb.NOCHEQUE 
                                                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta_bit rdb 
                                                                 WHERE rdb.tipo = 'ORIGINAL' AND rdb.AnioMes = @anioMes
                                                             )";
@@ -434,10 +434,10 @@ namespace ReportesRegulatorios.Modelos
                                                 TB_CHANGE AS (
                                                 SELECT 'ORIGINAL' TP,DRDD2.*
                                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta DRDD2
-                                                WHERE DRDD2.anioMes=@anioMes AND DRDD2.Numero_transaccion NOT IN (
-										                                                SELECT RR.Numero_transaccion
+                                                WHERE DRDD2.anioMes=@anioMes AND DRDD2.NOCHEQUE NOT IN (
+										                                                SELECT RR.NOCHEQUE
 												                                                FROM (
-														                                                SELECT TB_X.numero_transaccion, TB_X.KeyOri,TB_Y.KeyRev 
+														                                                SELECT TB_X.NOCHEQUE, TB_X.KeyOri,TB_Y.KeyRev 
 														                                                FROM TB_X,
 														                                                    TB_Y
 														                                                WHERE TB_X.KeyOri = TB_Y.KeyRev 
@@ -449,7 +449,7 @@ namespace ReportesRegulatorios.Modelos
                                             UNION
                                                 SELECT 'NUEVO' TP,DRDDT2.*
                                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta_tmp DRDDT2
-                                                WHERE DRDDT2.anioMes=@anioMes AND DRDDT2.NUMERO_TRANSACCION IN (SELECT C2.Numero_transaccion  FROM TB_CHANGE C2)";
+                                                WHERE DRDDT2.anioMes=@anioMes AND DRDDT2.NOCHEQUE IN (SELECT C2.NOCHEQUE  FROM TB_CHANGE C2)";
             try
             {
                 Conexion conexion = new Conexion();

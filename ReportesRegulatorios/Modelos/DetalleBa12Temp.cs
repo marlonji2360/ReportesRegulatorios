@@ -138,13 +138,13 @@ namespace ReportesRegulatorios.Modelos
             string consulta = @"SELECT CASE WHEN RR.CASOS_ORIGEN = RR.CASOS_REVISAR THEN 1
 	                                      ELSE 
 	                                            0
-	                                      END RESULTADOok,
+	                                      END RESULTADO,
                                   CASE 
 	                                      WHEN RR.CASOS_ORIGEN = RR.CASOS_REVISAR THEN 
 	                                           'CASOS A DETALLE CORRECTOS '  + Convert(Varchar,RR.CASOS_ORIGEN)
 	                                      ELSE 
 	                                            'CASOS A DETALLE INCORRECTOS. ORIGEN ' + Convert(Varchar,RR.CASOS_ORIGEN) + ' A REVISAR ' + Convert(Varchar,RR.CASOS_REVISAR)
-	                                      END RESULTADO
+	                                      END DETALLE
                                 FROM (
 		                                SELECT  SUM(XXX.CASOS_ORIGEN) CASOS_ORIGEN,
 				                                        SUM(XXX.CASOS_REVISAR) CASOS_REVISAR
@@ -260,55 +260,55 @@ namespace ReportesRegulatorios.Modelos
                                                         FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta DRDD WHERE DRDD.anioMes=@anioMes
 	                                            ),
 		                                                TB_Y AS 
-                                                (		 SELECT DRDD.NOCHEQUE,
+                                                (		 SELECT DRDDT.NOCHEQUE,
                                                     '' KeyOri,
-		                                            Isnull(Convert(Varchar,DRDD.AnioMes),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.FECHA),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.BTIPOPERSONA),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.BNombreJuridico),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.BPrimerApellido),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.BSegundoApellido),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.BApellidoCasada),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.BPrimerNombre),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.BSegundoNombre),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CTipoPersona),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CTp_Identificacion),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CNoOrdenCedula),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CDPI),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CNombreJuridico),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CPrimerApellido),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CSegundoApellido),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CApellidoCasada),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CPrimerNombre),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CPrimerNombre),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.CSegundoNombre),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.TipoMoneda),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.MontoMonedaOriginal),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.MontoDolares),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.MedioPagoUtilizado),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.MedioPago),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.codigo_cliente),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.Estado),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.Usuario_registro),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.Fecha_Registro),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.Usuario_Modifico),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.Fecha_Modifico),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.Justificacion),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.NOCHEQUE),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.Observaciones_chk),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.NUM_SOLICITUD),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.COD_SISTEMA_ORIGEN),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.NUM_DOCUMENTO),'') + 
-		                                            Isnull(Convert(Varchar,DRDD.REFERENCIA),'')  KeyRev
+		                                            Isnull(Convert(Varchar,DRDDT.AnioMes),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.FECHA),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.BTIPOPERSONA),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.BNombreJuridico),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.BPrimerApellido),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.BSegundoApellido),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.BApellidoCasada),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.BPrimerNombre),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.BSegundoNombre),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CTipoPersona),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CTp_Identificacion),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CNoOrdenCedula),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CDPI),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CNombreJuridico),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CPrimerApellido),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CSegundoApellido),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CApellidoCasada),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CPrimerNombre),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CPrimerNombre),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.CSegundoNombre),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.TipoMoneda),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.MontoMonedaOriginal),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.MontoDolares),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.MedioPagoUtilizado),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.MedioPago),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.codigo_cliente),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.Estado),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.Usuario_registro),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.Fecha_Registro),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.Usuario_Modifico),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.Fecha_Modifico),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.Justificacion),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.NOCHEQUE),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.Observaciones_chk),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.NUM_SOLICITUD),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.COD_SISTEMA_ORIGEN),'') + 
+                                                    Isnull(Convert(Varchar,DRDDT.NUM_DOCUMENTO),'') + 
+		                                            Isnull(Convert(Varchar,DRDDT.REFERENCIA),'')  KeyRev
 		                                                FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta_tmp DRDDT WHERE DRDDT.anioMes=@anioMes
 										),
 										TB_CHANGE AS (
 										SELECT 'ORIGEN' TP,DRDD2.*
 											FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta DRDD2
-											WHERE DRDD2.Numero_transaccion NOT IN (
-																					SELECT RR.Numero_transaccion
+											WHERE DRDD2.NOCHEQUE NOT IN (
+																					SELECT RR.NOCHEQUE
 																							FROM (
-																									SELECT TB_X.numero_transaccion, TB_X.KeyOri,TB_Y.KeyRev
+																									SELECT TB_X.NOCHEQUE, TB_X.KeyOri,TB_Y.KeyRev
 																									FROM TB_X,
 																										TB_Y
 																									WHERE TB_X.KeyOri = TB_Y.KeyRev
@@ -323,17 +323,17 @@ namespace ReportesRegulatorios.Modelos
 										UNION
 										SELECT 'NEW' TP,DRDDT2.*
 											FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta_tmp DRDDT2
-											WHERE DRDDT2.NUMERO_TRANSACCION IN (SELECT C2.Numero_transaccion  FROM TB_CHANGE C2)
+											WHERE DRDDT2.NOCHEQUE IN (SELECT C2.NOCHEQUE  FROM TB_CHANGE C2)
 											AND DRDDT2.ANIOMES = @anioMes
 											)
 											SELECT RRJJ.*
 											FROM (
-											SELECT RRJ.Numero_transaccion,
+											SELECT RRJ.NOCHEQUE,
 													RRJ.KEYJUST,
 													MAX(RRJ.JUSTIFICACION_NEW) JUSTIFICACION_NEW,
 													MAX(RRJ.JUSTIFICACION_ORIGEN) JUSTIFICACION_ORIGEN
 											FROM   (
-													SELECT CB.Numero_transaccion,
+													SELECT CB.NOCHEQUE,
 														Isnull(Convert(Varchar,CB.NUM_DOCUMENTO),'') +
 														Isnull(Convert(Varchar,CB.FECHA),'') +
 														Isnull(Convert(Varchar,CB.codigo_cliente),'') +
@@ -342,19 +342,18 @@ namespace ReportesRegulatorios.Modelos
 													FROM TB_CHANGE_BIS CB
 													WHERE CB.TP = 'NEW'
 													UNION
-													SELECT CB.Numero_transaccion,
+													SELECT CB.NOCHEQUE,
 														Isnull(Convert(Varchar,CB.NUM_DOCUMENTO),'') +
 														Isnull(Convert(Varchar,CB.FECHA),'') +
 														Isnull(Convert(Varchar,CB.codigo_cliente),'') +
 														Isnull(Convert(Varchar,CB.NOCHEQUE),'') +
-														Isnull(Convert(Varchar,CB.Tipo_Transaccion),'') +
 														Isnull(Convert(Varchar,CB.NUM_SOLICITUD),'') kEYjUST,
 														' ' JUSTIFICACION_NEW,
 														CB.JUSTIFICACION JUSTIFICACION_ORIGEN
 													FROM TB_CHANGE_BIS CB
 													WHERE CB.TP = 'ORIGEN'
 													) RRJ
-										GROUP BY RRJ.Numero_transaccion,RRJ.KEYJUST
+										GROUP BY RRJ.NOCHEQUE,RRJ.KEYJUST
 										)
 										RRJJ
 										WHERE ISNULL(RRJJ.JUSTIFICACION_NEW,' ') = ISNULL(RRJJ.JUSTIFICACION_ORIGEN,' ')
@@ -454,7 +453,7 @@ namespace ReportesRegulatorios.Modelos
         {
             string[] columnasInt = new string[]
             {
-                "AnioMes", "FECHA", "Fecha_Registro",
+                "AnioMes", "FECHA", "Fecha_Registro", "NUM_SOLICITUD",
                 "Fecha_Modifico", "NOCHEQUE"
             };
 

@@ -180,7 +180,7 @@ namespace ReportesRegulatorios.Modelos
 										                                WHERE DRDD.AnioMes  = DRDDT.AnioMes
                                                                          AND  DRDD.TIPO_MONEDA = DRDDT.TIPO_MONEDA
 										                                 AND  DRDD.Codigo_Agencia  = DRDDT.Codigo_Agencia
-										                                 AND  DRDD.cajero  = DRDDT.cajero
+										                                 --AND  DRDD.cajero  = DRDDT.cajero
 										                                 AND  DRDD.FECHA  = DRDDT.FECHA
 										                                 AND  DRDD.Numero_transaccion = DRDDT.Numero_transaccion
                                                                          AND DRDD.AnioMes =@aniomes
@@ -247,7 +247,7 @@ namespace ReportesRegulatorios.Modelos
             string[] columnasInt = new string[]
             {
             "AnioMes", "FECHA", "Fecha_Nacimiento_Constitucion", "Fecha_Modifico",
-            "Fecha_Registro", "Numero_transaccion", "cod_proceso_origen",  "hora_trx"
+            "Fecha_Registro", "cod_proceso_origen",  "hora_trx"
             };
 
             string[] columnasFloat = new string[]
