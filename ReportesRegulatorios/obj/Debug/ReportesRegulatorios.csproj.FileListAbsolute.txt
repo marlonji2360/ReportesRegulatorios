@@ -319,3 +319,4 @@ C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\ExcelNumberFormat.x
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\RBush.xml
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\SixLabors.Fonts.xml
+C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.exe.config

@@ -605,7 +605,7 @@ namespace ReportesRegulatorios.Vistas
 
                 PlayNotificationSound();
                 MessageBox.Show("Datos Exportados Correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Consultar();
+                
             }
             else
             {
@@ -663,7 +663,7 @@ namespace ReportesRegulatorios.Vistas
                     }
                 }
             }
-
+            Consultar();
             HabilitarBotonoes();
         }
 
