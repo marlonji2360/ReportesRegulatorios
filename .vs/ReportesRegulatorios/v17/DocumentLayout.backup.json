@@ -7,8 +7,20 @@
       "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\vistas\\frmba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\vistas\\frmrte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmrte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\vistas\\frmrte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmrte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\modelos\\detallerte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detallerte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,9 +52,9 @@
               "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmBa12.cs",
               "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmBa12.cs",
               "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmBa12.cs",
-              "ViewState": "AgIAAMMBAAAAAAAAAAAswMgBAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAACUDAAAAAAAAAAAcwDgDAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-13T16:28:42.481Z",
+              "WhenOpened": "2025-08-19T20:53:02.71Z",
               "EditorCaption": ""
             },
             {
@@ -54,7 +66,45 @@
               "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmBa12.cs [Dise\u00F1o]",
               "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmBa12.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-13T16:28:12.472Z",
+              "WhenOpened": "2025-08-19T20:52:59.978Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DetalleRte.cs",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleRte.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleRte.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleRte.cs",
+              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleRte.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAnwFgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T20:46:01.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmRte.cs",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmRte.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmRte.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmRte.cs",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmRte.cs",
+              "ViewState": "AgIAAKIBAAAAAAAAAAAUwMIBAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T20:12:13.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmRte.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmRte.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmRte.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmRte.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmRte.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T20:05:38.96Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

@@ -190,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controladores\DetalleMe13BitController.cs" />
+    <Compile Include="Controladores\DetalleRteController.cs" />
     <Compile Include="Controladores\DetalleTf21BitController.cs" />
     <Compile Include="Controladores\DetalleMe13Controller.cs" />
     <Compile Include="Controladores\DetalleTf21Controller.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Controladores\DetalleDv17Controller.cs" />
     <Compile Include="Controladores\DetalleDv17TmpController.cs" />
     <Compile Include="Controladores\EncaMe13Controller.cs" />
+    <Compile Include="Controladores\EncaRteController.cs" />
     <Compile Include="Controladores\EncaTf21Controller.cs" />
     <Compile Include="Controladores\EncaEf14Controller.cs" />
     <Compile Include="Controladores\EncaBa12Controller.cs" />
@@ -218,6 +220,7 @@
     <Compile Include="Modelos\DetalleMe13.cs" />
     <Compile Include="Modelos\DetalleMe13Bit.cs" />
     <Compile Include="Modelos\DetalleMe13Temp.cs" />
+    <Compile Include="Modelos\DetalleRte.cs" />
     <Compile Include="Modelos\DetalleTf21Temp.cs" />
     <Compile Include="Modelos\DetalleDv17Temp.cs" />
     <Compile Include="Modelos\DetalleEf14Temp.cs" />
@@ -226,6 +229,7 @@
     <Compile Include="Modelos\DetalleTf21.cs" />
     <Compile Include="Modelos\DetalleTf21Bit.cs" />
     <Compile Include="Modelos\EncaMe13.cs" />
+    <Compile Include="Modelos\EncaRte.cs" />
     <Compile Include="Modelos\EncaTf21.cs" />
     <Compile Include="Modelos\EncaEf14.cs" />
     <Compile Include="Modelos\EncaBa12.cs" />
@@ -274,6 +278,12 @@
     <Compile Include="Vistas\frmCargando.Designer.cs">
       <DependentUpon>frmCargando.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\frmRte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmRte.Designer.cs">
+      <DependentUpon>frmRte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmTf21.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmCargando.resx">
       <DependentUpon>frmCargando.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmRte.resx">
+      <DependentUpon>frmRte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmTf21.resx">
       <DependentUpon>frmTf21.cs</DependentUpon>

@@ -387,7 +387,7 @@ namespace ReportesRegulatorios.Vistas
 
             bool resultado = false;
 
-            detalleBa12TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
+            
             resultado = detalleBa12TmpController.InsertarDetalleBa12TmpBulk(tabla);
 
             DataTable validacionCantidadRegistros = detalleBa12TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
@@ -406,13 +406,16 @@ namespace ReportesRegulatorios.Vistas
                 MessageBox.Show("Datos Validados Correctamente, Espere mientras se guardan los cambios", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 encaBa12Controller.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link);
-
+                
                 DataTable dtVerificacion = detalleBa12BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes));
                 detalleBa12BitController.InsertarDetalleBa12VerBitBulk(dtVerificacion, usuario);
                 detalleBa12BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes));
 
                 DataTable dtNuevosRegistrosEnDetalle = detalleBa12BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes));
                 detalleBa12Controller.InsertarDetalleBa12Bulk(dtNuevosRegistrosEnDetalle);
+
+                detalleBa12BitController.ActualizarEstadoBit(Convert.ToInt32(anioMes));
+                detalleBa12TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
 
                 PlayNotificationSound();
                 MessageBox.Show("Cambios guardados correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -494,6 +497,7 @@ namespace ReportesRegulatorios.Vistas
                     txtUsuarioUltimaMod.Text = dtUsuario_upd;
                     txtFechaFinalizado.Text = dtFecha_Cierre;
                     txtUsuarioFinalizado.Text = dtUsuario_Cierre;
+                    txtLink.Text = dtDoc_cierre;
 
                     return true;
 
@@ -818,7 +822,7 @@ namespace ReportesRegulatorios.Vistas
 
                 anioMes = txtAnio.Text + mes;
 
-                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                frmCargando cargando = new frmCargando("Generando archivo TXT...");
                 cargando.Show();
 
                 await Task.Run(() =>

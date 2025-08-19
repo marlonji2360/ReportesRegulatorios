@@ -78,5 +78,11 @@ namespace ReportesRegulatorios.Vistas
             
             imgBantrab.Visible = true;
         }
+
+        private void lblRte_Click(object sender, EventArgs e)
+        {
+            imgBantrab.Visible = false;
+            AbrirFormularioEnPanel(new frmRte());
+        }
     }
 }

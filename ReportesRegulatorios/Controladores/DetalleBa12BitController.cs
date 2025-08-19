@@ -41,6 +41,12 @@ namespace ReportesRegulatorios.Controladores
             return detalleBa12Bit.EliminarCamposDetalle(anioMes);
         }
 
+        public bool ActualizarEstadoBit(int anioMes)
+        {
+            DetalleBa12Bit detalleBa12Bit = new DetalleBa12Bit();
+            return detalleBa12Bit.ActualizarEstadoBit(anioMes);
+        }
+
         public DataTable InsertarNuevosEnDetalle(int anioMes)
         {
             DetalleBa12Bit detalleBa12Bit = new DetalleBa12Bit();

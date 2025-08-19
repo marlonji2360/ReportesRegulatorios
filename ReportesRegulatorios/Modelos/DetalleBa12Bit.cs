@@ -136,6 +136,7 @@ namespace ReportesRegulatorios.Modelos
                 //Agregamos columas para empatarla con la bitacora
                 dataTable.Columns.Add("usuario", typeof(string));
                 dataTable.Columns.Add("fecha_hora", typeof(DateTime));
+                dataTable.Columns.Add("EstadoBitacora", typeof(string));
 
 
                 //Colocamos valores a todas las filas
@@ -143,6 +144,7 @@ namespace ReportesRegulatorios.Modelos
                 {
                     row["usuario"] = usuario;
                     row["fecha_hora"] = DateTime.Now;
+                    row["EstadoBitacora"] = "P";
 
                 }
 
@@ -197,6 +199,7 @@ namespace ReportesRegulatorios.Modelos
                         bulkCopy.ColumnMappings.Add("usuario", "usuario");
                         bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");                    
                         bulkCopy.ColumnMappings.Add("TP", "tipo");
+                        bulkCopy.ColumnMappings.Add("EstadoBitacora", "EstadoBitacora");
 
                         bulkCopy.WriteToServer(dataTable);
                     }
@@ -215,7 +218,7 @@ namespace ReportesRegulatorios.Modelos
         {
 
             DataTable dt = new DataTable();
-            string consulta = @"SELECT * FROM DL_CUMPLIMIENTO.dw_repreg_ba12_deta_bit WHERE AnioMes = @AnioMes and tipo = 'NUEVO'";
+            string consulta = @"SELECT * FROM DL_CUMPLIMIENTO.dw_repreg_ba12_deta_bit WHERE AnioMes = @AnioMes and tipo = 'NUEVO' AND EstadoBitacora ='P'";
 
             try
             {
@@ -247,7 +250,7 @@ namespace ReportesRegulatorios.Modelos
                                 WHERE NOCHEQUE IN ( 
                                                                 SELECT rdb.NOCHEQUE 
                                                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta_bit rdb 
-                                                                WHERE rdb.tipo = 'ORIGINAL' AND rdb.AnioMes = @anioMes
+                                                                WHERE rdb.tipo = 'ORIGINAL' AND rdb.AnioMes = @anioMes AND EstadoBitacora = 'P'
                                                             )";
 
             try
@@ -267,6 +270,33 @@ namespace ReportesRegulatorios.Modelos
             {
                 // Aquí podrías registrar el error en un log
                 Console.WriteLine($"Error al eliminar datos: {ex.Message}");
+                return false;
+            }
+        }
+
+        public bool ActualizarEstadoBit(int anioMes)
+        {
+            string consulta = @"UPDATE EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta_bit 
+                                SET EstadoBitacora = 'V'  
+                                WHERE AnioMes = @anioMes";
+
+            try
+            {
+                Conexion conexion = new Conexion();
+                using (SqlConnection conn = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                {
+                    cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    // Puedes usar filasAfectadas para verificar si se eliminó algo
+                    return filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Aquí podrías registrar el error en un log
+                Console.WriteLine($"Error al actualizar datos: {ex.Message}");
                 return false;
             }
         }
