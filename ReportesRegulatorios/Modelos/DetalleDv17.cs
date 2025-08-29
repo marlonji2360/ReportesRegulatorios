@@ -120,8 +120,8 @@ namespace ReportesRegulatorios.Modelos
                                         LEFT(ISNULL(Municipio, '') + REPLICATE(' ', 2), 2)    + '&&' +
                                         LEFT(ISNULL(Origen_Fondos, '') + REPLICATE(' ', 2), 2)    + '&&' +
                                         LEFT(ISNULL(Tipo_Moneda, '') + REPLICATE(' ', 3), 3)    + '&&' +
-                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(Monto_Moneda_Orginal AS VARCHAR), ''), 14)    + '&&' +
-                                        RIGHT(REPLICATE('0', 14) + ISNULL(CAST(Monto_Dolares AS VARCHAR), ''), 14)    + '&&' +
+                                        LEFT(CAST(CAST(Monto_Moneda_Orginal AS DECIMAL(38,0)) AS VARCHAR(14)) + REPLICATE(' ', 14), 14)    + '&&' +
+                                        LEFT(CAST(CAST(Monto_Dolares AS DECIMAL(38,0)) AS VARCHAR(14)) + REPLICATE(' ', 14), 14)    + '&&' +                                        
                                         LEFT(ISNULL(Codigo_Agencia, '') + REPLICATE(' ', 10), 10)    + '&&'
                                         Trama
                                       FROM EDW.DL_CUMPLIMIENTO.RRDV17_DETALLE

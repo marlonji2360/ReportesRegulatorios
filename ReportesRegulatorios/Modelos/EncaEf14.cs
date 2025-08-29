@@ -10,16 +10,6 @@ namespace ReportesRegulatorios.Modelos
 {
     internal class EncaEf14
     {
-        int AnioMes;
-        string Estado ;
-        string Usuario_genera ;
-        string Fecha_genera ;
-        string Usuario_upd ;
-        string Fecha_upd ;
-        string Usuario_Cierre ;
-        string Fecha_Cierre ;
-        string Doc_cierre;
-
         public EncaEf14()
         {
 
@@ -42,28 +32,38 @@ namespace ReportesRegulatorios.Modelos
             return dt;
         }
 
-        public bool ActualizarEncabezado(    int anioMes, 
-                                                string estado, 
-                                                string Usuario_genera, 
-                                                string Fecha_genera,
-                                                string Usuario_upd,
-                                                string Fecha_upd,
-                                                string Usuario_Cierre,
-                                                string Fecha_Cierre,
-                                                string Doc_cierre
-                                            )
+        public bool ActualizarEncabezado(
+            int anioMes,
+            string estado,
+            string Usuario_genera,
+            string Fecha_genera,
+            string Usuario_upd,
+            string Fecha_upd,
+            string Usuario_Cierre,
+            string Fecha_Cierre,
+            string Doc_cierre
+        )
         {
             try
             {
                 Conexion conexion = new Conexion();
                 using (SqlConnection conn = conexion.AbrirConexion())
                 {
-                   
-                    using (SqlCommand cmd = new SqlCommand("DL_CUMPLIMIENTO.PRC_Actualizar_EF14_ENCA", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                    string query = @"
+                UPDATE EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta_enca
+                SET 
+                    Estado = @Estado,
+                    Usuario_genera = @Usuario_genera,
+                    Fecha_genera = @Fecha_genera,
+                    Usuario_upd = @Usuario_upd,
+                    Fecha_upd = @Fecha_upd,
+                    Usuario_Cierre = @Usuario_Cierre,
+                    Fecha_Cierre = @Fecha_Cierre,
+                    Doc_cierre = @Doc_cierre
+                WHERE AnioMes = @AnioMes";
 
-                        // Agrega todos los parámetros (ejemplo con algunos)
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
                         cmd.Parameters.AddWithValue("@AnioMes", anioMes);
                         cmd.Parameters.AddWithValue("@Estado", estado);
                         cmd.Parameters.AddWithValue("@Usuario_genera", Usuario_genera);
@@ -73,17 +73,15 @@ namespace ReportesRegulatorios.Modelos
                         cmd.Parameters.AddWithValue("@Usuario_Cierre", Usuario_Cierre);
                         cmd.Parameters.AddWithValue("@Fecha_Cierre", Fecha_Cierre);
                         cmd.Parameters.AddWithValue("@Doc_cierre", Doc_cierre);
-                        
 
                         cmd.ExecuteNonQuery();
                     }
-                    
                 }
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al insertar datos: " + ex.Message);
+                Console.WriteLine("Error al actualizar datos: " + ex.Message);
                 return false;
             }
         }

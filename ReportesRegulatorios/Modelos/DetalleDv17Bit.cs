@@ -10,160 +10,6 @@ namespace ReportesRegulatorios.Modelos
 {
     internal class DetalleDv17Bit
     {
-        public Boolean InsertarDetalleVeriDv17Bit(DataTable dataTable, string usuario)
-        {
-            try
-            {
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
-                {
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                       
-                        using (SqlCommand cmd = new SqlCommand("DL_CUMPLIMIENTO.PRC_Insertar_DV17_bit", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            // Agrega todos los parámetros (ejemplo con algunos)
-                            cmd.Parameters.AddWithValue("@AnioMes", row["AnioMes"]);
-                            cmd.Parameters.AddWithValue("@Fecha_Transaccion", row["Fecha_Transaccion"]);
-                            cmd.Parameters.AddWithValue("@Tipo_Transaccion", row["Tipo_Transaccion"]);
-                            cmd.Parameters.AddWithValue("@TIPO_PERSONA", row["TIPO_PERSONA"]);
-                            cmd.Parameters.AddWithValue("@Tipo_Identificacion_persona", row["Tipo_Identificacion_persona"]);
-                            cmd.Parameters.AddWithValue("@No_Orden_Cedula", row["No_Orden_Cedula"]);
-                            cmd.Parameters.AddWithValue("@Numero_Identificacion_persona", row["Numero_Identificacion_persona"]);
-                            cmd.Parameters.AddWithValue("@Municipio_emision_Cedula", row["Municipio_emision_Cedula"]);
-                            cmd.Parameters.AddWithValue("@Primer_Apellido", row["Primer_Apellido"]);
-                            cmd.Parameters.AddWithValue("@Segundo_Apellido", row["Segundo_Apellido"]);
-                            cmd.Parameters.AddWithValue("@Apellido_Casada", row["Apellido_Casada"]);
-                            cmd.Parameters.AddWithValue("@Primer_Nombre", row["Primer_Nombre"]);
-                            cmd.Parameters.AddWithValue("@Segundo_Nombre", row["Segundo_Nombre"]);
-                            cmd.Parameters.AddWithValue("@Nombre_Persona_Juridica", row["Nombre_Persona_Juridica"]);
-                            cmd.Parameters.AddWithValue("@Fecha_Nacimiento_Constitucion", row["Fecha_Nacimiento_Constitucion"]);
-                            cmd.Parameters.AddWithValue("@Pais_Nacionalidad_Constitucion", row["Pais_Nacionalidad_Constitucion"]);
-                            cmd.Parameters.AddWithValue("@Actividad_Economica_Persona", row["Actividad_Economica_Persona"]);
-                            cmd.Parameters.AddWithValue("@Direccion", row["Direccion"]);
-                            cmd.Parameters.AddWithValue("@Zona", row["Zona"]);
-                            cmd.Parameters.AddWithValue("@Departamento", row["Departamento"]);
-                            cmd.Parameters.AddWithValue("@Municipio", row["Municipio"]);
-                            cmd.Parameters.AddWithValue("@Origen_Fondos", row["Origen_Fondos"]);
-                            cmd.Parameters.AddWithValue("@Tipo_Moneda", row["Tipo_Moneda"]);
-                            cmd.Parameters.AddWithValue("@Monto_Moneda_Orginal", row["Monto_Moneda_Orginal"]);
-                            cmd.Parameters.AddWithValue("@Monto_Dolares", row["Monto_Dolares"]);
-                            cmd.Parameters.AddWithValue("@Codigo_Agencia", row["Codigo_Agencia"]);
-                            cmd.Parameters.AddWithValue("@Estado", row["Estado"]);
-                            cmd.Parameters.AddWithValue("@Usuario_registro", row["Usuario_registro"]);
-                            cmd.Parameters.AddWithValue("@Fecha_Registro", row["Fecha_Registro"]);
-                            cmd.Parameters.AddWithValue("@Usuario_Modifico", row["Usuario_Modifico"]);
-                            cmd.Parameters.AddWithValue("@Fecha_Modifico", row["Fecha_Modifico"]);
-                            cmd.Parameters.AddWithValue("@Justificacion", row["Justificacion"]);
-                            cmd.Parameters.AddWithValue("@Numero_transaccion", row["Numero_transaccion"]);
-                            cmd.Parameters.AddWithValue("@codigo_cliente", row["codigo_cliente"]);
-                            cmd.Parameters.AddWithValue("@mov58_boveda", row["mov58_boveda"]);
-                            cmd.Parameters.AddWithValue("@mov59_boveda", row["mov59_boveda"]);
-                            cmd.Parameters.AddWithValue("@mov53TC_boveda", row["mov53TC_boveda"]);
-                            cmd.Parameters.AddWithValue("@mon53TC_boveda", row["mon53TC_boveda"]);
-                            cmd.Parameters.AddWithValue("@movmixto_paralelo", row["movmixto_paralelo"]);
-                            cmd.Parameters.AddWithValue("@Trxmixto_paralelo", row["Trxmixto_paralelo"]);
-                            cmd.Parameters.AddWithValue("@MONTO_mixtoparalelo", row["MONTO_mixtoparalelo"]);
-                            cmd.Parameters.AddWithValue("@movotrocli_paralelo", row["movotrocli_paralelo"]);
-                            cmd.Parameters.AddWithValue("@Trxotrocli_paralelo", row["Trxotrocli_paralelo"]);
-                            cmd.Parameters.AddWithValue("@Nomotrocli_paralelo", row["Nomotrocli_paralelo"]);
-                            cmd.Parameters.AddWithValue("@hora_trx", row["hora_trx"]);
-                            cmd.Parameters.AddWithValue("@cajero", row["cajero"]);
-                            cmd.Parameters.AddWithValue("@usuario", usuario);
-                            cmd.Parameters.AddWithValue("@tipo", row["TP"]);
-
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al insertar datos: " + ex.Message);
-                return false;
-            }
-        }
-
-        public Boolean InsertarDetalleNuevoDv17Bit(DataTable dataTable, string usuario)
-        {
-            try
-            {
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
-                {
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-
-                        using (SqlCommand cmd = new SqlCommand("DL_CUMPLIMIENTO.PRC_Insertar_DV17_bit", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            // Agrega todos los parámetros (ejemplo con algunos)
-                            cmd.Parameters.AddWithValue("@AnioMes", row["AnioMes"]);
-                            cmd.Parameters.AddWithValue("@Fecha_Transaccion", row["Fecha_Transaccion"]);
-                            cmd.Parameters.AddWithValue("@Tipo_Transaccion", row["Tipo_Transaccion"]);
-                            cmd.Parameters.AddWithValue("@TIPO_PERSONA", row["TIPO_PERSONA"]);
-                            cmd.Parameters.AddWithValue("@Tipo_Identificacion_persona", row["Tipo_Identificacion_persona"]);
-                            cmd.Parameters.AddWithValue("@No_Orden_Cedula", row["No_Orden_Cedula"]);
-                            cmd.Parameters.AddWithValue("@Numero_Identificacion_persona", row["Numero_Identificacion_persona"]);
-                            cmd.Parameters.AddWithValue("@Municipio_emision_Cedula", row["Municipio_emision_Cedula"]);
-                            cmd.Parameters.AddWithValue("@Primer_Apellido", row["Primer_Apellido"]);
-                            cmd.Parameters.AddWithValue("@Segundo_Apellido", row["Segundo_Apellido"]);
-                            cmd.Parameters.AddWithValue("@Apellido_Casada", row["Apellido_Casada"]);
-                            cmd.Parameters.AddWithValue("@Primer_Nombre", row["Primer_Nombre"]);
-                            cmd.Parameters.AddWithValue("@Segundo_Nombre", row["Segundo_Nombre"]);
-                            cmd.Parameters.AddWithValue("@Nombre_Persona_Juridica", row["Nombre_Persona_Juridica"]);
-                            cmd.Parameters.AddWithValue("@Fecha_Nacimiento_Constitucion", row["Fecha_Nacimiento_Constitucion"]);
-                            cmd.Parameters.AddWithValue("@Pais_Nacionalidad_Constitucion", row["Pais_Nacionalidad_Constitucion"]);
-                            cmd.Parameters.AddWithValue("@Actividad_Economica_Persona", row["Actividad_Economica_Persona"]);
-                            cmd.Parameters.AddWithValue("@Direccion", row["Direccion"]);
-                            cmd.Parameters.AddWithValue("@Zona", row["Zona"]);
-                            cmd.Parameters.AddWithValue("@Departamento", row["Departamento"]);
-                            cmd.Parameters.AddWithValue("@Municipio", row["Municipio"]);
-                            cmd.Parameters.AddWithValue("@Origen_Fondos", row["Origen_Fondos"]);
-                            cmd.Parameters.AddWithValue("@Tipo_Moneda", row["Tipo_Moneda"]);
-                            cmd.Parameters.AddWithValue("@Monto_Moneda_Orginal", row["Monto_Moneda_Orginal"]);
-                            cmd.Parameters.AddWithValue("@Monto_Dolares", row["Monto_Dolares"]);
-                            cmd.Parameters.AddWithValue("@Codigo_Agencia", row["Codigo_Agencia"]);
-                            cmd.Parameters.AddWithValue("@Estado", row["Estado"]);
-                            cmd.Parameters.AddWithValue("@Usuario_registro", row["Usuario_registro"]);
-                            cmd.Parameters.AddWithValue("@Fecha_Registro", row["Fecha_Registro"]);
-                            cmd.Parameters.AddWithValue("@Usuario_Modifico", row["Usuario_Modifico"]);
-                            cmd.Parameters.AddWithValue("@Fecha_Modifico", row["Fecha_Modifico"]);
-                            cmd.Parameters.AddWithValue("@Justificacion", row["Justificacion"]);
-                            cmd.Parameters.AddWithValue("@Numero_transaccion", row["Numero_transaccion"]);
-                            cmd.Parameters.AddWithValue("@codigo_cliente", row["codigo_cliente"]);
-                            cmd.Parameters.AddWithValue("@mov58_boveda", row["mov58_boveda"]);
-                            cmd.Parameters.AddWithValue("@mov59_boveda", row["mov59_boveda"]);
-                            cmd.Parameters.AddWithValue("@mov53TC_boveda", row["mov53TC_boveda"]);
-                            cmd.Parameters.AddWithValue("@mon53TC_boveda", row["mon53TC_boveda"]);
-                            cmd.Parameters.AddWithValue("@movmixto_paralelo", row["movmixto_paralelo"]);
-                            cmd.Parameters.AddWithValue("@Trxmixto_paralelo", row["Trxmixto_paralelo"]);
-                            cmd.Parameters.AddWithValue("@MONTO_mixtoparalelo", row["MONTO_mixtoparalelo"]);
-                            cmd.Parameters.AddWithValue("@movotrocli_paralelo", row["movotrocli_paralelo"]);
-                            cmd.Parameters.AddWithValue("@Trxotrocli_paralelo", row["Trxotrocli_paralelo"]);
-                            cmd.Parameters.AddWithValue("@Nomotrocli_paralelo", row["Nomotrocli_paralelo"]);
-                            cmd.Parameters.AddWithValue("@hora_trx", row["hora_trx"]);
-                            cmd.Parameters.AddWithValue("@cajero", row["cajero"]);
-                            cmd.Parameters.AddWithValue("@usuario", usuario);
-                            cmd.Parameters.AddWithValue("@tipo", "NUEVO");
-
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al insertar datos: " + ex.Message);
-                return false;
-            }
-        }
-
         public DataTable ObtenerDetalleBit(int anioMes)
         {
 
@@ -219,7 +65,7 @@ namespace ReportesRegulatorios.Modelos
 	                        tipo
                         FROM EDW.DL_CUMPLIMIENTO.rrdv17_detalle_bit
                         WHERE AnioMes = @AnioMes";
-            
+
             try
             {
                 Conexion conexion = new Conexion();
@@ -392,14 +238,13 @@ namespace ReportesRegulatorios.Modelos
 
         }
 
-
         public bool EliminarCamposDetalle(int anioMes)
         {
             string consulta = @"DELETE FROM EDW.DL_CUMPLIMIENTO.rrdv17_detalle 
                                 WHERE Numero_transaccion IN ( 
                                                                 SELECT rdb.Numero_transaccion 
                                                                 FROM EDW.DL_CUMPLIMIENTO.rrdv17_detalle_bit rdb 
-                                                                WHERE rdb.tipo = 'ORIGINAL' AND rdb.AnioMes = @anioMes
+                                                                WHERE rdb.tipo = 'ORIGINAL' AND rdb.AnioMes = @anioMes AND  rdb.EstadoBitacora = 'P'
                                                             )";
 
             try
@@ -429,7 +274,7 @@ namespace ReportesRegulatorios.Modelos
             {
                 //Agregamos columas para empatarla con la bitacora
                 dataTable.Columns.Add("usuario", typeof(string));
-                dataTable.Columns.Add("fecha_hora" , typeof(DateTime));
+                dataTable.Columns.Add("fecha_hora", typeof(DateTime));
                 dataTable.Columns.Add("tipo", typeof(string));
 
                 //Colocamos valores a todas las filas
@@ -500,6 +345,7 @@ namespace ReportesRegulatorios.Modelos
                         bulkCopy.ColumnMappings.Add("usuario", "usuario");
                         bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
                         bulkCopy.ColumnMappings.Add("tipo", "tipo");
+                        dataTable.Columns.Add("EstadoBitacora", typeof(string));
 
                         bulkCopy.WriteToServer(dataTable);
                     }
@@ -521,14 +367,15 @@ namespace ReportesRegulatorios.Modelos
                 //Agregamos columas para empatarla con la bitacora
                 dataTable.Columns.Add("usuario", typeof(string));
                 dataTable.Columns.Add("fecha_hora", typeof(DateTime));
-               
+
 
                 //Colocamos valores a todas las filas
                 foreach (DataRow row in dataTable.Rows)
                 {
                     row["usuario"] = usuario;
                     row["fecha_hora"] = DateTime.Now;
-                    
+                    row["EstadoBitacora"] = "P";
+
                 }
 
                 // Limpiar datos antes de insertar
@@ -591,6 +438,7 @@ namespace ReportesRegulatorios.Modelos
                         bulkCopy.ColumnMappings.Add("usuario", "usuario");
                         bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
                         bulkCopy.ColumnMappings.Add("TP", "tipo");
+                        bulkCopy.ColumnMappings.Add("EstadoBitacora", "EstadoBitacora");
 
                         bulkCopy.WriteToServer(dataTable);
                     }
@@ -646,7 +494,7 @@ namespace ReportesRegulatorios.Modelos
         {
 
             DataTable dt = new DataTable();
-            string consulta = @"SELECT * FROM DL_CUMPLIMIENTO.rrdv17_detalle_bit WHERE AnioMes = @AnioMes and tipo = 'NUEVO'";
+            string consulta = @"SELECT * FROM DL_CUMPLIMIENTO.rrdv17_detalle_bit WHERE AnioMes = @AnioMes and tipo = 'NUEVO' AND EstadoBitacora ='P'";
 
             try
             {
@@ -670,6 +518,33 @@ namespace ReportesRegulatorios.Modelos
 
             return dt;
 
+        }
+    
+    public bool ActualizarEstadoBit(int anioMes)
+        {
+            string consulta = @"UPDATE EDW.DL_CUMPLIMIENTO.rrdv17_detalle_bit 
+                                SET EstadoBitacora = 'V'  
+                                WHERE AnioMes = @anioMes";
+
+            try
+            {
+                Conexion conexion = new Conexion();
+                using (SqlConnection conn = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                {
+                    cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    // Puedes usar filasAfectadas para verificar si se eliminó algo
+                    return filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Aquí podrías registrar el error en un log
+                Console.WriteLine($"Error al actualizar datos: {ex.Message}");
+                return false;
+            }
         }
     }
 }

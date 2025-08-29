@@ -130,6 +130,7 @@ namespace ReportesRegulatorios.Modelos
                 //Agregamos columas para empatarla con la bitacora
                 dataTable.Columns.Add("usuario", typeof(string));
                 dataTable.Columns.Add("fecha_hora", typeof(DateTime));
+                dataTable.Columns.Add("EstadoBitacora", typeof(string));
 
 
                 //Colocamos valores a todas las filas
@@ -137,6 +138,7 @@ namespace ReportesRegulatorios.Modelos
                 {
                     row["usuario"] = usuario;
                     row["fecha_hora"] = DateTime.Now;
+                    row["EstadoBitacora"] = "P";
 
                 }
 
@@ -185,6 +187,7 @@ namespace ReportesRegulatorios.Modelos
                         bulkCopy.ColumnMappings.Add("usuario", "usuario");
                         bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
                         bulkCopy.ColumnMappings.Add("TP", "tipo");
+                        bulkCopy.ColumnMappings.Add("EstadoBitacora", "EstadoBitacora");
 
                         bulkCopy.WriteToServer(dataTable);
                     }
@@ -199,11 +202,38 @@ namespace ReportesRegulatorios.Modelos
             }
         }
 
+        public bool ActualizarEstadoBit(int anioMes)
+        {
+            string consulta = @"UPDATE EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit 
+                                SET EstadoBitacora = 'V'  
+                                WHERE AnioMes = @anioMes";
+
+            try
+            {
+                Conexion conexion = new Conexion();
+                using (SqlConnection conn = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                {
+                    cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    // Puedes usar filasAfectadas para verificar si se eliminó algo
+                    return filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Aquí podrías registrar el error en un log
+                Console.WriteLine($"Error al actualizar datos: {ex.Message}");
+                return false;
+            }
+        }
+
         public DataTable InsertarNuevosEnDetalle(int anioMes)
         {
 
             DataTable dt = new DataTable();
-            string consulta = @"SELECT * FROM DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit WHERE AnioMes = @AnioMes and tipo = 'NUEVO'";
+            string consulta = @"SELECT * FROM DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit WHERE AnioMes = @AnioMes and tipo = 'NUEVO' AND EstadoBitacora ='P'";
 
             try
             {
@@ -235,7 +265,7 @@ namespace ReportesRegulatorios.Modelos
                                 WHERE Numero_transaccion IN ( 
                                                                 SELECT rdb.Numero_transaccion 
                                                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit rdb 
-                                                                WHERE rdb.tipo = 'ORIGINAL' AND rdb.AnioMes = @anioMes
+                                                                WHERE rdb.tipo = 'ORIGINAL' AND rdb.AnioMes = @anioMes AND EstadoBitacora = 'P'
                                                             )";
 
             try
@@ -263,42 +293,42 @@ namespace ReportesRegulatorios.Modelos
         {
 
             DataTable dt = new DataTable();
-            string consulta = @"SELECT      AnioMes
-                                          ,Codigo_Agencia
-                                          ,Fecha_Transaccion
-                                          ,Numero_transaccion
-                                          ,codigo_cliente
-                                          ,TRANS
-                                          ,MONEDA
-                                          ,MONTO_MONEDA_ORIGEN
-                                          ,MONTO_EN_DOLARES
-                                          ,NUM_REFERENCIA
-                                          ,TIP_TRANSACCION
-                                          ,Estado
-                                          ,Usuario_registro
-                                          ,Fecha_Registro
-                                          ,Usuario_Modifico
-                                          ,Fecha_Modifico
-                                          ,Justificacion
-                                          ,movexacto_paralelo
-                                          ,Trxexacto_paralelo
-                                          ,movmixto_paralelo
-                                          ,Trxmixto_paralelo
-                                          ,movotrocli_paralelo
-                                          ,Trxotrocli_paralelo
-                                          ,Nomotrocli_paralelo
-                                          ,MONTO_mixtoparalelo
-                                          ,movmxto58_boveda
-                                          ,MONTO_movmxto58
-                                          ,movmxto59_boveda
-                                          ,MONTO_movmxto59
-                                          ,hora_trx
-                                          ,cajero
-                                        usuario,
-                                        fecha_hora,
-                                        tipo
-                                    FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta_bit
-                                    WHERE AnioMes = @AnioMes";
+            string consulta = @"SELECT AnioMes, 
+Codigo_Agencia, 
+Fecha_Transaccion, 
+Numero_transaccion, 
+codigo_cliente, 
+TRANS, 
+MONEDA, 
+MONTO_MONEDA_ORIGEN, 
+MONTO_EN_DOLARES, 
+NUM_REFERENCIA, 
+TIP_TRANSACCION, 
+Estado, 
+Usuario_registro, 
+Fecha_Registro, 
+Usuario_Modifico, 
+Fecha_Modifico, 
+Justificacion, 
+movexacto_paralelo, 
+Trxexacto_paralelo, 
+movmixto_paralelo, 
+Trxmixto_paralelo, 
+movotrocli_paralelo, 
+Trxotrocli_paralelo, 
+Nomotrocli_paralelo, 
+MONTO_mixtoparalelo,
+movmxto58_boveda, 
+MONTO_movmxto58, 
+movmxto59_boveda, 
+MONTO_movmxto59, 
+hora_trx, 
+cajero, 
+usuario, 
+fecha_hora, 
+tipo
+FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit
+WHERE AnioMes = @anioMes";
 
             try
             {
@@ -359,42 +389,42 @@ namespace ReportesRegulatorios.Modelos
                                                     Isnull(Convert(Varchar,DRDD.movmxto59_boveda),'') + 
                                                     Isnull(Convert(Varchar,DRDD.MONTO_movmxto59),'') + 
                                                     Isnull(Convert(Varchar,DRDD.hora_trx),'') + 
-                                                    Isnull(Convert(Varchar,DRDD.cajero),'')  KeyOri,'' KeyRev
-                                                        FROM EDW.DL_CUMPLIMIENTO.dw_repreg_tf21_deta DRDD WHERE DRDD.anioMes=@anioMes
+                                                    Isnull(Convert(Varchar,DRDD.cajero),'')  KeyOri
+                                                        FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta DRDD WHERE DRDD.anioMes=@anioMes
 	                                            ),
 		                                                TB_Y AS 
-                                                (		 SELECT DRDDT.Numero_transaccion,
-                                                    Isnull(Convert(Varchar,DRDDT.Codigo_Agencia),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Fecha_Transaccion),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Numero_transaccion),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.codigo_cliente),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.TRANS),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.MONEDA),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.MONTO_MONEDA_ORIGEN),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.MONTO_EN_DOLARES),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.NUM_REFERENCIA),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.TIP_TRANSACCION),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Estado),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Usuario_registro),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Fecha_Registro),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Usuario_Modifico),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Fecha_Modifico),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Justificacion),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.movexacto_paralelo),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Trxexacto_paralelo),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.movmixto_paralelo),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Trxmixto_paralelo),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.movotrocli_paralelo),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Trxotrocli_paralelo),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.Nomotrocli_paralelo),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.MONTO_mixtoparalelo),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.movmxto58_boveda),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.MONTO_movmxto58),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.movmxto59_boveda),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.MONTO_movmxto59),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.hora_trx),'') + 
-                                                    Isnull(Convert(Varchar,DRDDT.cajero),'')  KeyRev
-		                                                FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_tmp DRDDT WHERE DRDDT.anioMes=@anioMes
+                                                (		 SELECT DRDD.Numero_transaccion,
+                                                    Isnull(Convert(Varchar,DRDD.Codigo_Agencia),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Fecha_Transaccion),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Numero_transaccion),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.codigo_cliente),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.TRANS),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.MONEDA),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.MONTO_MONEDA_ORIGEN),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.MONTO_EN_DOLARES),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.NUM_REFERENCIA),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.TIP_TRANSACCION),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Estado),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Usuario_registro),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Fecha_Registro),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Usuario_Modifico),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Fecha_Modifico),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Justificacion),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.movexacto_paralelo),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Trxexacto_paralelo),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.movmixto_paralelo),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Trxmixto_paralelo),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.movotrocli_paralelo),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Trxotrocli_paralelo),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.Nomotrocli_paralelo),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.MONTO_mixtoparalelo),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.movmxto58_boveda),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.MONTO_movmxto58),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.movmxto59_boveda),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.MONTO_movmxto59),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.hora_trx),'') + 
+                                                    Isnull(Convert(Varchar,DRDD.cajero),'')  KeyRev
+		                                                FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_tmp DRDD WHERE DRDD.anioMes=@anioMes
                                                 ),
                                                 TB_CHANGE AS (
                                                 SELECT 'ORIGINAL' TP,DRDD2.*
@@ -412,9 +442,9 @@ namespace ReportesRegulatorios.Modelos
                                             SELECT *
                                                 FROM TB_CHANGE
                                             UNION
-                                                SELECT 'NUEVO' TP,DRDDT2.*
-                                                FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_tmp DRDDT2
-                                                WHERE DRDDT2.anioMes=@anioMes AND DRDDT2.NUMERO_TRANSACCION IN (SELECT C2.Numero_transaccion  FROM TB_CHANGE C2)";
+                                                SELECT 'NUEVO' TP,DRDD2.*
+                                                FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_tmp DRDD2
+                                                WHERE DRDD2.anioMes=@anioMes AND DRDD2.NUMERO_TRANSACCION IN (SELECT C2.Numero_transaccion  FROM TB_CHANGE C2)";
             try
             {
                 Conexion conexion = new Conexion();

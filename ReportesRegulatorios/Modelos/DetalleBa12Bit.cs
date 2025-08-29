@@ -62,6 +62,7 @@ namespace ReportesRegulatorios.Modelos
                     row["usuario"] = usuario;
                     row["fecha_hora"] = DateTime.Now;
                     row["tipo"] = "NUEVO";
+
                 }
 
                 // Limpiar datos antes de insertar

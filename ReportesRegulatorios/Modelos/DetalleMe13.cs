@@ -77,41 +77,43 @@ namespace ReportesRegulatorios.Modelos
 
             DataTable dt = new DataTable();
             string consulta = @"With tb_rrme13 as (
-                                    SELECT
-                                        -- Base36 calculado a mano en 3 caracteres
-                                        CONCAT(
-                                            SUBSTRING('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', ((RN / (36 * 36)) % 36) + 1, 1),
-                                            SUBSTRING('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', ((RN / 36) % 36) + 1, 1),
-                                            SUBSTRING('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', (RN % 36) + 1, 1)
-                                        ) AS Indificador_de_linea,
-                                        t.*
-                                    FROM (
-                                      SELECT ROW_NUMBER() OVER (ORDER BY e.Fecha_Transaccion) AS RN,
-                                            e.Fecha_Transaccion,
-                                            e.TRANS ,
-                                            e.MONEDA,
-                                            FORMAT(CAST(SUM(e.MONTO_MONEDA_ORIGEN) AS DECIMAL(10,2)), '0.00', 'en-US') AS MONTO_ORIGINAL,
-                                            FORMAT(CAST(SUM(e.MONTO_EN_DOLARES) AS DECIMAL(10,2)), '0.00', 'en-US') AS MONTO_DOLARES,
-                                            COUNT(e.MONTO_MONEDA_ORIGEN) AS CANTIDAD_TRX,
-                                            e.Codigo_Agencia
-                                        FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta e
-                                        WHERE e.Estado = 'P'
-                                          AND e.AnioMes = @anioMes
-                                        GROUP BY
-                                            e.Fecha_Transaccion,
-                                            e.TRANS,
-                                            e.MONEDA,
-                                            e.Codigo_Agencia
-                                    ) as t )
-                                    select RIGHT(REPLICATE('0', 16) + ISNULL(m13.Indificador_de_linea, '')  , 16)   +  + '&&' +
-                                           LEFT(CONVERT(CHAR(8), m13.Fecha_Transaccion, 112) + REPLICATE(' ', 8), 8)  + '&&' +
-                                           LEFT(ISNULL(m13.TRANS, '') + REPLICATE(' ', 1), 1)                         + '&&' +
-                                           LEFT(ISNULL(m13.MONEDA, '') + REPLICATE(' ', 3), 3)                        + '&&' +
-                                           RIGHT(REPLICATE('0', 15) + ISNULL(CAST(m13.MONTO_ORIGINAL AS VARCHAR), ''), 15)    + '&&' +
-                                           RIGHT(REPLICATE('0', 15) + ISNULL(CAST(m13.MONTO_DOLARES AS VARCHAR), ''), 15)    + '&&' +
-                                           RIGHT(REPLICATE('0', 10) + ISNULL(CAST(m13.CANTIDAD_TRX AS VARCHAR), ''), 10)    + '&&' +
-                                           LEFT(ISNULL(m13.Codigo_Agencia, '') + REPLICATE(' ', 10), 10)             + '&&' Trama
-                                       from tb_rrme13 m13;";
+SELECT
+-- Base36 calculado a mano en 3 caracteres
+CONCAT(
+    SUBSTRING('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', ((RN / (36 * 36)) % 36) + 1, 1),
+SUBSTRING('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', ((RN / 36) % 36) + 1, 1),
+SUBSTRING('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', (RN % 36) + 1, 1)
+    ) AS Indificador_de_linea,
+    t.*
+FROM (
+  SELECT ROW_NUMBER() OVER (ORDER BY RR.Fecha_Transaccion) AS RN,RR.*
+    FROM (
+		  SELECT -- ROW_NUMBER() OVER (ORDER BY e.Fecha_Transaccion) AS RN,
+		        e.Fecha_Transaccion,
+		        e.TRANS ,
+		        'USD' AS MONEDA ,
+		        Sum(e.MONTO_EN_DOLARES) AS MONTO_ORIGINAL,
+		        Sum(e.MONTO_EN_DOLARES)  AS MONTO_DOLARES,
+		        COUNT(e.MONTO_MONEDA_ORIGEN )   AS CANTIDAD_TRX,
+		        e.Codigo_Agencia
+		FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta e
+		WHERE e.Estado = 'P'
+		  AND e.AnioMes = @anioMes
+	 GROUP BY   e.Fecha_Transaccion,
+		        e.TRANS,
+		        e.MONEDA,
+		        e.Codigo_Agencia
+		       ) RR
+) as t )
+select REPLACE(RIGHT(REPLICATE('0', 16) + ISNULL(m13.Indificador_de_linea, '')  , 16)   +  + '&&' +
+   LEFT(CONVERT(CHAR(8), m13.Fecha_Transaccion, 112) + REPLICATE(' ', 8), 8)  + '&&' +
+   LEFT(ISNULL(m13.TRANS, '') + REPLICATE(' ', 1), 1)                         + '&&' +
+   LEFT(ISNULL(m13.MONEDA, '') + REPLICATE(' ', 3), 3)                        + '&&' +
+   LEFT(CAST(CAST(m13.MONTO_ORIGINAL AS DECIMAL(38,0)) AS VARCHAR(15)) + REPLICATE(' ', 15), 15) + '&&' +
+   LEFT(CAST(CAST(m13.MONTO_DOLARES AS DECIMAL(38,0)) AS VARCHAR(15)) + REPLICATE(' ', 15), 15) + '&&' +
+   LEFT(CAST(CAST(m13.CANTIDAD_TRX AS DECIMAL(38,0)) AS VARCHAR(10)) + REPLICATE(' ', 10), 10) + '&&' +
+   LEFT(ISNULL(m13.Codigo_Agencia, '') + REPLICATE(' ', 10), 10),' ','')              Trama
+   from tb_rrme13 m13";
 
             try
             {

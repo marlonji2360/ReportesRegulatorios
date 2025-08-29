@@ -10,16 +10,6 @@ namespace ReportesRegulatorios.Modelos
 {
     internal class EncaBa12
     {
-        int AnioMes;
-        string Estado ;
-        string Usuario_genera ;
-        string Fecha_genera ;
-        string Usuario_upd ;
-        string Fecha_upd ;
-        string Usuario_Cierre ;
-        string Fecha_Cierre ;
-        string Doc_cierre;
-
         public EncaBa12()
         {
 

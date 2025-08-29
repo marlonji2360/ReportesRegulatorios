@@ -10,11 +10,7 @@ namespace ReportesRegulatorios.Controladores
 {
     internal class DetalleDv17BitController
     {
-        public bool InsertarDetalleVeriDv17Bit(DataTable tabla, string usuario)
-        {
-            DetalleDv17Bit detalleDv17Bit = new DetalleDv17Bit();
-            return detalleDv17Bit.InsertarDetalleVeriDv17Bit(tabla, usuario);
-        }
+        
 
         public bool InsertarDetalleDv17VerBitBulk(DataTable tabla, string usuario)
         {
@@ -22,11 +18,7 @@ namespace ReportesRegulatorios.Controladores
             return detalleDv17Bit.InsertarDetalleDv17VerBitBulk(tabla, usuario);
         }
 
-        public bool InsertarDetalleNuevoDv17Bit(DataTable tabla, string usuario)
-        {
-            DetalleDv17Bit detalleDv17Bit = new DetalleDv17Bit();
-            return detalleDv17Bit.InsertarDetalleNuevoDv17Bit(tabla, usuario);
-        }
+        
 
         public bool InsertarDetalleDv17BitBulk(DataTable tabla, string usuario)
         {
@@ -56,6 +48,12 @@ namespace ReportesRegulatorios.Controladores
         {
             DetalleDv17Bit detalleDv17Bit = new DetalleDv17Bit();
             return detalleDv17Bit.InsertarNuevosEnDetalle(anioMes);
+        }
+
+        public Boolean ActualizarEstadoBit(int anioMes)
+        {
+            DetalleDv17Bit detalleDv17Bit = new DetalleDv17Bit();
+            return detalleDv17Bit.ActualizarEstadoBit(anioMes);
         }
     }
 }

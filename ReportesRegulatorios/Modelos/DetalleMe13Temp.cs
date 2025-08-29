@@ -96,7 +96,7 @@ namespace ReportesRegulatorios.Modelos
                                          WHERE DRDD.AnioMes = @anioMes 
 		                                 UNION 
 		                                 SELECT 0 CASOS_ORIGEN, COUNT(*) CASOS_REVISAR
-		                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_tmp DRDDT
+		                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_tmp DRDDT
                                          WHERE DRDDT.AnioMes = @anioMes 
 		                                  ) XX
 		                                  ) RR";
@@ -218,7 +218,7 @@ namespace ReportesRegulatorios.Modelos
             string[] columnasInt = new string[]
             {
             "AnioMes", "Fecha_Transaccion", "Numero_transaccion",
-            "NUM_REFERENCIA", "Fecha_Registro", "Fecha_Modifico",  "hora_trx"
+            "NUM_REFERENCIA", "Fecha_Registro", "TIP_TRANSACCION", "Fecha_Registro","Fecha_Modifico",  "hora_trx"
             };
 
             string[] columnasFloat = new string[]
@@ -360,7 +360,7 @@ SELECT 'NEW' TP,DRDDT2.*
 				Isnull(Convert(Varchar,CB.Fecha_Transaccion),'') +
 				Isnull(Convert(Varchar,CB.codigo_cliente),'') +
 				Isnull(Convert(Varchar,CB.Numero_transaccion),'') +
-				Isnull(Convert(Varchar,CB.Tipo_Transaccion),'') +
+				Isnull(Convert(Varchar,CB.TIP_TRANSACCION),'') +
 				Isnull(Convert(Varchar,CB.cajero),'') kEYjUST,CB.JUSTIFICACION JUSTIFICACION_NEW,' ' JUSTIFICACION_ORIGEN
 		    FROM TB_CHANGE_BIS CB
 		    WHERE CB.TP = 'NEW'
@@ -370,7 +370,7 @@ SELECT 'NEW' TP,DRDDT2.*
 				Isnull(Convert(Varchar,CB.Fecha_Transaccion),'') +
 				Isnull(Convert(Varchar,CB.codigo_cliente),'') +
 				Isnull(Convert(Varchar,CB.Numero_transaccion),'') +
-				Isnull(Convert(Varchar,CB.Tipo_Transaccion),'') +
+				Isnull(Convert(Varchar,CB.TIP_TRANSACCION),'') +
 				Isnull(Convert(Varchar,CB.cajero),'') kEYjUST,
 				' ' JUSTIFICACION_NEW,
 				CB.JUSTIFICACION JUSTIFICACION_ORIGEN
@@ -419,7 +419,7 @@ WHERE ISNULL(RRJJ.JUSTIFICACION_NEW,' ') = ISNULL(RRJJ.JUSTIFICACION_ORIGEN,' ')
                 {
                     using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
                     {
-                        bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_tf21_deta_tmp";
+                        bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_me13_deta_tmp";
 
                         // Mapeo explícito de columnas
                         bulkCopy.ColumnMappings.Add("AnioMes", "AnioMes");

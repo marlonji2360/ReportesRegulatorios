@@ -46,5 +46,11 @@ namespace ReportesRegulatorios.Controladores
             DetalleEf14Bit detalleEf14Bit = new DetalleEf14Bit();
             return detalleEf14Bit.InsertarNuevosEnDetalle(anioMes);
         }
+
+        public bool ActualizarEstadoBit(int anioMes)
+        {
+            DetalleEf14Bit detalleEf14Bit = new DetalleEf14Bit();
+            return detalleEf14Bit.ActualizarEstadoBit(anioMes);
+        }
     }
 }

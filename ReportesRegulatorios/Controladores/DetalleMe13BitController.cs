@@ -35,6 +35,12 @@ namespace ReportesRegulatorios.Controladores
             return detalleMe13Bit.ObtenerCambiosBit(anioMes);
         }
 
+        public bool ActualizarEstadoBit(int anioMes)
+        {
+            DetalleMe13Bit detalleMe13Bit = new DetalleMe13Bit();
+            return detalleMe13Bit.ActualizarEstadoBit(anioMes);
+        }
+
         public bool EliminarCamposDetalle(int anioMes)
         {
             DetalleMe13Bit detalleMe13Bit = new DetalleMe13Bit();

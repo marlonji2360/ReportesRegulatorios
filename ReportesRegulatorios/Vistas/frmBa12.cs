@@ -387,7 +387,7 @@ namespace ReportesRegulatorios.Vistas
 
             bool resultado = false;
 
-            
+            detalleBa12TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
             resultado = detalleBa12TmpController.InsertarDetalleBa12TmpBulk(tabla);
 
             DataTable validacionCantidadRegistros = detalleBa12TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
@@ -415,7 +415,7 @@ namespace ReportesRegulatorios.Vistas
                 detalleBa12Controller.InsertarDetalleBa12Bulk(dtNuevosRegistrosEnDetalle);
 
                 detalleBa12BitController.ActualizarEstadoBit(Convert.ToInt32(anioMes));
-                detalleBa12TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
+                
 
                 PlayNotificationSound();
                 MessageBox.Show("Cambios guardados correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);

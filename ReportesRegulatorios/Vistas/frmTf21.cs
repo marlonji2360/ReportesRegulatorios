@@ -715,10 +715,9 @@ namespace ReportesRegulatorios.Vistas
 
         private async void btnArchivoIve_Click(object sender, EventArgs e)
         {
-            DeshabilitarBotones();
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
-
+                DeshabilitarBotones();
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
@@ -728,16 +727,15 @@ namespace ReportesRegulatorios.Vistas
 
                 anioMes = txtAnio.Text + mes;
 
-                frmCargando cargando = new frmCargando("Insertando nuevos registros...");
+                frmCargando cargando = new frmCargando("Generando archivo TXT...");
                 cargando.Show();
 
                 await Task.Run(() =>
                 {
                     dt = detalleTf21Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
                 });
-                
 
-                 ExportarDataTableATxt(dt);
+                ExportarDataTableATxt(dt);
 
                 cargando.Close();
 
