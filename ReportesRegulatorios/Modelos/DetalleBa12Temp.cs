@@ -157,10 +157,13 @@ namespace ReportesRegulatorios.Modelos
 										                                WHERE DRDD.AnioMes  = DRDDT.AnioMes
 										                                 AND  DRDD.FECHA  = DRDDT.FECHA
 										                                 AND  DRDD.NOCHEQUE = DRDDT.NOCHEQUE
+										                                 AND DRDD.AnioMes  = @anioMes
+										                                 AND DRDDT.AnioMes = @anioMes
 							                                 ) TT
 					                                     UNION 
 								                                SELECT 0 CASOS_REVISAR, COUNT(*) CASOS_ORIGEN 
 										                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta DRDD
+										                                 WHERE DRDD.AnioMes  = @anioMes
 				                                        ) XXX
                                   )  RR";
 

@@ -416,7 +416,7 @@ namespace ReportesRegulatorios.Vistas
                     StringBuilder sb = new StringBuilder();
 
                     // Exportar desde la fila 2 (índice 1)
-                    for (int i = 1; i < dataTable.Rows.Count; i++)
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
                     {
                         DataRow row = dataTable.Rows[i];
                         var fields = row.ItemArray.Select(field => field?.ToString()?.Replace("\r", "").Replace("\n", "").Trim());

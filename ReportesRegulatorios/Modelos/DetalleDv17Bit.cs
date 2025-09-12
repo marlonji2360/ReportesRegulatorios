@@ -367,6 +367,7 @@ namespace ReportesRegulatorios.Modelos
                 //Agregamos columas para empatarla con la bitacora
                 dataTable.Columns.Add("usuario", typeof(string));
                 dataTable.Columns.Add("fecha_hora", typeof(DateTime));
+                dataTable.Columns.Add("EstadoBitacora", typeof(string));
 
 
                 //Colocamos valores a todas las filas

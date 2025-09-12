@@ -105,14 +105,14 @@ FROM (
 		        e.Codigo_Agencia
 		       ) RR
 ) as t )
-select REPLACE(RIGHT(REPLICATE('0', 16) + ISNULL(m13.Indificador_de_linea, '')  , 16)   +  + '&&' +
+select REPLACE(REPLACE(RIGHT(REPLICATE('0', 16) + ISNULL(m13.Indificador_de_linea, '')  , 16)   +  + '&&' +
    LEFT(CONVERT(CHAR(8), m13.Fecha_Transaccion, 112) + REPLICATE(' ', 8), 8)  + '&&' +
    LEFT(ISNULL(m13.TRANS, '') + REPLICATE(' ', 1), 1)                         + '&&' +
    LEFT(ISNULL(m13.MONEDA, '') + REPLICATE(' ', 3), 3)                        + '&&' +
-   LEFT(CAST(CAST(m13.MONTO_ORIGINAL AS DECIMAL(38,0)) AS VARCHAR(15)) + REPLICATE(' ', 15), 15) + '&&' +
-   LEFT(CAST(CAST(m13.MONTO_DOLARES AS DECIMAL(38,0)) AS VARCHAR(15)) + REPLICATE(' ', 15), 15) + '&&' +
+   LEFT(CAST(CAST(m13.MONTO_ORIGINAL AS DECIMAL(38,2)) AS VARCHAR(15)) + REPLICATE(' ', 15), 15) + '&&' +
+   LEFT(CAST(CAST(m13.MONTO_DOLARES AS DECIMAL(38,2)) AS VARCHAR(15)) + REPLICATE(' ', 15), 15) + '&&' +
    LEFT(CAST(CAST(m13.CANTIDAD_TRX AS DECIMAL(38,0)) AS VARCHAR(10)) + REPLICATE(' ', 10), 10) + '&&' +
-   LEFT(ISNULL(m13.Codigo_Agencia, '') + REPLICATE(' ', 10), 10),' ','')              Trama
+   LEFT(ISNULL(m13.Codigo_Agencia, '') + REPLICATE(' ', 10), 10),' ',''),'.00','')              Trama
    from tb_rrme13 m13";
 
             try
