@@ -423,7 +423,7 @@ namespace ReportesRegulatorios.Vistas
                         sb.AppendLine(string.Join("|", fields));
                     }
 
-                    File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
+                    File.WriteAllText(filePath, sb.ToString(), Encoding.Default);
 
                     PlayNotificationSound();
                     MessageBox.Show("Datos exportados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using ClosedXML.Excel;
+using Microsoft.Win32;
 using ReportesRegulatorios.Controladores;
 using System;
 using System.Collections.Generic;
@@ -321,7 +322,7 @@ namespace ReportesRegulatorios.Vistas
                         sb.AppendLine(string.Join("|", fields));
                     }
 
-                    File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
+                    File.WriteAllText(filePath, sb.ToString(), Encoding.Default);
 
                     PlayNotificationSound();
                     MessageBox.Show("Datos exportados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -682,6 +683,43 @@ namespace ReportesRegulatorios.Vistas
             Consultar();
         }
 
+        private void ExportarDataTableAExcel(DataTable dataTable)
+        {
+            if (dataTable.Rows.Count > 0)
+            {
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                    FileName = "Datos.xlsx"
+                };
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook wb = new XLWorkbook())
+                        {
+                            wb.Worksheets.Add(dataTable, "Datos");
+                            wb.SaveAs(sfd.FileName);
+                        }
+
+                        PlayNotificationSound();
+                        MessageBox.Show("Datos Exportados Correctamente !!!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        PlayNotificationSound();
+                        MessageBox.Show("Error al exportar a Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                PlayNotificationSound();
+                MessageBox.Show("No hay datos para Exportar !!!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
         private async void btnGeneraCsv_Click(object sender, EventArgs e)
         {
             DeshabilitarBotones();
@@ -697,7 +735,7 @@ namespace ReportesRegulatorios.Vistas
 
                 anioMes = txtAnio.Text + mes;
 
-                frmCargando cargando = new frmCargando("Descagando csv...");
+                frmCargando cargando = new frmCargando("Descagando Excel...");
                 cargando.Show();
 
                 await Task.Run(() =>
@@ -705,7 +743,8 @@ namespace ReportesRegulatorios.Vistas
                     dt = detalleTf21Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
                 });
 
-                ExportarDataTableACsv(dt);
+                //ExportarDataTableACsv(dt);
+                ExportarDataTableAExcel(dt);
 
                 cargando.Close();
 

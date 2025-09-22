@@ -320,3 +320,4 @@ C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorio
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\Reportes.738ECD47.Up2Date
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.exe
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.pdb
+C:\Local\ReportesRegulatorios\ReportesRegulatorios\obj\Debug\ReportesRegulatorios.exe.config
