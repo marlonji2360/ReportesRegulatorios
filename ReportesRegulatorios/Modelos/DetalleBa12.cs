@@ -85,35 +85,81 @@ namespace ReportesRegulatorios.Modelos
 
             DataTable dt = new DataTable();
             string consulta = @"SELECT REPLACE(LEFT(CONVERT(CHAR(8), FECHA, 112) + REPLICATE(' ', 8), 8)  +
+ 
 LEFT(ISNULL(NOCHEQUE, '') + REPLICATE(' ', 15), 15)   +
+ 
 LEFT(ISNULL(BTIPOPERSONA, '') + REPLICATE(' ', 1), 1)   +
+ 
 CASE When BTIPOPERSONA = 'J' Then
+ 
           LEFT(ISNULL(BNombreJuridico, '') + REPLICATE(' ', 75), 75)   
+ 
      When BTIPOPERSONA != 'J' Then
+ 
           LEFT(ISNULL(BPrimerApellido, '') + REPLICATE(' ', 15), 15)   +
+ 
           LEFT(ISNULL(BSegundoApellido, '') + REPLICATE(' ', 15), 15)   +
+ 
           LEFT(ISNULL(REPLACE(BApellidoCasada,' ',''), '') + REPLICATE(' ', 15), 15)   +
+ 
           LEFT(ISNULL(BPrimerNombre, '') + REPLICATE(' ', 15), 15)   +
+ 
           LEFT(ISNULL(BSegundoNombre, '') + REPLICATE(' ', 15), 15)   
+ 
 END +
+ 
 LEFT(ISNULL(CTipoPersona, '') + REPLICATE(' ', 1), 1)   +
+ 
 LEFT(ISNULL(CTp_Identificacion, '') + REPLICATE(' ', 1), 1)   +
+ 
 LEFT(ISNULL(CNoOrdenCedula, '') + REPLICATE(' ', 3), 3)   +
+ 
 LEFT(ISNULL(CDPI, '') + REPLICATE(' ', 20), 20)   +
+ 
 CASE When CTipoPersona = 'J' Then
+ 
           LEFT(ISNULL(CNombreJuridico, '') + REPLICATE(' ', 75), 75)   
+ 
      When CTipoPersona != 'J' Then     
+ 
           LEFT(ISNULL(CPrimerApellido, '') + REPLICATE(' ', 15), 15)   +
+ 
           LEFT(ISNULL(CSegundoApellido, '') + REPLICATE(' ', 15), 15)   +
+ 
           LEFT(ISNULL(REPLACE(CApellidoCasada,' ',''), '') + REPLICATE(' ', 15), 15)   +
+ 
           LEFT(ISNULL(CPrimerNombre, '') + REPLICATE(' ', 15), 15)   +
+ 
           LEFT(ISNULL(CSegundoNombre, '') + REPLICATE(' ', 15), 15)   
+ 
 END +
+ 
 LEFT(ISNULL(TipoMoneda, '') + REPLICATE(' ', 3), 3)   +
-REPLACE(LEFT(CAST(CAST(MontoMonedaOriginal*100 AS DECIMAL(38,0)) AS VARCHAR(14)) + REPLICATE(' ', 14), 14),'.00','   ') +
-REPLACE(LEFT(CAST(CAST(MontoDolares*100 AS DECIMAL(38,0)) AS VARCHAR(14)) + REPLICATE(' ', 14), 14),'.00','   ')   +
+ 
+--REPLACE(LEFT(CAST(CAST(MontoMonedaOriginal*100 AS DECIMAL(38,0)) AS VARCHAR(14)) + REPLICATE(' ', 14), 14),'.00','   ') +
+--REPLACE(LEFT(CAST(CAST(MontoDolares*100 AS DECIMAL(38,0)) AS VARCHAR(14)) + REPLICATE(' ', 14), 14),'.00','   ')   +
+LEFT(
+  RIGHT('00' + CAST(CAST(MontoMonedaOriginal * 100 AS DECIMAL(38,0)) AS VARCHAR),
+        CASE
+            WHEN MontoMonedaOriginal * 100 < 100 THEN 2
+            ELSE LEN(CAST(CAST(MontoMonedaOriginal * 100 AS DECIMAL(38,0)) AS VARCHAR))
+        END
+  ) + REPLICATE(' ', 14),
+  14
+) +
+LEFT(
+  RIGHT('00' + CAST(CAST(MontoDolares * 100 AS DECIMAL(38,0)) AS VARCHAR),
+        CASE
+            WHEN MontoDolares * 100 < 100 THEN 2
+            ELSE LEN(CAST(CAST(MontoDolares * 100 AS DECIMAL(38,0)) AS VARCHAR))
+        END
+  ) + REPLICATE(' ', 14),
+  14
+) +
 LEFT(ISNULL(MedioPagoUtilizado, '') + REPLICATE(' ', 1), 1)   +
+ 
 LEFT(ISNULL(MedioPago, '') + REPLICATE(' ', 500), 500),'Ñ','N')
+ 
 Trama
 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ba12_deta
                                       WHERE Estado  = 'P' and Aniomes = @anioMes";

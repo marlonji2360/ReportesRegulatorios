@@ -166,6 +166,7 @@ namespace ReportesRegulatorios.Modelos
 										                                      EDW.DL_CUMPLIMIENTO.RRDV17_DETALLE_TMP DRDDT
 										                                WHERE DRDD.AnioMes  = DRDDT.AnioMes
 										                                 AND  DRDD.Codigo_Agencia  = DRDDT.Codigo_Agencia
+                                                                         AND  DRDD.Tipo_Moneda  = DRDDT.Tipo_Moneda
 										                                 AND  DRDD.cajero  = DRDDT.cajero
 										                                 AND  DRDD.Fecha_Transaccion  = DRDDT.Fecha_Transaccion
 										                                 AND  DRDD.Numero_transaccion = DRDDT.Numero_transaccion
