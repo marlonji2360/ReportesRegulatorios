@@ -154,6 +154,7 @@ namespace ReportesRegulatorios.Modelos
 										                                 AND  DRDD.cajero  = DRDDT.cajero
 										                                 AND  DRDD.Fecha_Transaccion  = DRDDT.Fecha_Transaccion
 										                                 AND  DRDD.Numero_transaccion = DRDDT.Numero_transaccion
+                                                                         AND DRDD.MONTO_MONEDA_ORIGEN  = DRDDT.MONTO_MONEDA_ORIGEN
                                                                          AND DRDD.AnioMes =@aniomes
                                                                          AND DRDDT.AnioMes =@aniomes
 							                                 ) TT

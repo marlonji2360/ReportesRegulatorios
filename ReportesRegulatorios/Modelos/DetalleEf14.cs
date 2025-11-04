@@ -100,26 +100,27 @@ namespace ReportesRegulatorios.Modelos
                                                     SELECT
                                                         ROW_NUMBER() OVER (ORDER BY Fecha_Transaccion) AS RN,
                                                         e.Fecha_Transaccion,
-                                                        e.TIP_TRANSACCION,
+                                                        e.TIP_MOV,
                                                          FORMAT(CAST(SUM(e.MONTO_EN_GTQ) AS DECIMAL(10,2)), '0.00', 'en-US') AS monto,
                                                        -- SUM(e.MONTO_EN_GTQ) AS monto,
                                                         COUNT(e.MONTO_EN_GTQ) AS casos,
                                                         e.Codigo_Agencia
                                                     FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta e
                                                     WHERE e.Estado = 'P'
-                                                      AND e.AnioMes = @anioMes
+                                                      AND e.AnioMes = @AnioMes
                                                     GROUP BY
                                                         e.Fecha_Transaccion,
-                                                        e.TIP_TRANSACCION,
+                                                        e.TIP_MOV,
                                                         e.Codigo_Agencia
                                                 ) as t )
                                                 select RIGHT(REPLICATE('0', 16) + ISNULL(r14.Indificador_de_linea, '')  , 16)   +  + '&&' +
                                                        LEFT(CONVERT(CHAR(8), r14.Fecha_Transaccion, 112) + REPLICATE(' ', 8), 8)  + '&&' +
-                                                       LEFT(ISNULL(r14.TIP_TRANSACCION, '') + REPLICATE(' ', 1), 1)               + '&&' +
-                                                       RIGHT(REPLICATE('0', 14) + ISNULL(CAST(r14.monto AS VARCHAR), ''), 14)    + '&&' +
-                                                       RIGHT(REPLICATE('0', 10) + ISNULL(CAST(r14.casos AS VARCHAR), ''), 10)    + '&&' +
-                                                       LEFT(ISNULL(r14.Codigo_Agencia, '') + REPLICATE(' ', 10), 10)             + '&&' Trama
-                                                   from tb_rref14 r14";
+                                                       LEFT(ISNULL(r14.TIP_MOV, '') + REPLICATE(' ', 1), 1)               + '&&' +
+                                                       RIGHT(REPLICATE('', 14) + ISNULL(CAST(r14.monto AS VARCHAR), ''), 14)    + '&&' +
+                                                       RIGHT(REPLICATE('', 10) + ISNULL(CAST(r14.casos AS VARCHAR), ''), 10)    + '&&' +
+                                                       LEFT(ISNULL(r14.Codigo_Agencia, '') + REPLICATE('', 10), 10)             + '&&' Trama
+                                                   from tb_rref14 r14
+                                                   order by 1";
 
             try
             {

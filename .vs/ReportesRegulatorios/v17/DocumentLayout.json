@@ -3,48 +3,24 @@
   "WorkspaceRootPath": "C:\\Local\\ReportesRegulatorios\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\modelos\\detalledv17temp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detalledv17temp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\vistas\\frmef14.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmef14.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\modelos\\detalledv17bit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detalledv17bit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmef14.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmef14.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\modelos\\detalledv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detalledv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\modelos\\detalleef14temp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detalleef14temp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmdv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmdv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\modelos\\detalleef14.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detalleef14.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmdv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmdv17.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|c:\\local\\reportesregulatorios\\reportesregulatorios\\modelos\\detalleba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detalleba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmba12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmme13.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmme13.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\vistas\\frmme13.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\vistas\\frmme13.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\modelos\\detalleba12bit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\modelos\\detalleba12bit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|C:\\Local\\ReportesRegulatorios\\reportesregulatorios\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{CDC2361D-A38C-40F0-A8AA-E41449196A3C}|ReportesRegulatorios\\ReportesRegulatorios.csproj|solutionrelative:reportesregulatorios\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,142 +46,63 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DetalleDv17Temp.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleDv17Temp.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleDv17Temp.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleDv17Temp.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleDv17Temp.cs",
-              "ViewState": "AgIAABICAAAAAAAAAAAgwOsAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "DetalleEf14.cs",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleEf14.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleEf14.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleEf14.cs",
+              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleEf14.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAgwG0AAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T16:54:39.792Z",
+              "WhenOpened": "2025-10-23T00:56:58.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\App.config",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\App.config",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\App.config",
+              "RelativeToolTip": "ReportesRegulatorios\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-10-23T00:53:30.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DetalleEf14Temp.cs",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleEf14Temp.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleEf14Temp.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleEf14Temp.cs",
+              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleEf14Temp.cs",
+              "ViewState": "AgIAAKsBAAAAAAAAAIAwwMIBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T00:04:38.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmEf14.cs",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmEf14.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmEf14.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmEf14.cs",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmEf14.cs",
+              "ViewState": "AgIAACMDAAAAAAAAAADgvy8DAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T00:04:27.865Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DetalleDv17Bit.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleDv17Bit.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleDv17Bit.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleDv17Bit.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleDv17Bit.cs",
-              "ViewState": "AgIAABUCAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Title": "frmEf14.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmEf14.cs",
+              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmEf14.cs",
+              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmEf14.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmEf14.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T16:54:16.299Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DetalleDv17.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleDv17.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleDv17.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleDv17.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleDv17.cs",
-              "ViewState": "AgIAAEcBAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T16:53:46.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DetalleBa12.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleBa12.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleBa12.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleBa12.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleBa12.cs",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAgwKQAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T20:39:36.458Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frmDv17.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmDv17.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmDv17.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmDv17.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmDv17.cs",
-              "ViewState": "AgIAAM4CAAAAAAAAAAApwNcCAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T18:05:21.991Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frmDv17.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmDv17.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmDv17.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmDv17.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmDv17.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T18:05:19.836Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "frmMe13.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmMe13.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmMe13.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmMe13.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmMe13.cs",
-              "ViewState": "AgIAAOYCAAAAAAAAAAAtwPUCAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T18:04:29.762Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "frmMe13.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmMe13.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmMe13.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmMe13.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmMe13.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T18:04:26.788Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "DetalleBa12Bit.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleBa12Bit.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Modelos\\DetalleBa12Bit.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Modelos\\DetalleBa12Bit.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Modelos\\DetalleBa12Bit.cs",
-              "ViewState": "AgIAANgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T18:02:23.981Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "frmBa12.cs",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmBa12.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmBa12.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmBa12.cs",
-              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmBa12.cs",
-              "ViewState": "AgIAAC4DAAAAAAAAAAApwD0DAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-03T22:43:05.751Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "frmBa12.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmBa12.cs",
-              "RelativeDocumentMoniker": "ReportesRegulatorios\\Vistas\\frmBa12.cs",
-              "ToolTip": "C:\\Local\\ReportesRegulatorios\\ReportesRegulatorios\\Vistas\\frmBa12.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ReportesRegulatorios\\Vistas\\frmBa12.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-03T22:42:54.56Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-23T00:04:22.787Z"
             }
           ]
         }

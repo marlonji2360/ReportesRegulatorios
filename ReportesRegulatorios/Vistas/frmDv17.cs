@@ -708,7 +708,7 @@ namespace ReportesRegulatorios.Vistas
             else if (resultadoConteoDetalle == "0")
             {
                 PlayNotificationSound();
-                MessageBox.Show("Cantidad de Registros No Coinciden: " + detalleConteoDetalle, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Campo no es Modificable en columnas llave", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return validacionConteoDetalle;
             }
             else if (validacionJustificacion.Rows.Count > 0)
