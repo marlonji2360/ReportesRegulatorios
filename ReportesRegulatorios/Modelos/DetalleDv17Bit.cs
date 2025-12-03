@@ -345,6 +345,7 @@ namespace ReportesRegulatorios.Modelos
                         bulkCopy.ColumnMappings.Add("usuario", "usuario");
                         bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
                         bulkCopy.ColumnMappings.Add("tipo", "tipo");
+                        bulkCopy.ColumnMappings.Add("EstadoBitacora", "EstadoBitacora");
                         dataTable.Columns.Add("EstadoBitacora", typeof(string));
 
                         bulkCopy.WriteToServer(dataTable);

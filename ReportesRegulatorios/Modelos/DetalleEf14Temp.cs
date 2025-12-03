@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,21 +88,23 @@ namespace ReportesRegulatorios.Modelos
 	                                   1
 	                              ELSE 
 	                                    0
-	                              END DETALLE,
+	                              END RESULTADO,
 	                              CASE
 	                              WHEN RR.CASOS_ORIGEN = RR.CASOS_REVISAR THEN 
 	                                   'NUMERO DE CASOS CORRECTOS '  + Convert(Varchar,RR.CASOS_ORIGEN)
 	                              ELSE 
 	                                    'NUMERO CASOS INCORRECTOS. ORIGEN ' + Convert(Varchar,RR.CASOS_ORIGEN) + ' A REVISAR ' + Convert(Varchar,RR.CASOS_REVISAR)
-	                              END RESULTADO
+	                              END DETALLE
                         FROM (	SELECT  SUM(XX.CASOS_ORIGEN) CASOS_ORIGEN,
 		                                SUM(XX.CASOS_REVISAR) CASOS_REVISAR
 		                         FROM (
 		                        SELECT COUNT(*) CASOS_ORIGEN, 0 CASOS_REVISAR
 		                         FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta DRDD 
+                                WHERE DRDD.AnioMes = @anioMes 
 		                         UNION 
 		                         SELECT 0 CASOS_ORIGEN, COUNT(*) CASOS_REVISAR
 		                         FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta_TMP DRDDT
+                                    WHERE DRDDT.AnioMes = @anioMes 
 		                          ) XX
 		                          ) RR";
 
@@ -158,10 +161,13 @@ namespace ReportesRegulatorios.Modelos
 										                        AND  DRDD.cajero  = DRDDT.cajero
 										                        AND  DRDD.Fecha_Transaccion  = DRDDT.Fecha_Transaccion
 										                        AND  DRDD.Numero_transaccion = DRDDT.Numero_transaccion
+                                                                AND DRDD.AnioMes  = @anioMes
+										                                 AND DRDDT.AnioMes = @anioMes
 							                        ) TT
 					                            UNION 
 								                    SELECT 0 CASOS_REVISAR, COUNT(*) CASOS_ORIGEN 
 										                        FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta DRDD
+                                                                WHERE DRDD.AnioMes  = @anioMes
 				                            ) XXX
                         )  RR";
 
@@ -337,7 +343,7 @@ namespace ReportesRegulatorios.Modelos
 															Isnull(Convert(Varchar,CB.Fecha_Transaccion),'') +
 															Isnull(Convert(Varchar,CB.codigo_cliente),'') +
 															Isnull(Convert(Varchar,CB.Numero_transaccion),'') +
-															Isnull(Convert(Varchar,CB.Tipo_Transaccion),'') +
+															Isnull(Convert(Varchar,CB.TIP_TRANSACCION),'') +
 															Isnull(Convert(Varchar,CB.cajero),'') kEYjUST,CB.JUSTIFICACION JUSTIFICACION_NEW,' ' JUSTIFICACION_ORIGEN
 														FROM TB_CHANGE_BIS CB
 														WHERE CB.TP = 'NEW'
@@ -347,7 +353,7 @@ namespace ReportesRegulatorios.Modelos
 															Isnull(Convert(Varchar,CB.Fecha_Transaccion),'') +
 															Isnull(Convert(Varchar,CB.codigo_cliente),'') +
 															Isnull(Convert(Varchar,CB.Numero_transaccion),'') +
-															Isnull(Convert(Varchar,CB.Tipo_Transaccion),'') +
+															Isnull(Convert(Varchar,CB.TIP_TRANSACCION),'') +
 															Isnull(Convert(Varchar,CB.cajero),'') kEYjUST,
 															' ' JUSTIFICACION_NEW,
 															CB.JUSTIFICACION JUSTIFICACION_ORIGEN
@@ -396,6 +402,11 @@ namespace ReportesRegulatorios.Modelos
                 {
                     using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
                     {
+                        bulkCopy.BulkCopyTimeout = 0;
+                        bulkCopy.BatchSize = 10000;
+                        bulkCopy.NotifyAfter = 10000;
+
+
                         bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_ef14_deta_tmp";
 
                         // Mapeo explícito de columnas
@@ -429,7 +440,7 @@ namespace ReportesRegulatorios.Modelos
                         bulkCopy.ColumnMappings.Add("MONTO_movmxto58", "MONTO_movmxto58");
                         bulkCopy.ColumnMappings.Add("movmxto59_boveda", "movmxto59_boveda");
                         bulkCopy.ColumnMappings.Add("MONTO_movmxto59", "MONTO_movmxto59");
-                        bulkCopy.ColumnMappings.Add("cajero", "cajero");                    
+                        bulkCopy.ColumnMappings.Add("cajero", "cajero");
                         bulkCopy.ColumnMappings.Add("ID_CLTE_VENTANILLA", "ID_CLTE_VENTANILLA");
                         bulkCopy.ColumnMappings.Add("hora_trx", "hora_trx");
                         bulkCopy.ColumnMappings.Add("NUM_REFERENCIA", "NUM_REFERENCIA");
@@ -449,6 +460,73 @@ namespace ReportesRegulatorios.Modelos
                 return false;
             }
         }
+
+        //public bool InsertarDetalleEf14TmpBulk(DataTable dataTable)
+        //{
+        //    try
+        //    {
+        //        LimpiarDataTable(dataTable);
+
+        //        const int lote = 25000;   // 🔥 Cambialo a 25,000 si está en Synapse
+        //        int totalFilas = dataTable.Rows.Count;
+
+        //        Conexion conexion = new Conexion();
+
+        //        using (SqlConnection conn = conexion.AbrirConexion())
+        //        {
+        //            for (int i = 0; i < totalFilas; i += lote)
+        //            {
+        //                DataTable dtLote = dataTable.AsEnumerable()
+        //                    .Skip(i)
+        //                    .Take(lote)
+        //                    .CopyToDataTable();
+
+        //                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
+        //                {
+        //                    bulkCopy.DestinationTableName =
+        //                        "DL_CUMPLIMIENTO.dw_repreg_ef14_deta_tmp";
+
+        //                    bulkCopy.BulkCopyTimeout = 0;
+
+        //                    // Mapeo
+        //                    foreach (DataColumn col in dtLote.Columns)
+        //                    {
+        //                        bulkCopy.ColumnMappings.Add(col.ColumnName, col.ColumnName);
+        //                    }
+
+        //                    bulkCopy.BatchSize = 1000;
+        //                    bulkCopy.BulkCopyTimeout = 0;
+
+        //                    bulkCopy.SqlRowsCopied += (sender, e) =>
+        //                    {
+        //                        Console.WriteLine($"Filas copiadas: {e.RowsCopied}");
+        //                    };
+
+        //                    bulkCopy.NotifyAfter = 1000;
+        //                    bulkCopy.ColumnMappings.Clear();
+
+        //                    try
+        //                    {
+        //                        bulkCopy.WriteToServer(dataTable);
+        //                    }
+        //                    catch (Exception ex)
+        //                    {
+        //                        File.WriteAllText("errores_bulk.txt", ex.ToString());
+        //                        throw;
+        //                    }
+        //                }
+        //            }
+        //        }
+
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Error BulkCopy: " + ex.Message);
+        //        return false;
+        //    }
+        //}
+
         public void LimpiarDataTable(DataTable dataTable)
         {
             string[] columnasInt = new string[]

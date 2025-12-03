@@ -192,7 +192,6 @@ namespace ReportesRegulatorios.Modelos
                         bulkCopy.ColumnMappings.Add("movmxto59_boveda", "movmxto59_boveda");
                         bulkCopy.ColumnMappings.Add("MONTO_movmxto59", "MONTO_movmxto59");
                         bulkCopy.ColumnMappings.Add("cajero", "cajero");
-                        bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
                         bulkCopy.ColumnMappings.Add("ID_CLTE_VENTANILLA", "ID_CLTE_VENTANILLA");
                         bulkCopy.ColumnMappings.Add("hora_trx", "hora_trx");
                         bulkCopy.ColumnMappings.Add("NUM_REFERENCIA", "NUM_REFERENCIA");
