@@ -489,7 +489,7 @@ namespace ReportesRegulatorios.Vistas
                 
                 anioMes = txtAnio.Text + mes;
 
-                frmCargando cargando = new frmCargando("Descagando Excel...");
+                frmCargando cargando = new frmCargando("descargando Excel...");
                 cargando.Show();
                 await Task.Run(() =>
                 {

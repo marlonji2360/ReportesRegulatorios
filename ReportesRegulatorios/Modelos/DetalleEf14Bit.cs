@@ -325,6 +325,10 @@ namespace ReportesRegulatorios.Modelos
                 {
                     using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
                     {
+                        bulkCopy.BulkCopyTimeout = 0;
+                        bulkCopy.BatchSize = 10000;
+                        bulkCopy.NotifyAfter = 10000;
+
                         bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_ef14_deta_bit";
 
                         // Mapeo explícito de columnas

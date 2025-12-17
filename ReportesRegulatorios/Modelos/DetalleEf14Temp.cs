@@ -136,6 +136,41 @@ namespace ReportesRegulatorios.Modelos
         {
 
             DataTable dt = new DataTable();
+            //string consulta = @"SELECT CASE WHEN RR.CASOS_ORIGEN = RR.CASOS_REVISAR THEN 
+	           //                     1
+	           //                 ELSE 
+	           //                     0
+	           //                 END RESULTADO,
+            //            CASE 
+	           //                 WHEN RR.CASOS_ORIGEN = RR.CASOS_REVISAR THEN 
+	           //                     'CASOS A DETALLE CORRECTOS '  + Convert(Varchar,RR.CASOS_ORIGEN)
+	           //                 ELSE 
+	           //                     'CASOS A DETALLE INCORRECTOS. ORIGEN ' + Convert(Varchar,RR.CASOS_ORIGEN) + ' A REVISAR ' + Convert(Varchar,RR.CASOS_REVISAR)
+	           //                 END DETALLE
+            //        FROM (
+		          //          SELECT  SUM(XXX.CASOS_ORIGEN) CASOS_ORIGEN,
+				        //                    SUM(XXX.CASOS_REVISAR) CASOS_REVISAR
+				        //                FROM (
+						      //              SELECT  COUNT(*) CASOS_REVISAR,0 CASOS_ORIGEN
+						      //              FROM (
+							     //               SELECT DRDDT.Numero_transaccion
+										  //                      FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta DRDD,
+										  //                          EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta_TMP DRDDT
+										  //                  WHERE DRDD.AnioMes  = DRDDT.AnioMes
+										  //                      AND  DRDD.Codigo_Agencia  = DRDDT.Codigo_Agencia
+										  //                      AND  DRDD.cajero  = DRDDT.cajero
+										  //                      AND  DRDD.Fecha_Transaccion  = DRDDT.Fecha_Transaccion
+										  //                      AND  DRDD.Numero_transaccion = DRDDT.Numero_transaccion
+            //                                                    AND DRDD.AnioMes  = @anioMes
+										  //                               AND DRDDT.AnioMes = @anioMes
+							     //                   ) TT
+					       //                     UNION 
+								    //                SELECT 0 CASOS_REVISAR, COUNT(*) CASOS_ORIGEN 
+										  //                      FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta DRDD
+            //                                                    WHERE DRDD.AnioMes  = @anioMes
+				        //                    ) XXX
+            //            )  RR";
+
             string consulta = @"SELECT CASE WHEN RR.CASOS_ORIGEN = RR.CASOS_REVISAR THEN 
 	                                1
 	                            ELSE 
@@ -153,7 +188,7 @@ namespace ReportesRegulatorios.Modelos
 				                        FROM (
 						                    SELECT  COUNT(*) CASOS_REVISAR,0 CASOS_ORIGEN
 						                    FROM (
-							                    SELECT DRDDT.Numero_transaccion
+							                    SELECT DISTINCT DRDDT.Numero_transaccion
 										                        FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta DRDD,
 										                            EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta_TMP DRDDT
 										                    WHERE DRDD.AnioMes  = DRDDT.AnioMes
@@ -166,8 +201,10 @@ namespace ReportesRegulatorios.Modelos
 							                        ) TT
 					                            UNION 
 								                    SELECT 0 CASOS_REVISAR, COUNT(*) CASOS_ORIGEN 
+                                                        from ( select distinct DRDD.Numero_transaccion
 										                        FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta DRDD
                                                                 WHERE DRDD.AnioMes  = @anioMes
+) X
 				                            ) XXX
                         )  RR";
 
@@ -235,7 +272,7 @@ namespace ReportesRegulatorios.Modelos
 		                                            Isnull(Convert(Varchar,DRDD.TIP_TRANSACCION),'') + 
 		                                            Isnull(Convert(Varchar,DRDD.SUBTIP_TRANSAC),'') + 
 		                                            Isnull(Convert(Varchar,DRDD.numero_cuenta),'') + 
-		                                            Isnull(Convert(Varchar,DRDD.numero_tarjeta),'') + 
+		                                            --Isnull(Convert(Varchar,DRDD.numero_tarjeta),'') + 
 		                                            Isnull(Convert(Varchar,DRDD.cod_sistema),'') + 
 		                                            Isnull(Convert(Varchar,DRDD.Estado),'') + 
 		                                            Isnull(Convert(Varchar,DRDD.Usuario_registro),'') + 
@@ -256,11 +293,11 @@ namespace ReportesRegulatorios.Modelos
 		                                            Isnull(Convert(Varchar,DRDD.movmxto59_boveda),'') + 
 		                                            Isnull(Convert(Varchar,DRDD.MONTO_movmxto59),'') + 
 		                                            Isnull(Convert(Varchar,DRDD.cajero),'') + 
-		                                            Isnull(Convert(Varchar,DRDD.ID_CLTE_VENTANILLA),'') + 
-		                                            Isnull(Convert(Varchar,DRDD.hora_trx),'') + 
-		                                            Isnull(Convert(Varchar,DRDD.NUM_REFERENCIA),'') + 
-		                                            Isnull(Convert(Varchar,DRDD.NUMERO_DOCUMENTO),'') + 
-		                                            Isnull(Convert(Varchar,DRDD.TRX_COMPLEM),'') + 
+		                                            --Isnull(Convert(Varchar,DRDD.ID_CLTE_VENTANILLA),'') + 
+		                                           -- Isnull(Convert(Varchar,DRDD.hora_trx),'') + 
+		                                          --  Isnull(Convert(Varchar,DRDD.NUM_REFERENCIA),'') + 
+		                                          --  Isnull(Convert(Varchar,DRDD.NUMERO_DOCUMENTO),'') + 
+		                                          --  Isnull(Convert(Varchar,DRDD.TRX_COMPLEM),'') + 
 		                                            Isnull(Convert(Varchar,DRDD.numero_asiento_contable),'')  KeyOri,'' KeyRev
 													 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta DRDD
 													 WHERE DRDD.ANIOMES = @anioMes
@@ -277,7 +314,7 @@ namespace ReportesRegulatorios.Modelos
 		                                            Isnull(Convert(Varchar,DRDDT.TIP_TRANSACCION),'') + 
 		                                            Isnull(Convert(Varchar,DRDDT.SUBTIP_TRANSAC),'') + 
 		                                            Isnull(Convert(Varchar,DRDDT.numero_cuenta),'') + 
-		                                            Isnull(Convert(Varchar,DRDDT.numero_tarjeta),'') + 
+		                                            --Isnull(Convert(Varchar,DRDDT.numero_tarjeta),'') + 
 		                                            Isnull(Convert(Varchar,DRDDT.cod_sistema),'') + 
 		                                            Isnull(Convert(Varchar,DRDDT.Estado),'') + 
 		                                            Isnull(Convert(Varchar,DRDDT.Usuario_registro),'') + 
@@ -298,11 +335,11 @@ namespace ReportesRegulatorios.Modelos
 		                                            Isnull(Convert(Varchar,DRDDT.movmxto59_boveda),'') + 
 		                                            Isnull(Convert(Varchar,DRDDT.MONTO_movmxto59),'') + 
 		                                            Isnull(Convert(Varchar,DRDDT.cajero),'') + 
-		                                            Isnull(Convert(Varchar,DRDDT.ID_CLTE_VENTANILLA),'') + 
-		                                            Isnull(Convert(Varchar,DRDDT.hora_trx),'') + 
-		                                            Isnull(Convert(Varchar,DRDDT.NUM_REFERENCIA),'') + 
-		                                            Isnull(Convert(Varchar,DRDDT.NUMERO_DOCUMENTO),'') + 
-		                                            Isnull(Convert(Varchar,DRDDT.TRX_COMPLEM),'') + 
+		                                          --  Isnull(Convert(Varchar,DRDDT.ID_CLTE_VENTANILLA),'') + 
+		                                          --  Isnull(Convert(Varchar,DRDDT.hora_trx),'') + 
+		                                         --   Isnull(Convert(Varchar,DRDDT.NUM_REFERENCIA),'') + 
+		                                         --   Isnull(Convert(Varchar,DRDDT.NUMERO_DOCUMENTO),'') + 
+		                                        --    Isnull(Convert(Varchar,DRDDT.TRX_COMPLEM),'') + 
 		                                            Isnull(Convert(Varchar,DRDDT.numero_asiento_contable),'')  KeyRev
 													 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_ef14_deta_tmp DRDDT
 													  WHERE DRDDT.ANIOMES = @anioMes
