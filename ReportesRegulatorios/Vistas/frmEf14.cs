@@ -33,6 +33,8 @@ namespace ReportesRegulatorios.Vistas
             btnGeneraCsv.Enabled = false;
             btnArchivoIve.Enabled = false;
             btnFinalizar.Enabled = false;
+            cmbConexion.Enabled = false;
+            cmbConexion.SelectedIndex = 0;
         }
 
         private void Limpiar()
@@ -204,11 +206,12 @@ namespace ReportesRegulatorios.Vistas
 
         private Boolean Consultar()
         {
+            string tipoConexion = cmbConexion.Text;
             //DeshabilitarBotones();
             btnConsultar.BackColor = Color.DarkBlue;
             btnConsultar.Enabled = true;
 
-            if (cmbMes.Text != "" && txtAnio.Text != "")
+            if (cmbMes.Text != "" && txtAnio.Text != "" && cmbConexion.Text != "")
             {
                 string mes = "00";
                 string anioMes;
@@ -217,7 +220,7 @@ namespace ReportesRegulatorios.Vistas
                 anioMes = txtAnio.Text + mes;
 
                 EncaEf14Controller encabezadoController = new EncaEf14Controller();
-                dt = encabezadoController.ObtenerEncabezado(Convert.ToInt32(anioMes));
+                dt = encabezadoController.ObtenerEncabezado(Convert.ToInt32(anioMes), tipoConexion);
                 if (dt.Rows.Count > 0)
                 {
 
@@ -441,8 +444,9 @@ namespace ReportesRegulatorios.Vistas
 
         private void ProcesoNuevosRegistros(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
+            string tipoConexion = cmbConexion.Text;
             DetalleEf14Controller detalleEf14Controller = new DetalleEf14Controller();
-            bool resultado = detalleEf14Controller.InsertarDetalleEf14Bulk(tabla);
+            bool resultado = detalleEf14Controller.InsertarDetalleEf14Bulk(tabla, tipoConexion);
 
             if (resultado)
             {
@@ -457,9 +461,10 @@ namespace ReportesRegulatorios.Vistas
                                                           fechaActual,
                                                           null,
                                                           null,
-                                                          link);
+                                                          link,
+                                                          tipoConexion);
 
-                detalleEf14BitController.InsertarDetalleEf14BitBulk(tabla, usuario);
+                detalleEf14BitController.InsertarDetalleEf14BitBulk(tabla, usuario, tipoConexion);
 
                 PlayNotificationSound();
                 MessageBox.Show("Datos Exportados Correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -474,6 +479,7 @@ namespace ReportesRegulatorios.Vistas
 
         private DataTable VerificarModificaciones(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
+            string tipoConexion = cmbConexion.Text;
             EncaEf14Controller encabezadoController = new EncaEf14Controller();
             DetalleEf14TmpController detalleEf14TmpController = new DetalleEf14TmpController();
             DetalleEf14BitController detalleEf14BitController = new DetalleEf14BitController();
@@ -481,35 +487,33 @@ namespace ReportesRegulatorios.Vistas
 
             bool resultado = false;
 
-            detalleEf14TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
-            resultado = detalleEf14TmpController.InsertarDetalleEf14TmpBulk(tabla);
+            detalleEf14TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes), tipoConexion);
+            resultado = detalleEf14TmpController.InsertarDetalleEf14TmpBulk(tabla, tipoConexion);
 
-            DataTable validacionCantidadRegistros = detalleEf14TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
+            DataTable validacionCantidadRegistros = detalleEf14TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes), tipoConexion);
             string resultadoCantidadRegistros = validacionCantidadRegistros.Rows[0]["RESULTADO"].ToString();
             string detalleCantidadRegistros = validacionCantidadRegistros.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionConteoDetalle = detalleEf14TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes));
+            DataTable validacionConteoDetalle = detalleEf14TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes), tipoConexion);
             string resultadoConteoDetalle = validacionConteoDetalle.Rows[0]["RESULTADO"].ToString();
             string detalleConteoDetalle = validacionConteoDetalle.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionJustificacion = detalleEf14TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes));
-
+            DataTable validacionJustificacion = detalleEf14TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes), tipoConexion);
             if (resultado && resultadoCantidadRegistros == "1" && resultadoConteoDetalle == "1" && validacionJustificacion.Rows.Count == 0)
             {
                 PlayNotificationSound();
                 MessageBox.Show("Datos Validados Correctamente, Espere mientras se guardan los cambios", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                encabezadoController.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link);
+                encabezadoController.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link, tipoConexion);
 
-                DataTable dtVerificacion = detalleEf14BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes));
-                detalleEf14BitController.InsertarDetalleEf14VerBitBulk(dtVerificacion, usuario);
-                detalleEf14BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes));
+                DataTable dtVerificacion = detalleEf14BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes), tipoConexion);
+                detalleEf14BitController.InsertarDetalleEf14VerBitBulk(dtVerificacion, usuario, tipoConexion);
+                detalleEf14BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes), tipoConexion);
 
-                DataTable dtNuevosRegistrosEnDetalle = detalleEf14BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes));
-                detalleEf14Controller.InsertarDetalleEf14Bulk(dtNuevosRegistrosEnDetalle);
+                DataTable dtNuevosRegistrosEnDetalle = detalleEf14BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes), tipoConexion);
+                detalleEf14Controller.InsertarDetalleEf14Bulk(dtNuevosRegistrosEnDetalle, tipoConexion);
 
-                detalleEf14BitController.ActualizarEstadoBit(Convert.ToInt32(anioMes));
-
+                detalleEf14BitController.ActualizarEstadoBit(Convert.ToInt32(anioMes), tipoConexion);
 
                 PlayNotificationSound();
                 MessageBox.Show("Cambios guardados correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -687,6 +691,7 @@ namespace ReportesRegulatorios.Vistas
 
         private async void btnBitacoras_Click(object sender, EventArgs e)
         {
+            string tipoConexion = cmbConexion.Text;
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
 
@@ -704,7 +709,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleEf14BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+                    dt = detalleEf14BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 //ExportarDataTableACsv(dt);
@@ -717,7 +722,7 @@ namespace ReportesRegulatorios.Vistas
 
         private async void btnGeneraCsv_Click(object sender, EventArgs e)
         {
-            
+            string tipoConexion = cmbConexion.Text;
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
                 DeshabilitarBotones();
@@ -735,7 +740,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleEf14Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+                    dt = detalleEf14Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 cargando.Close();
@@ -749,7 +754,8 @@ namespace ReportesRegulatorios.Vistas
 
         private async void btnArchivoIve_Click(object sender, EventArgs e)
         {
-            if (cmbMes.Text != "" && txtAnio.Text != "")
+            string tipoConexion = cmbConexion.Text;
+            if (cmbMes.Text != "" && txtAnio.Text != "" && cmbConexion.Text != "")
             {
                 DeshabilitarBotones();
                 string anioMes = null;
@@ -766,7 +772,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleEf14Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+                    dt = detalleEf14Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 ExportarDataTableATxt(dt);
@@ -780,6 +786,7 @@ namespace ReportesRegulatorios.Vistas
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
+            string tipoConexion = cmbConexion.Text;
             if (!txtLink.Text.Equals(""))
             {
                 EncaEf14Controller encabezadoController = new EncaEf14Controller();
@@ -821,7 +828,8 @@ namespace ReportesRegulatorios.Vistas
                                                                 fechaActual,
                                                                 usuario,
                                                                 fechaActual,
-                                                                txtLink.Text
+                                                                txtLink.Text,
+                                                                tipoConexion
                                                              );
 
             }
@@ -902,6 +910,18 @@ namespace ReportesRegulatorios.Vistas
             {
                 PlayNotificationSound();
                 MessageBox.Show("No hay datos para Exportar !!!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void chkConexion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkConexion.Checked)
+            {
+                cmbConexion.Enabled = true;
+            }
+            else
+            {
+                cmbConexion.Enabled = false;
             }
         }
     }

@@ -11,46 +11,46 @@ namespace ReportesRegulatorios.Controladores
     internal class DetalleBa12BitController
     {
        
-        public bool InsertarDetalleBa12VerBitBulk(DataTable tabla, string usuario)
+        public bool InsertarDetalleBa12VerBitBulk(DataTable tabla, string usuario, string tipoConexion)
         {
             DetalleBa12Bit detalleBa12Bit = new DetalleBa12Bit();
-            return detalleBa12Bit.InsertarDetalleBa12VerBitBulk(tabla, usuario);
+            return detalleBa12Bit.InsertarDetalleBa12VerBitBulk(tabla, usuario, tipoConexion);
         }
 
-        public bool InsertarDetalleBa12BitBulk(DataTable tabla, string usuario)
+        public bool InsertarDetalleBa12BitBulk(DataTable tabla, string usuario, string tipoConexion)
         {
             DetalleBa12Bit detalleBa12Bit = new DetalleBa12Bit();
-            return detalleBa12Bit.InsertarDetalleBa12BitBulk(tabla, usuario);
+            return detalleBa12Bit.InsertarDetalleBa12BitBulk(tabla, usuario, tipoConexion);
         }
         
-        public DataTable ObtenerDetalleBit(int anioMes)
+        public DataTable ObtenerDetalleBit(int anioMes, string tipoConexion)
         {
             DetalleBa12Bit detalleBa12Bit = new DetalleBa12Bit();
-            return detalleBa12Bit.ObtenerDetalleBit(anioMes);
+            return detalleBa12Bit.ObtenerDetalleBit(anioMes, tipoConexion);
         }
 
-        public DataTable ObtenerCambiosBit(int anioMes)
+        public DataTable ObtenerCambiosBit(int anioMes, string tipoConexion)
         {
             DetalleBa12Bit detalleBa12Bit = new DetalleBa12Bit();
-            return detalleBa12Bit.ObtenerCambiosBit(anioMes);
+            return detalleBa12Bit.ObtenerCambiosBit(anioMes, tipoConexion);
         }
 
-        public bool EliminarCamposDetalle(int anioMes)
+        public bool EliminarCamposDetalle(int anioMes, string tipoConexion)
         {
             DetalleBa12Bit detalleBa12Bit = new DetalleBa12Bit();
-            return detalleBa12Bit.EliminarCamposDetalle(anioMes);
+            return detalleBa12Bit.EliminarCamposDetalle(anioMes, tipoConexion);
         }
 
-        public bool ActualizarEstadoBit(int anioMes)
+        public bool ActualizarEstadoBit(int anioMes, string tipoConexion)
         {
             DetalleBa12Bit detalleBa12Bit = new DetalleBa12Bit();
-            return detalleBa12Bit.ActualizarEstadoBit(anioMes);
+            return detalleBa12Bit.ActualizarEstadoBit(anioMes, tipoConexion);
         }
 
-        public DataTable InsertarNuevosEnDetalle(int anioMes)
+        public DataTable InsertarNuevosEnDetalle(int anioMes, string tipoConexion)
         {
             DetalleBa12Bit detalleBa12Bit = new DetalleBa12Bit();
-            return detalleBa12Bit.InsertarNuevosEnDetalle(anioMes);
+            return detalleBa12Bit.InsertarNuevosEnDetalle(anioMes, tipoConexion);
         }
     }
 }

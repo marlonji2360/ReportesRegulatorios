@@ -57,6 +57,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.chkConexion = new System.Windows.Forms.CheckBox();
+            this.lblConexion = new System.Windows.Forms.Label();
+            this.cmbConexion = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnCopiarConclusion
@@ -64,7 +67,7 @@
             this.btnCopiarConclusion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnCopiarConclusion.Image = ((System.Drawing.Image)(resources.GetObject("btnCopiarConclusion.Image")));
             this.btnCopiarConclusion.Location = new System.Drawing.Point(772, 187);
-            this.btnCopiarConclusion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCopiarConclusion.Margin = new System.Windows.Forms.Padding(4);
             this.btnCopiarConclusion.Name = "btnCopiarConclusion";
             this.btnCopiarConclusion.Size = new System.Drawing.Size(44, 41);
             this.btnCopiarConclusion.TabIndex = 123;
@@ -77,8 +80,8 @@
             this.btnBitacoras.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBitacoras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBitacoras.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnBitacoras.Location = new System.Drawing.Point(660, 452);
-            this.btnBitacoras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBitacoras.Location = new System.Drawing.Point(642, 406);
+            this.btnBitacoras.Margin = new System.Windows.Forms.Padding(4);
             this.btnBitacoras.Name = "btnBitacoras";
             this.btnBitacoras.Size = new System.Drawing.Size(173, 80);
             this.btnBitacoras.TabIndex = 122;
@@ -92,8 +95,8 @@
             this.btnVerificarModificaciones.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVerificarModificaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerificarModificaciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnVerificarModificaciones.Location = new System.Drawing.Point(479, 452);
-            this.btnVerificarModificaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVerificarModificaciones.Location = new System.Drawing.Point(461, 406);
+            this.btnVerificarModificaciones.Margin = new System.Windows.Forms.Padding(4);
             this.btnVerificarModificaciones.Name = "btnVerificarModificaciones";
             this.btnVerificarModificaciones.Size = new System.Drawing.Size(173, 80);
             this.btnVerificarModificaciones.TabIndex = 121;
@@ -107,8 +110,8 @@
             this.btnNuevosRegistros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNuevosRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevosRegistros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnNuevosRegistros.Location = new System.Drawing.Point(297, 452);
-            this.btnNuevosRegistros.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNuevosRegistros.Location = new System.Drawing.Point(279, 406);
+            this.btnNuevosRegistros.Margin = new System.Windows.Forms.Padding(4);
             this.btnNuevosRegistros.Name = "btnNuevosRegistros";
             this.btnNuevosRegistros.Size = new System.Drawing.Size(173, 80);
             this.btnNuevosRegistros.TabIndex = 120;
@@ -122,8 +125,8 @@
             this.btnFinalizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinalizar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnFinalizar.Location = new System.Drawing.Point(660, 539);
-            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFinalizar.Location = new System.Drawing.Point(642, 493);
+            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(4);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(173, 80);
             this.btnFinalizar.TabIndex = 119;
@@ -137,8 +140,8 @@
             this.btnArchivoIve.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnArchivoIve.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArchivoIve.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnArchivoIve.Location = new System.Drawing.Point(479, 539);
-            this.btnArchivoIve.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnArchivoIve.Location = new System.Drawing.Point(461, 493);
+            this.btnArchivoIve.Margin = new System.Windows.Forms.Padding(4);
             this.btnArchivoIve.Name = "btnArchivoIve";
             this.btnArchivoIve.Size = new System.Drawing.Size(173, 80);
             this.btnArchivoIve.TabIndex = 118;
@@ -152,8 +155,8 @@
             this.btnGeneraCsv.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGeneraCsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGeneraCsv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnGeneraCsv.Location = new System.Drawing.Point(297, 539);
-            this.btnGeneraCsv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGeneraCsv.Location = new System.Drawing.Point(279, 493);
+            this.btnGeneraCsv.Margin = new System.Windows.Forms.Padding(4);
             this.btnGeneraCsv.Name = "btnGeneraCsv";
             this.btnGeneraCsv.Size = new System.Drawing.Size(173, 80);
             this.btnGeneraCsv.TabIndex = 117;
@@ -165,7 +168,7 @@
             // 
             this.txtUsuarioFinalizado.Enabled = false;
             this.txtUsuarioFinalizado.Location = new System.Drawing.Point(573, 361);
-            this.txtUsuarioFinalizado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsuarioFinalizado.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuarioFinalizado.Name = "txtUsuarioFinalizado";
             this.txtUsuarioFinalizado.Size = new System.Drawing.Size(160, 22);
             this.txtUsuarioFinalizado.TabIndex = 116;
@@ -174,7 +177,7 @@
             // 
             this.txtFechaFinalizado.Enabled = false;
             this.txtFechaFinalizado.Location = new System.Drawing.Point(404, 361);
-            this.txtFechaFinalizado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFechaFinalizado.Margin = new System.Windows.Forms.Padding(4);
             this.txtFechaFinalizado.Name = "txtFechaFinalizado";
             this.txtFechaFinalizado.Size = new System.Drawing.Size(160, 22);
             this.txtFechaFinalizado.TabIndex = 115;
@@ -195,7 +198,7 @@
             // 
             this.txtUsuarioUltimaMod.Enabled = false;
             this.txtUsuarioUltimaMod.Location = new System.Drawing.Point(573, 325);
-            this.txtUsuarioUltimaMod.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsuarioUltimaMod.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuarioUltimaMod.Name = "txtUsuarioUltimaMod";
             this.txtUsuarioUltimaMod.Size = new System.Drawing.Size(160, 22);
             this.txtUsuarioUltimaMod.TabIndex = 113;
@@ -204,7 +207,7 @@
             // 
             this.txtFechaUltimaMod.Enabled = false;
             this.txtFechaUltimaMod.Location = new System.Drawing.Point(404, 325);
-            this.txtFechaUltimaMod.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFechaUltimaMod.Margin = new System.Windows.Forms.Padding(4);
             this.txtFechaUltimaMod.Name = "txtFechaUltimaMod";
             this.txtFechaUltimaMod.Size = new System.Drawing.Size(160, 22);
             this.txtFechaUltimaMod.TabIndex = 112;
@@ -249,7 +252,7 @@
             // 
             this.txtUsuarioOperado.Enabled = false;
             this.txtUsuarioOperado.Location = new System.Drawing.Point(573, 289);
-            this.txtUsuarioOperado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsuarioOperado.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuarioOperado.Name = "txtUsuarioOperado";
             this.txtUsuarioOperado.Size = new System.Drawing.Size(160, 22);
             this.txtUsuarioOperado.TabIndex = 108;
@@ -258,7 +261,7 @@
             // 
             this.txtFechaOperado.Enabled = false;
             this.txtFechaOperado.Location = new System.Drawing.Point(404, 289);
-            this.txtFechaOperado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFechaOperado.Margin = new System.Windows.Forms.Padding(4);
             this.txtFechaOperado.Name = "txtFechaOperado";
             this.txtFechaOperado.Size = new System.Drawing.Size(160, 22);
             this.txtFechaOperado.TabIndex = 107;
@@ -278,7 +281,7 @@
             // txtLink
             // 
             this.txtLink.Location = new System.Drawing.Point(404, 196);
-            this.txtLink.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLink.Margin = new System.Windows.Forms.Padding(4);
             this.txtLink.Name = "txtLink";
             this.txtLink.Size = new System.Drawing.Size(329, 22);
             this.txtLink.TabIndex = 105;
@@ -313,7 +316,7 @@
             this.btnConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsultar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
             this.btnConsultar.Location = new System.Drawing.Point(612, 79);
-            this.btnConsultar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConsultar.Margin = new System.Windows.Forms.Padding(4);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(123, 46);
             this.btnConsultar.TabIndex = 102;
@@ -324,7 +327,7 @@
             // txtAnio
             // 
             this.txtAnio.Location = new System.Drawing.Point(404, 111);
-            this.txtAnio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAnio.Margin = new System.Windows.Forms.Padding(4);
             this.txtAnio.Name = "txtAnio";
             this.txtAnio.Size = new System.Drawing.Size(152, 22);
             this.txtAnio.TabIndex = 101;
@@ -346,7 +349,7 @@
             "Noviembre",
             "Diciembre"});
             this.cmbMes.Location = new System.Drawing.Point(404, 78);
-            this.cmbMes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbMes.Margin = new System.Windows.Forms.Padding(4);
             this.cmbMes.Name = "cmbMes";
             this.cmbMes.Size = new System.Drawing.Size(152, 24);
             this.cmbMes.TabIndex = 100;
@@ -399,12 +402,48 @@
             this.label1.TabIndex = 96;
             this.label1.Text = "REPORTE REGULATORIO EF-14";
             // 
+            // chkConexion
+            // 
+            this.chkConexion.AutoSize = true;
+            this.chkConexion.Location = new System.Drawing.Point(573, 637);
+            this.chkConexion.Name = "chkConexion";
+            this.chkConexion.Size = new System.Drawing.Size(18, 17);
+            this.chkConexion.TabIndex = 129;
+            this.chkConexion.UseVisualStyleBackColor = true;
+            this.chkConexion.CheckedChanged += new System.EventHandler(this.chkConexion_CheckedChanged);
+            // 
+            // lblConexion
+            // 
+            this.lblConexion.AutoSize = true;
+            this.lblConexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConexion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
+            this.lblConexion.Location = new System.Drawing.Point(192, 629);
+            this.lblConexion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblConexion.Name = "lblConexion";
+            this.lblConexion.Size = new System.Drawing.Size(186, 25);
+            this.lblConexion.TabIndex = 128;
+            this.lblConexion.Text = "Tipo De Conexión";
+            // 
+            // cmbConexion
+            // 
+            this.cmbConexion.FormattingEnabled = true;
+            this.cmbConexion.Items.AddRange(new object[] {
+            "Principal",
+            "Contingencia"});
+            this.cmbConexion.Location = new System.Drawing.Point(404, 633);
+            this.cmbConexion.Name = "cmbConexion";
+            this.cmbConexion.Size = new System.Drawing.Size(152, 24);
+            this.cmbConexion.TabIndex = 127;
+            // 
             // frmEf14
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1067, 663);
+            this.Controls.Add(this.chkConexion);
+            this.Controls.Add(this.lblConexion);
+            this.Controls.Add(this.cmbConexion);
             this.Controls.Add(this.btnCopiarConclusion);
             this.Controls.Add(this.btnBitacoras);
             this.Controls.Add(this.btnVerificarModificaciones);
@@ -433,7 +472,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmEf14";
             this.Text = "Reporte Ef-14";
             this.ResumeLayout(false);
@@ -471,5 +510,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkConexion;
+        private System.Windows.Forms.Label lblConexion;
+        private System.Windows.Forms.ComboBox cmbConexion;
     }
 }

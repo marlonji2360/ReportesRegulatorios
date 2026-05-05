@@ -15,19 +15,35 @@ namespace ReportesRegulatorios.Modelos
 
         }
 
-        public DataTable ObtenerEncabezado(int anioMes)
+        public DataTable ObtenerEncabezado(int anioMes, string tipoConexion)
         {
             DataTable dt = new DataTable();
             string consulta = "select AnioMes, Estado, Usuario_genera, Fecha_genera, Usuario_upd, Fecha_upd, Usuario_Cierre, Fecha_Cierre, Doc_cierre from DL_CUMPLIMIENTO.dw_repreg_me13_deta_enca where AnioMes=" + anioMes;
-            try
+            if(tipoConexion == "Principal")
             {
-                Conexion conexion = new Conexion();
-                SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion.AbrirConexion());
-                adaptador.Fill(dt);
+                try
+                {
+                    Conexion conexion = new Conexion();
+                    SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion.AbrirConexion());
+                    adaptador.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.Message);
+                try
+                {
+                    ConexionContingencia conexion = new ConexionContingencia();
+                    SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion.AbrirConexion());
+                    adaptador.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
             return dt;
         }
@@ -41,15 +57,13 @@ namespace ReportesRegulatorios.Modelos
             string Fecha_upd,
             string Usuario_Cierre,
             string Fecha_Cierre,
-            string Doc_cierre
+            string Doc_cierre,
+            string tipoConexion
         )
         {
             try
             {
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
-                {
-                    string query = @"
+                string query = @"
                 UPDATE EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_enca
                 SET 
                     Estado = @Estado,
@@ -62,19 +76,46 @@ namespace ReportesRegulatorios.Modelos
                     Doc_cierre = @Doc_cierre
                 WHERE AnioMes = @AnioMes";
 
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                if(tipoConexion == "Principal")
+                {
+                    Conexion conexion = new Conexion();
+                    using (SqlConnection conn = conexion.AbrirConexion())
                     {
-                        cmd.Parameters.AddWithValue("@AnioMes", anioMes);
-                        cmd.Parameters.AddWithValue("@Estado", estado);
-                        cmd.Parameters.AddWithValue("@Usuario_genera", Usuario_genera);
-                        cmd.Parameters.AddWithValue("@Fecha_genera", Fecha_genera);
-                        cmd.Parameters.AddWithValue("@Usuario_upd", Usuario_upd);
-                        cmd.Parameters.AddWithValue("@Fecha_upd", Fecha_upd);
-                        cmd.Parameters.AddWithValue("@Usuario_Cierre", Usuario_Cierre);
-                        cmd.Parameters.AddWithValue("@Fecha_Cierre", Fecha_Cierre);
-                        cmd.Parameters.AddWithValue("@Doc_cierre", Doc_cierre);
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@AnioMes", anioMes);
+                            cmd.Parameters.AddWithValue("@Estado", estado);
+                            cmd.Parameters.AddWithValue("@Usuario_genera", Usuario_genera);
+                            cmd.Parameters.AddWithValue("@Fecha_genera", Fecha_genera);
+                            cmd.Parameters.AddWithValue("@Usuario_upd", Usuario_upd);
+                            cmd.Parameters.AddWithValue("@Fecha_upd", Fecha_upd);
+                            cmd.Parameters.AddWithValue("@Usuario_Cierre", Usuario_Cierre);
+                            cmd.Parameters.AddWithValue("@Fecha_Cierre", Fecha_Cierre);
+                            cmd.Parameters.AddWithValue("@Doc_cierre", Doc_cierre);
 
-                        cmd.ExecuteNonQuery();
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                else
+                {
+                    ConexionContingencia conexion = new ConexionContingencia();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    {
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@AnioMes", anioMes);
+                            cmd.Parameters.AddWithValue("@Estado", estado);
+                            cmd.Parameters.AddWithValue("@Usuario_genera", Usuario_genera);
+                            cmd.Parameters.AddWithValue("@Fecha_genera", Fecha_genera);
+                            cmd.Parameters.AddWithValue("@Usuario_upd", Usuario_upd);
+                            cmd.Parameters.AddWithValue("@Fecha_upd", Fecha_upd);
+                            cmd.Parameters.AddWithValue("@Usuario_Cierre", Usuario_Cierre);
+                            cmd.Parameters.AddWithValue("@Fecha_Cierre", Fecha_Cierre);
+                            cmd.Parameters.AddWithValue("@Doc_cierre", Doc_cierre);
+
+                            cmd.ExecuteNonQuery();
+                        }
                     }
                 }
                 return true;
