@@ -211,6 +211,7 @@
     <Compile Include="Controladores\EncaEf14Controller.cs" />
     <Compile Include="Controladores\EncaBa12Controller.cs" />
     <Compile Include="Controladores\EncaDv17Controller.cs" />
+    <Compile Include="Modelos\ConexionContingencia.cs" />
     <Compile Include="Modelos\Conexion.cs" />
     <Compile Include="Modelos\DetalleBa12.cs" />
     <Compile Include="Modelos\DetalleBa12Bit.cs" />

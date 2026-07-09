@@ -47,7 +47,7 @@ namespace ReportesRegulatorios.Modelos
             }
         }
 
-        public bool InsertarDetalleMe13BitBulk(DataTable dataTable, string usuario)
+        public bool InsertarDetalleMe13BitBulk(DataTable dataTable, string usuario, string tipoConexion)
         {
             try
             {
@@ -66,54 +66,105 @@ namespace ReportesRegulatorios.Modelos
 
                 // Limpiar datos antes de insertar
                 LimpiarDataTable(dataTable);
-
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
+                
+                if(tipoConexion == "Principal")
                 {
-                    using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
+                    Conexion conexion = new Conexion();
+                    using (SqlConnection conn = conexion.AbrirConexion())
                     {
-                        bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit";
+                        using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
+                        {
+                            bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit";
 
-                        // Mapeo explícito de columnas
-                        bulkCopy.ColumnMappings.Add("AnioMes", "AnioMes");
-                        bulkCopy.ColumnMappings.Add("Codigo_Agencia", "Codigo_Agencia");
-                        bulkCopy.ColumnMappings.Add("Fecha_Transaccion", "Fecha_Transaccion");
-                        bulkCopy.ColumnMappings.Add("Numero_transaccion", "Numero_transaccion");
-                        bulkCopy.ColumnMappings.Add("codigo_cliente", "codigo_cliente");
-                        bulkCopy.ColumnMappings.Add("TRANS", "TRANS");
-                        bulkCopy.ColumnMappings.Add("MONEDA", "MONEDA");
-                        bulkCopy.ColumnMappings.Add("MONTO_MONEDA_ORIGEN", "MONTO_MONEDA_ORIGEN");
-                        bulkCopy.ColumnMappings.Add("MONTO_EN_DOLARES", "MONTO_EN_DOLARES");
-                        bulkCopy.ColumnMappings.Add("NUM_REFERENCIA", "NUM_REFERENCIA");
-                        bulkCopy.ColumnMappings.Add("TIP_TRANSACCION", "TIP_TRANSACCION");
-                        bulkCopy.ColumnMappings.Add("Estado", "Estado");
-                        bulkCopy.ColumnMappings.Add("Usuario_registro", "Usuario_registro");
-                        bulkCopy.ColumnMappings.Add("Fecha_Registro", "Fecha_Registro");
-                        bulkCopy.ColumnMappings.Add("Usuario_Modifico", "Usuario_Modifico");
-                        bulkCopy.ColumnMappings.Add("Fecha_Modifico", "Fecha_Modifico");
-                        bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
-                        bulkCopy.ColumnMappings.Add("movexacto_paralelo", "movexacto_paralelo");
-                        bulkCopy.ColumnMappings.Add("Trxexacto_paralelo", "Trxexacto_paralelo");
-                        bulkCopy.ColumnMappings.Add("movmixto_paralelo", "movmixto_paralelo");
-                        bulkCopy.ColumnMappings.Add("Trxmixto_paralelo", "Trxmixto_paralelo");
-                        bulkCopy.ColumnMappings.Add("movotrocli_paralelo", "movotrocli_paralelo");
-                        bulkCopy.ColumnMappings.Add("Trxotrocli_paralelo", "Trxotrocli_paralelo");
-                        bulkCopy.ColumnMappings.Add("Nomotrocli_paralelo", "Nomotrocli_paralelo");
-                        bulkCopy.ColumnMappings.Add("MONTO_mixtoparalelo", "MONTO_mixtoparalelo");
-                        bulkCopy.ColumnMappings.Add("movmxto58_boveda", "movmxto58_boveda");
-                        bulkCopy.ColumnMappings.Add("MONTO_movmxto58", "MONTO_movmxto58");
-                        bulkCopy.ColumnMappings.Add("movmxto59_boveda", "movmxto59_boveda");
-                        bulkCopy.ColumnMappings.Add("MONTO_movmxto59", "MONTO_movmxto59");
-                        bulkCopy.ColumnMappings.Add("hora_trx", "hora_trx");
-                        bulkCopy.ColumnMappings.Add("cajero", "cajero");
-                        bulkCopy.ColumnMappings.Add("usuario", "usuario");
-                        bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
-                        bulkCopy.ColumnMappings.Add("tipo", "tipo");
+                            // Mapeo explícito de columnas
+                            bulkCopy.ColumnMappings.Add("AnioMes", "AnioMes");
+                            bulkCopy.ColumnMappings.Add("Codigo_Agencia", "Codigo_Agencia");
+                            bulkCopy.ColumnMappings.Add("Fecha_Transaccion", "Fecha_Transaccion");
+                            bulkCopy.ColumnMappings.Add("Numero_transaccion", "Numero_transaccion");
+                            bulkCopy.ColumnMappings.Add("codigo_cliente", "codigo_cliente");
+                            bulkCopy.ColumnMappings.Add("TRANS", "TRANS");
+                            bulkCopy.ColumnMappings.Add("MONEDA", "MONEDA");
+                            bulkCopy.ColumnMappings.Add("MONTO_MONEDA_ORIGEN", "MONTO_MONEDA_ORIGEN");
+                            bulkCopy.ColumnMappings.Add("MONTO_EN_DOLARES", "MONTO_EN_DOLARES");
+                            bulkCopy.ColumnMappings.Add("NUM_REFERENCIA", "NUM_REFERENCIA");
+                            bulkCopy.ColumnMappings.Add("TIP_TRANSACCION", "TIP_TRANSACCION");
+                            bulkCopy.ColumnMappings.Add("Estado", "Estado");
+                            bulkCopy.ColumnMappings.Add("Usuario_registro", "Usuario_registro");
+                            bulkCopy.ColumnMappings.Add("Fecha_Registro", "Fecha_Registro");
+                            bulkCopy.ColumnMappings.Add("Usuario_Modifico", "Usuario_Modifico");
+                            bulkCopy.ColumnMappings.Add("Fecha_Modifico", "Fecha_Modifico");
+                            bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
+                            bulkCopy.ColumnMappings.Add("movexacto_paralelo", "movexacto_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxexacto_paralelo", "Trxexacto_paralelo");
+                            bulkCopy.ColumnMappings.Add("movmixto_paralelo", "movmixto_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxmixto_paralelo", "Trxmixto_paralelo");
+                            bulkCopy.ColumnMappings.Add("movotrocli_paralelo", "movotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxotrocli_paralelo", "Trxotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("Nomotrocli_paralelo", "Nomotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("MONTO_mixtoparalelo", "MONTO_mixtoparalelo");
+                            bulkCopy.ColumnMappings.Add("movmxto58_boveda", "movmxto58_boveda");
+                            bulkCopy.ColumnMappings.Add("MONTO_movmxto58", "MONTO_movmxto58");
+                            bulkCopy.ColumnMappings.Add("movmxto59_boveda", "movmxto59_boveda");
+                            bulkCopy.ColumnMappings.Add("MONTO_movmxto59", "MONTO_movmxto59");
+                            bulkCopy.ColumnMappings.Add("hora_trx", "hora_trx");
+                            bulkCopy.ColumnMappings.Add("cajero", "cajero");
+                            bulkCopy.ColumnMappings.Add("usuario", "usuario");
+                            bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
+                            bulkCopy.ColumnMappings.Add("tipo", "tipo");
 
-                        bulkCopy.WriteToServer(dataTable);
+                            bulkCopy.WriteToServer(dataTable);
+                        }
                     }
                 }
+                else
+                {
+                    ConexionContingencia conexion = new ConexionContingencia();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    {
+                        using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
+                        {
+                            bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit";
 
+                            // Mapeo explícito de columnas
+                            bulkCopy.ColumnMappings.Add("AnioMes", "AnioMes");
+                            bulkCopy.ColumnMappings.Add("Codigo_Agencia", "Codigo_Agencia");
+                            bulkCopy.ColumnMappings.Add("Fecha_Transaccion", "Fecha_Transaccion");
+                            bulkCopy.ColumnMappings.Add("Numero_transaccion", "Numero_transaccion");
+                            bulkCopy.ColumnMappings.Add("codigo_cliente", "codigo_cliente");
+                            bulkCopy.ColumnMappings.Add("TRANS", "TRANS");
+                            bulkCopy.ColumnMappings.Add("MONEDA", "MONEDA");
+                            bulkCopy.ColumnMappings.Add("MONTO_MONEDA_ORIGEN", "MONTO_MONEDA_ORIGEN");
+                            bulkCopy.ColumnMappings.Add("MONTO_EN_DOLARES", "MONTO_EN_DOLARES");
+                            bulkCopy.ColumnMappings.Add("NUM_REFERENCIA", "NUM_REFERENCIA");
+                            bulkCopy.ColumnMappings.Add("TIP_TRANSACCION", "TIP_TRANSACCION");
+                            bulkCopy.ColumnMappings.Add("Estado", "Estado");
+                            bulkCopy.ColumnMappings.Add("Usuario_registro", "Usuario_registro");
+                            bulkCopy.ColumnMappings.Add("Fecha_Registro", "Fecha_Registro");
+                            bulkCopy.ColumnMappings.Add("Usuario_Modifico", "Usuario_Modifico");
+                            bulkCopy.ColumnMappings.Add("Fecha_Modifico", "Fecha_Modifico");
+                            bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
+                            bulkCopy.ColumnMappings.Add("movexacto_paralelo", "movexacto_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxexacto_paralelo", "Trxexacto_paralelo");
+                            bulkCopy.ColumnMappings.Add("movmixto_paralelo", "movmixto_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxmixto_paralelo", "Trxmixto_paralelo");
+                            bulkCopy.ColumnMappings.Add("movotrocli_paralelo", "movotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxotrocli_paralelo", "Trxotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("Nomotrocli_paralelo", "Nomotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("MONTO_mixtoparalelo", "MONTO_mixtoparalelo");
+                            bulkCopy.ColumnMappings.Add("movmxto58_boveda", "movmxto58_boveda");
+                            bulkCopy.ColumnMappings.Add("MONTO_movmxto58", "MONTO_movmxto58");
+                            bulkCopy.ColumnMappings.Add("movmxto59_boveda", "movmxto59_boveda");
+                            bulkCopy.ColumnMappings.Add("MONTO_movmxto59", "MONTO_movmxto59");
+                            bulkCopy.ColumnMappings.Add("hora_trx", "hora_trx");
+                            bulkCopy.ColumnMappings.Add("cajero", "cajero");
+                            bulkCopy.ColumnMappings.Add("usuario", "usuario");
+                            bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
+                            bulkCopy.ColumnMappings.Add("tipo", "tipo");
+
+                            bulkCopy.WriteToServer(dataTable);
+                        }
+                    }
+                }
                 return true;
             }
             catch (Exception ex)
@@ -123,7 +174,7 @@ namespace ReportesRegulatorios.Modelos
             }
         }
 
-        public bool InsertarDetalleMe13VerBitBulk(DataTable dataTable, string usuario)
+        public bool InsertarDetalleMe13VerBitBulk(DataTable dataTable, string usuario, string tipoConexion)
         {
             try
             {
@@ -145,54 +196,106 @@ namespace ReportesRegulatorios.Modelos
                 // Limpiar datos antes de insertar
                 LimpiarDataTable(dataTable);
 
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
+                if(tipoConexion == "Principal")
                 {
-                    using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
+                    Conexion conexion = new Conexion();
+                    using (SqlConnection conn = conexion.AbrirConexion())
                     {
-                        bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit";
+                        using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
+                        {
+                            bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit";
 
-                        // Mapeo explícito de columnas
-                        bulkCopy.ColumnMappings.Add("AnioMes", "AnioMes");
-                        bulkCopy.ColumnMappings.Add("Codigo_Agencia", "Codigo_Agencia");
-                        bulkCopy.ColumnMappings.Add("Fecha_Transaccion", "Fecha_Transaccion");
-                        bulkCopy.ColumnMappings.Add("Numero_transaccion", "Numero_transaccion");
-                        bulkCopy.ColumnMappings.Add("codigo_cliente", "codigo_cliente");
-                        bulkCopy.ColumnMappings.Add("TRANS", "TRANS");
-                        bulkCopy.ColumnMappings.Add("MONEDA", "MONEDA");
-                        bulkCopy.ColumnMappings.Add("MONTO_MONEDA_ORIGEN", "MONTO_MONEDA_ORIGEN");
-                        bulkCopy.ColumnMappings.Add("MONTO_EN_DOLARES", "MONTO_EN_DOLARES");
-                        bulkCopy.ColumnMappings.Add("NUM_REFERENCIA", "NUM_REFERENCIA");
-                        bulkCopy.ColumnMappings.Add("TIP_TRANSACCION", "TIP_TRANSACCION");
-                        bulkCopy.ColumnMappings.Add("Estado", "Estado");
-                        bulkCopy.ColumnMappings.Add("Usuario_registro", "Usuario_registro");
-                        bulkCopy.ColumnMappings.Add("Fecha_Registro", "Fecha_Registro");
-                        bulkCopy.ColumnMappings.Add("Usuario_Modifico", "Usuario_Modifico");
-                        bulkCopy.ColumnMappings.Add("Fecha_Modifico", "Fecha_Modifico");
-                        bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
-                        bulkCopy.ColumnMappings.Add("movexacto_paralelo", "movexacto_paralelo");
-                        bulkCopy.ColumnMappings.Add("Trxexacto_paralelo", "Trxexacto_paralelo");
-                        bulkCopy.ColumnMappings.Add("movmixto_paralelo", "movmixto_paralelo");
-                        bulkCopy.ColumnMappings.Add("Trxmixto_paralelo", "Trxmixto_paralelo");
-                        bulkCopy.ColumnMappings.Add("movotrocli_paralelo", "movotrocli_paralelo");
-                        bulkCopy.ColumnMappings.Add("Trxotrocli_paralelo", "Trxotrocli_paralelo");
-                        bulkCopy.ColumnMappings.Add("Nomotrocli_paralelo", "Nomotrocli_paralelo");
-                        bulkCopy.ColumnMappings.Add("MONTO_mixtoparalelo", "MONTO_mixtoparalelo");
-                        bulkCopy.ColumnMappings.Add("movmxto58_boveda", "movmxto58_boveda");
-                        bulkCopy.ColumnMappings.Add("MONTO_movmxto58", "MONTO_movmxto58");
-                        bulkCopy.ColumnMappings.Add("movmxto59_boveda", "movmxto59_boveda");
-                        bulkCopy.ColumnMappings.Add("MONTO_movmxto59", "MONTO_movmxto59");
-                        bulkCopy.ColumnMappings.Add("hora_trx", "hora_trx");
-                        bulkCopy.ColumnMappings.Add("cajero", "cajero");
-                        bulkCopy.ColumnMappings.Add("usuario", "usuario");
-                        bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
-                        bulkCopy.ColumnMappings.Add("TP", "tipo");
-                        bulkCopy.ColumnMappings.Add("EstadoBitacora", "EstadoBitacora");
+                            // Mapeo explícito de columnas
+                            bulkCopy.ColumnMappings.Add("AnioMes", "AnioMes");
+                            bulkCopy.ColumnMappings.Add("Codigo_Agencia", "Codigo_Agencia");
+                            bulkCopy.ColumnMappings.Add("Fecha_Transaccion", "Fecha_Transaccion");
+                            bulkCopy.ColumnMappings.Add("Numero_transaccion", "Numero_transaccion");
+                            bulkCopy.ColumnMappings.Add("codigo_cliente", "codigo_cliente");
+                            bulkCopy.ColumnMappings.Add("TRANS", "TRANS");
+                            bulkCopy.ColumnMappings.Add("MONEDA", "MONEDA");
+                            bulkCopy.ColumnMappings.Add("MONTO_MONEDA_ORIGEN", "MONTO_MONEDA_ORIGEN");
+                            bulkCopy.ColumnMappings.Add("MONTO_EN_DOLARES", "MONTO_EN_DOLARES");
+                            bulkCopy.ColumnMappings.Add("NUM_REFERENCIA", "NUM_REFERENCIA");
+                            bulkCopy.ColumnMappings.Add("TIP_TRANSACCION", "TIP_TRANSACCION");
+                            bulkCopy.ColumnMappings.Add("Estado", "Estado");
+                            bulkCopy.ColumnMappings.Add("Usuario_registro", "Usuario_registro");
+                            bulkCopy.ColumnMappings.Add("Fecha_Registro", "Fecha_Registro");
+                            bulkCopy.ColumnMappings.Add("Usuario_Modifico", "Usuario_Modifico");
+                            bulkCopy.ColumnMappings.Add("Fecha_Modifico", "Fecha_Modifico");
+                            bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
+                            bulkCopy.ColumnMappings.Add("movexacto_paralelo", "movexacto_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxexacto_paralelo", "Trxexacto_paralelo");
+                            bulkCopy.ColumnMappings.Add("movmixto_paralelo", "movmixto_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxmixto_paralelo", "Trxmixto_paralelo");
+                            bulkCopy.ColumnMappings.Add("movotrocli_paralelo", "movotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxotrocli_paralelo", "Trxotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("Nomotrocli_paralelo", "Nomotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("MONTO_mixtoparalelo", "MONTO_mixtoparalelo");
+                            bulkCopy.ColumnMappings.Add("movmxto58_boveda", "movmxto58_boveda");
+                            bulkCopy.ColumnMappings.Add("MONTO_movmxto58", "MONTO_movmxto58");
+                            bulkCopy.ColumnMappings.Add("movmxto59_boveda", "movmxto59_boveda");
+                            bulkCopy.ColumnMappings.Add("MONTO_movmxto59", "MONTO_movmxto59");
+                            bulkCopy.ColumnMappings.Add("hora_trx", "hora_trx");
+                            bulkCopy.ColumnMappings.Add("cajero", "cajero");
+                            bulkCopy.ColumnMappings.Add("usuario", "usuario");
+                            bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
+                            bulkCopy.ColumnMappings.Add("TP", "tipo");
+                            bulkCopy.ColumnMappings.Add("EstadoBitacora", "EstadoBitacora");
 
-                        bulkCopy.WriteToServer(dataTable);
+                            bulkCopy.WriteToServer(dataTable);
+                        }
                     }
                 }
+                else
+                {
+                    ConexionContingencia conexion = new ConexionContingencia();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    {
+                        using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
+                        {
+                            bulkCopy.DestinationTableName = "DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit";
 
+                            // Mapeo explícito de columnas
+                            bulkCopy.ColumnMappings.Add("AnioMes", "AnioMes");
+                            bulkCopy.ColumnMappings.Add("Codigo_Agencia", "Codigo_Agencia");
+                            bulkCopy.ColumnMappings.Add("Fecha_Transaccion", "Fecha_Transaccion");
+                            bulkCopy.ColumnMappings.Add("Numero_transaccion", "Numero_transaccion");
+                            bulkCopy.ColumnMappings.Add("codigo_cliente", "codigo_cliente");
+                            bulkCopy.ColumnMappings.Add("TRANS", "TRANS");
+                            bulkCopy.ColumnMappings.Add("MONEDA", "MONEDA");
+                            bulkCopy.ColumnMappings.Add("MONTO_MONEDA_ORIGEN", "MONTO_MONEDA_ORIGEN");
+                            bulkCopy.ColumnMappings.Add("MONTO_EN_DOLARES", "MONTO_EN_DOLARES");
+                            bulkCopy.ColumnMappings.Add("NUM_REFERENCIA", "NUM_REFERENCIA");
+                            bulkCopy.ColumnMappings.Add("TIP_TRANSACCION", "TIP_TRANSACCION");
+                            bulkCopy.ColumnMappings.Add("Estado", "Estado");
+                            bulkCopy.ColumnMappings.Add("Usuario_registro", "Usuario_registro");
+                            bulkCopy.ColumnMappings.Add("Fecha_Registro", "Fecha_Registro");
+                            bulkCopy.ColumnMappings.Add("Usuario_Modifico", "Usuario_Modifico");
+                            bulkCopy.ColumnMappings.Add("Fecha_Modifico", "Fecha_Modifico");
+                            bulkCopy.ColumnMappings.Add("Justificacion", "Justificacion");
+                            bulkCopy.ColumnMappings.Add("movexacto_paralelo", "movexacto_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxexacto_paralelo", "Trxexacto_paralelo");
+                            bulkCopy.ColumnMappings.Add("movmixto_paralelo", "movmixto_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxmixto_paralelo", "Trxmixto_paralelo");
+                            bulkCopy.ColumnMappings.Add("movotrocli_paralelo", "movotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("Trxotrocli_paralelo", "Trxotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("Nomotrocli_paralelo", "Nomotrocli_paralelo");
+                            bulkCopy.ColumnMappings.Add("MONTO_mixtoparalelo", "MONTO_mixtoparalelo");
+                            bulkCopy.ColumnMappings.Add("movmxto58_boveda", "movmxto58_boveda");
+                            bulkCopy.ColumnMappings.Add("MONTO_movmxto58", "MONTO_movmxto58");
+                            bulkCopy.ColumnMappings.Add("movmxto59_boveda", "movmxto59_boveda");
+                            bulkCopy.ColumnMappings.Add("MONTO_movmxto59", "MONTO_movmxto59");
+                            bulkCopy.ColumnMappings.Add("hora_trx", "hora_trx");
+                            bulkCopy.ColumnMappings.Add("cajero", "cajero");
+                            bulkCopy.ColumnMappings.Add("usuario", "usuario");
+                            bulkCopy.ColumnMappings.Add("fecha_hora", "fecha_hora");
+                            bulkCopy.ColumnMappings.Add("TP", "tipo");
+                            bulkCopy.ColumnMappings.Add("EstadoBitacora", "EstadoBitacora");
+
+                            bulkCopy.WriteToServer(dataTable);
+                        }
+                    }
+                }
                 return true;
             }
             catch (Exception ex)
@@ -202,64 +305,111 @@ namespace ReportesRegulatorios.Modelos
             }
         }
 
-        public bool ActualizarEstadoBit(int anioMes)
+        public bool ActualizarEstadoBit(int anioMes, string tipoConexion)
         {
             string consulta = @"UPDATE EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit 
                                 SET EstadoBitacora = 'V'  
                                 WHERE AnioMes = @anioMes";
 
-            try
+            if(tipoConexion == "Principal")
             {
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
-                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@anioMes", anioMes);
-                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    Conexion conexion = new Conexion();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                        int filasAfectadas = cmd.ExecuteNonQuery();
 
-                    // Puedes usar filasAfectadas para verificar si se eliminó algo
-                    return filasAfectadas > 0;
+                        // Puedes usar filasAfectadas para verificar si se eliminó algo
+                        return filasAfectadas > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Aquí podrías registrar el error en un log
+                    Console.WriteLine($"Error al actualizar datos: {ex.Message}");
+                    return false;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                // Aquí podrías registrar el error en un log
-                Console.WriteLine($"Error al actualizar datos: {ex.Message}");
-                return false;
+                try
+                {
+                    ConexionContingencia conexion = new ConexionContingencia();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+
+                        // Puedes usar filasAfectadas para verificar si se eliminó algo
+                        return filasAfectadas > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Aquí podrías registrar el error en un log
+                    Console.WriteLine($"Error al actualizar datos: {ex.Message}");
+                    return false;
+                }
             }
         }
 
-        public DataTable InsertarNuevosEnDetalle(int anioMes)
+        public DataTable InsertarNuevosEnDetalle(int anioMes, string tipoConexion)
         {
 
             DataTable dt = new DataTable();
             string consulta = @"SELECT * FROM DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit WHERE AnioMes = @AnioMes and tipo = 'NUEVO' AND EstadoBitacora ='P'";
 
-            try
+            if(tipoConexion == "Principal")
             {
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
-                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@AnioMes", anioMes);
-
-                    using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                    Conexion conexion = new Conexion();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
-                        adaptador.Fill(dt);
+                        cmd.Parameters.AddWithValue("@AnioMes", anioMes);
+                        using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                        {
+                            adaptador.Fill(dt);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    // Puedes registrar el error en un log en lugar de solo imprimirlo
+                    Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                // Puedes registrar el error en un log en lugar de solo imprimirlo
-                Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                try
+                {
+                    ConexionContingencia conexion = new ConexionContingencia();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@AnioMes", anioMes);
+
+                        using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                        {
+                            adaptador.Fill(dt);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Puedes registrar el error en un log en lugar de solo imprimirlo
+                    Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                }
             }
-
             return dt;
-
         }
 
-        public bool EliminarCamposDetalle(int anioMes)
+        public bool EliminarCamposDetalle(int anioMes, string tipoConexion)
         {
             string consulta = @"DELETE FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta 
                                 WHERE Numero_transaccion IN ( 
@@ -268,93 +418,139 @@ namespace ReportesRegulatorios.Modelos
                                                                 WHERE rdb.tipo = 'ORIGINAL' AND rdb.AnioMes = @anioMes AND EstadoBitacora = 'P'
                                                             )";
 
-            try
+            if(tipoConexion == "Principal")
             {
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
-                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@anioMes", anioMes);
-                    int filasAfectadas = cmd.ExecuteNonQuery();
-
-                    // Puedes usar filasAfectadas para verificar si se eliminó algo
-                    return filasAfectadas > 0;
+                    Conexion conexion = new Conexion();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+                        // Puedes usar filasAfectadas para verificar si se eliminó algo
+                        return filasAfectadas > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Aquí podrías registrar el error en un log
+                    Console.WriteLine($"Error al eliminar datos: {ex.Message}");
+                    return false;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                // Aquí podrías registrar el error en un log
-                Console.WriteLine($"Error al eliminar datos: {ex.Message}");
-                return false;
-            }
+                try
+                {
+                    ConexionContingencia conexion = new ConexionContingencia();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+                        // Puedes usar filasAfectadas para verificar si se eliminó algo
+                        return filasAfectadas > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Aquí podrías registrar el error en un log
+                    Console.WriteLine($"Error al eliminar datos: {ex.Message}");
+                    return false;
+                }
+            }            
         }
 
-        public DataTable ObtenerDetalleBit(int anioMes)
+        public DataTable ObtenerDetalleBit(int anioMes, string tipoConexion)
         {
 
             DataTable dt = new DataTable();
             string consulta = @"SELECT AnioMes, 
-Codigo_Agencia, 
-Fecha_Transaccion, 
-Numero_transaccion, 
-codigo_cliente, 
-TRANS, 
-MONEDA, 
-MONTO_MONEDA_ORIGEN, 
-MONTO_EN_DOLARES, 
-NUM_REFERENCIA, 
-TIP_TRANSACCION, 
-Estado, 
-Usuario_registro, 
-Fecha_Registro, 
-Usuario_Modifico, 
-Fecha_Modifico, 
-Justificacion, 
-movexacto_paralelo, 
-Trxexacto_paralelo, 
-movmixto_paralelo, 
-Trxmixto_paralelo, 
-movotrocli_paralelo, 
-Trxotrocli_paralelo, 
-Nomotrocli_paralelo, 
-MONTO_mixtoparalelo,
-movmxto58_boveda, 
-MONTO_movmxto58, 
-movmxto59_boveda, 
-MONTO_movmxto59, 
-hora_trx, 
-cajero, 
-usuario, 
-fecha_hora, 
-tipo
-FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit
-WHERE AnioMes = @anioMes";
+                                        Codigo_Agencia, 
+                                        Fecha_Transaccion, 
+                                        Numero_transaccion, 
+                                        codigo_cliente, 
+                                        TRANS, 
+                                        MONEDA, 
+                                        MONTO_MONEDA_ORIGEN, 
+                                        MONTO_EN_DOLARES, 
+                                        NUM_REFERENCIA, 
+                                        TIP_TRANSACCION, 
+                                        Estado, 
+                                        Usuario_registro, 
+                                        Fecha_Registro, 
+                                        Usuario_Modifico, 
+                                        Fecha_Modifico, 
+                                        Justificacion, 
+                                        movexacto_paralelo, 
+                                        Trxexacto_paralelo, 
+                                        movmixto_paralelo, 
+                                        Trxmixto_paralelo, 
+                                        movotrocli_paralelo, 
+                                        Trxotrocli_paralelo, 
+                                        Nomotrocli_paralelo, 
+                                        MONTO_mixtoparalelo,
+                                        movmxto58_boveda, 
+                                        MONTO_movmxto58, 
+                                        movmxto59_boveda, 
+                                        MONTO_movmxto59, 
+                                        hora_trx, 
+                                        cajero, 
+                                        usuario, 
+                                        fecha_hora, 
+                                        tipo
+                                        FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_bit
+                                        WHERE AnioMes = @anioMes";
 
-            try
+            if(tipoConexion == "Principal")
             {
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
-                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@AnioMes", anioMes);
-
-                    using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                    Conexion conexion = new Conexion();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
-                        adaptador.Fill(dt);
+                        cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                        using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                        {
+                            adaptador.Fill(dt);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    // Puedes registrar el error en un log en lugar de solo imprimirlo
+                    Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                // Puedes registrar el error en un log en lugar de solo imprimirlo
-                Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                try
+                {
+                    ConexionContingencia conexion = new ConexionContingencia();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                        using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                        {
+                            adaptador.Fill(dt);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Puedes registrar el error en un log en lugar de solo imprimirlo
+                    Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                }
             }
 
             return dt;
 
         }
 
-        public DataTable ObtenerCambiosBit(int anioMes)
+        public DataTable ObtenerCambiosBit(int anioMes, string tipoConexion)
         {
 
             DataTable dt = new DataTable();
@@ -445,28 +641,49 @@ WHERE AnioMes = @anioMes";
                                                 SELECT 'NUEVO' TP,DRDD2.*
                                                 FROM EDW.DL_CUMPLIMIENTO.dw_repreg_me13_deta_tmp DRDD2
                                                 WHERE DRDD2.anioMes=@anioMes AND DRDD2.NUMERO_TRANSACCION IN (SELECT C2.Numero_transaccion  FROM TB_CHANGE C2)";
-            try
+            if (tipoConexion == "Principal")
             {
-                Conexion conexion = new Conexion();
-                using (SqlConnection conn = conexion.AbrirConexion())
-                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@AnioMes", anioMes);
-
-                    using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                    Conexion conexion = new Conexion();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
-                        adaptador.Fill(dt);
+                        cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                        using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                        {
+                            adaptador.Fill(dt);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    // Puedes registrar el error en un log en lugar de solo imprimirlo
+                    Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                // Puedes registrar el error en un log en lugar de solo imprimirlo
-                Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                try
+                {
+                    ConexionContingencia conexion = new ConexionContingencia();
+                    using (SqlConnection conn = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@anioMes", anioMes);
+                        using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
+                        {
+                            adaptador.Fill(dt);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Puedes registrar el error en un log en lugar de solo imprimirlo
+                    Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                }
             }
-
             return dt;
-
         }
     }
 }

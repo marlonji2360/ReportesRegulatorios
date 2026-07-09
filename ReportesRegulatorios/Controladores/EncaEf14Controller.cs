@@ -10,10 +10,10 @@ namespace ReportesRegulatorios.Controladores
 {
     internal class EncaEf14Controller
     {
-        public DataTable ObtenerEncabezado(int anioMes)
+        public DataTable ObtenerEncabezado(int anioMes, string tipoConexion)
         {
             EncaEf14 encaEf14 = new EncaEf14();
-            return encaEf14.ObtenerEncabezado(anioMes);
+            return encaEf14.ObtenerEncabezado(anioMes, tipoConexion);
         }
 
         public bool ActualizarEncabezado(    int anioMes,
@@ -24,11 +24,12 @@ namespace ReportesRegulatorios.Controladores
                                                 string Fecha_upd,
                                                 string Usuario_Cierre,
                                                 string Fecha_Cierre,
-                                                string Doc_cierre
+                                                string Doc_cierre,
+                                                string tipoConexion
                                             )
         {
             EncaEf14 encaEf14 = new EncaEf14();
-            return encaEf14.ActualizarEncabezado(anioMes, estado,Usuario_genera, Fecha_genera, Usuario_upd, Fecha_upd, Usuario_Cierre, Fecha_Cierre, Doc_cierre);
+            return encaEf14.ActualizarEncabezado(anioMes, estado,Usuario_genera, Fecha_genera, Usuario_upd, Fecha_upd, Usuario_Cierre, Fecha_Cierre, Doc_cierre, tipoConexion);
         }
             
     }

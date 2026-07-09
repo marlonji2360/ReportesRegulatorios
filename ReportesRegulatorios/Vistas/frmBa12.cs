@@ -35,6 +35,8 @@ namespace ReportesRegulatorios.Vistas
             btnGeneraCsv.Enabled = false;
             btnArchivoIve.Enabled = false;
             btnFinalizar.Enabled = false;
+            cmbConexion.Enabled = false;
+            cmbConexion.SelectedIndex = 0;
         }
 
         private void Limpiar()
@@ -380,6 +382,7 @@ namespace ReportesRegulatorios.Vistas
 
         private DataTable VerificarModificaciones(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
+            string tipoConexion = cmbConexion.Text;
             EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
             DetalleBa12TmpController detalleBa12TmpController = new DetalleBa12TmpController();
             DetalleBa12BitController detalleBa12BitController = new DetalleBa12BitController();
@@ -387,34 +390,33 @@ namespace ReportesRegulatorios.Vistas
 
             bool resultado = false;
 
-            detalleBa12TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
-            resultado = detalleBa12TmpController.InsertarDetalleBa12TmpBulk(tabla);
+            detalleBa12TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes), tipoConexion);
+            resultado = detalleBa12TmpController.InsertarDetalleBa12TmpBulk(tabla, tipoConexion);
 
-            DataTable validacionCantidadRegistros = detalleBa12TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
+            DataTable validacionCantidadRegistros = detalleBa12TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes), tipoConexion);
             string resultadoCantidadRegistros = validacionCantidadRegistros.Rows[0]["RESULTADO"].ToString();
             string detalleCantidadRegistros = validacionCantidadRegistros.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionConteoDetalle = detalleBa12TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes));
+            DataTable validacionConteoDetalle = detalleBa12TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes), tipoConexion);
             string resultadoConteoDetalle = validacionConteoDetalle.Rows[0]["RESULTADO"].ToString();
             string detalleConteoDetalle = validacionConteoDetalle.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionJustificacion = detalleBa12TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes));
-
+            DataTable validacionJustificacion = detalleBa12TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes), tipoConexion);
             if (resultado && resultadoCantidadRegistros == "1" && resultadoConteoDetalle == "1" && validacionJustificacion.Rows.Count == 0)
             {
                 PlayNotificationSound();
                 MessageBox.Show("Datos Validados Correctamente, Espere mientras se guardan los cambios", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                encaBa12Controller.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link);
+                encaBa12Controller.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link, tipoConexion);
                 
-                DataTable dtVerificacion = detalleBa12BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes));
-                detalleBa12BitController.InsertarDetalleBa12VerBitBulk(dtVerificacion, usuario);
-                detalleBa12BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes));
+                DataTable dtVerificacion = detalleBa12BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes), tipoConexion);
+                detalleBa12BitController.InsertarDetalleBa12VerBitBulk(dtVerificacion, usuario, tipoConexion);
+                detalleBa12BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes), tipoConexion);
 
-                DataTable dtNuevosRegistrosEnDetalle = detalleBa12BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes));
-                detalleBa12Controller.InsertarDetalleBa12Bulk(dtNuevosRegistrosEnDetalle);
+                DataTable dtNuevosRegistrosEnDetalle = detalleBa12BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes), tipoConexion);
+                detalleBa12Controller.InsertarDetalleBa12Bulk(dtNuevosRegistrosEnDetalle, tipoConexion);
 
-                detalleBa12BitController.ActualizarEstadoBit(Convert.ToInt32(anioMes));
+                detalleBa12BitController.ActualizarEstadoBit(Convert.ToInt32(anioMes), tipoConexion);
                 
 
                 PlayNotificationSound();
@@ -453,11 +455,12 @@ namespace ReportesRegulatorios.Vistas
 
         private Boolean Consultar()
         {
+            string tipoConexion = cmbConexion.Text;
             //DeshabilitarBotones();
             btnConsultar.BackColor = Color.DarkBlue;
             btnConsultar.Enabled = true;
 
-            if (cmbMes.Text != "" && txtAnio.Text != "")
+            if (cmbMes.Text != "" && txtAnio.Text != "" && cmbConexion.Text != "")
             {
                 string mes = "00";
                 string anioMes;
@@ -466,7 +469,7 @@ namespace ReportesRegulatorios.Vistas
                 anioMes = txtAnio.Text + mes;
 
                 EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
-                dt = encaBa12Controller.ObtenerEncabezado(Convert.ToInt32(anioMes));
+                dt = encaBa12Controller.ObtenerEncabezado(Convert.ToInt32(anioMes), tipoConexion);
                 if (dt.Rows.Count > 0)
                 {
 
@@ -587,8 +590,9 @@ namespace ReportesRegulatorios.Vistas
 
         private void ProcesoNuevosRegistros(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
+            string tipoConexion = cmbConexion.Text;
             DetalleBa12Controller detalleBa12Controller = new DetalleBa12Controller();
-            bool resultado = detalleBa12Controller.InsertarDetalleBa12Bulk(tabla);
+            bool resultado = detalleBa12Controller.InsertarDetalleBa12Bulk(tabla, tipoConexion);
 
             if (resultado)
             {
@@ -603,9 +607,10 @@ namespace ReportesRegulatorios.Vistas
                                                           fechaActual,
                                                           null,
                                                           null,
-                                                          link);
+                                                          link,
+                                                          tipoConexion);
 
-                detalleBa12BitController.InsertarDetalleBa12BitBulk(tabla, usuario);
+                detalleBa12BitController.InsertarDetalleBa12BitBulk(tabla, usuario, tipoConexion);
 
                 PlayNotificationSound();
                 MessageBox.Show("Datos Exportados Correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -747,7 +752,7 @@ namespace ReportesRegulatorios.Vistas
         {
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
-
+                string tipoConexion = cmbConexion.Text;
                 string anioMes = null;
                 string mes = null;
                 DataTable dt = new DataTable();
@@ -762,7 +767,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleBa12BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+                    dt = detalleBa12BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 //ExportarDataTableACsv(dt);
@@ -775,8 +780,9 @@ namespace ReportesRegulatorios.Vistas
 
         private async void btnGeneraCsv_Click(object sender, EventArgs e)
         {
-            if (cmbMes.Text != "" && txtAnio.Text != "")
+            if (cmbMes.Text != "" && txtAnio.Text != "" && cmbConexion.Text != "")
             {
+                string tipoConexion = cmbConexion.Text;
                 DeshabilitarBotones();
                 string anioMes = null;
                 string mes = null;
@@ -792,7 +798,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleBa12Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+                    dt = detalleBa12Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 cargando.Close();
@@ -810,8 +816,9 @@ namespace ReportesRegulatorios.Vistas
         private async void btnArchivoIve_Click(object sender, EventArgs e)
         {
             
-            if (cmbMes.Text != "" && txtAnio.Text != "")
+            if (cmbMes.Text != "" && txtAnio.Text != "" && cmbConexion.Text != "")
             {
+                string tipoConexion = cmbConexion.Text;
                 DeshabilitarBotones();
                 string anioMes = null;
                 string mes = null;
@@ -827,7 +834,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleBa12Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+                    dt = detalleBa12Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 ExportarDataTableATxt(dt);
@@ -841,6 +848,7 @@ namespace ReportesRegulatorios.Vistas
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
+            string tipoConexion = cmbConexion.Text;
             if (!txtLink.Text.Equals(""))
             {
                 EncaBa12Controller encaBa12Controller = new EncaBa12Controller();
@@ -882,7 +890,8 @@ namespace ReportesRegulatorios.Vistas
                                                                 fechaActual,
                                                                 usuario,
                                                                 fechaActual,
-                                                                txtLink.Text
+                                                                txtLink.Text,
+                                                                tipoConexion
                                                              );
 
             }
@@ -907,6 +916,18 @@ namespace ReportesRegulatorios.Vistas
                 MessageBox.Show("Error al copiar texto al portapapeles: " +
                     Environment.NewLine + err.Message, "Error al copiar",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chkConexion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkConexion.Checked)
+            {
+                cmbConexion.Enabled = true;
+            }
+            else
+            {
+                cmbConexion.Enabled = false;
             }
         }
     }

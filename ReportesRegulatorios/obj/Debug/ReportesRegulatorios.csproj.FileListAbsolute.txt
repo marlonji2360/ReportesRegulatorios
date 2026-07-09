@@ -245,7 +245,6 @@ C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Security.Pri
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Text.Encodings.Web.dll
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Text.Json.dll
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\System.ValueTuple.dll
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Azure.Core.xml
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\Azure.Identity.xml
 C:\Local\ReportesRegulatorios\ReportesRegulatorios\bin\Debug\ClosedXML.pdb

@@ -57,6 +57,9 @@
             this.btnVerificarModificaciones = new System.Windows.Forms.Button();
             this.btnBitacoras = new System.Windows.Forms.Button();
             this.btnCopiarConclusion = new System.Windows.Forms.Button();
+            this.chkConexion = new System.Windows.Forms.CheckBox();
+            this.lblConexion = new System.Windows.Forms.Label();
+            this.cmbConexion = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -124,7 +127,7 @@
             "Noviembre",
             "Diciembre"});
             this.cmbMes.Location = new System.Drawing.Point(405, 78);
-            this.cmbMes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbMes.Margin = new System.Windows.Forms.Padding(4);
             this.cmbMes.Name = "cmbMes";
             this.cmbMes.Size = new System.Drawing.Size(152, 24);
             this.cmbMes.TabIndex = 4;
@@ -132,7 +135,7 @@
             // txtAnio
             // 
             this.txtAnio.Location = new System.Drawing.Point(405, 111);
-            this.txtAnio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAnio.Margin = new System.Windows.Forms.Padding(4);
             this.txtAnio.Name = "txtAnio";
             this.txtAnio.Size = new System.Drawing.Size(152, 22);
             this.txtAnio.TabIndex = 5;
@@ -144,7 +147,7 @@
             this.btnConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsultar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
             this.btnConsultar.Location = new System.Drawing.Point(613, 79);
-            this.btnConsultar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConsultar.Margin = new System.Windows.Forms.Padding(4);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(123, 46);
             this.btnConsultar.TabIndex = 6;
@@ -178,7 +181,7 @@
             // txtLink
             // 
             this.txtLink.Location = new System.Drawing.Point(405, 196);
-            this.txtLink.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLink.Margin = new System.Windows.Forms.Padding(4);
             this.txtLink.Name = "txtLink";
             this.txtLink.Size = new System.Drawing.Size(329, 22);
             this.txtLink.TabIndex = 9;
@@ -199,7 +202,7 @@
             // 
             this.txtFechaOperado.Enabled = false;
             this.txtFechaOperado.Location = new System.Drawing.Point(405, 289);
-            this.txtFechaOperado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFechaOperado.Margin = new System.Windows.Forms.Padding(4);
             this.txtFechaOperado.Name = "txtFechaOperado";
             this.txtFechaOperado.Size = new System.Drawing.Size(160, 22);
             this.txtFechaOperado.TabIndex = 11;
@@ -208,7 +211,7 @@
             // 
             this.txtUsuarioOperado.Enabled = false;
             this.txtUsuarioOperado.Location = new System.Drawing.Point(575, 289);
-            this.txtUsuarioOperado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsuarioOperado.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuarioOperado.Name = "txtUsuarioOperado";
             this.txtUsuarioOperado.Size = new System.Drawing.Size(160, 22);
             this.txtUsuarioOperado.TabIndex = 12;
@@ -241,7 +244,7 @@
             // 
             this.txtUsuarioUltimaMod.Enabled = false;
             this.txtUsuarioUltimaMod.Location = new System.Drawing.Point(575, 325);
-            this.txtUsuarioUltimaMod.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsuarioUltimaMod.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuarioUltimaMod.Name = "txtUsuarioUltimaMod";
             this.txtUsuarioUltimaMod.Size = new System.Drawing.Size(160, 22);
             this.txtUsuarioUltimaMod.TabIndex = 17;
@@ -250,7 +253,7 @@
             // 
             this.txtFechaUltimaMod.Enabled = false;
             this.txtFechaUltimaMod.Location = new System.Drawing.Point(405, 325);
-            this.txtFechaUltimaMod.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFechaUltimaMod.Margin = new System.Windows.Forms.Padding(4);
             this.txtFechaUltimaMod.Name = "txtFechaUltimaMod";
             this.txtFechaUltimaMod.Size = new System.Drawing.Size(160, 22);
             this.txtFechaUltimaMod.TabIndex = 16;
@@ -271,7 +274,7 @@
             // 
             this.txtUsuarioFinalizado.Enabled = false;
             this.txtUsuarioFinalizado.Location = new System.Drawing.Point(575, 361);
-            this.txtUsuarioFinalizado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsuarioFinalizado.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuarioFinalizado.Name = "txtUsuarioFinalizado";
             this.txtUsuarioFinalizado.Size = new System.Drawing.Size(160, 22);
             this.txtUsuarioFinalizado.TabIndex = 20;
@@ -280,7 +283,7 @@
             // 
             this.txtFechaFinalizado.Enabled = false;
             this.txtFechaFinalizado.Location = new System.Drawing.Point(405, 361);
-            this.txtFechaFinalizado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFechaFinalizado.Margin = new System.Windows.Forms.Padding(4);
             this.txtFechaFinalizado.Name = "txtFechaFinalizado";
             this.txtFechaFinalizado.Size = new System.Drawing.Size(160, 22);
             this.txtFechaFinalizado.TabIndex = 19;
@@ -303,8 +306,8 @@
             this.btnGeneraCsv.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGeneraCsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGeneraCsv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnGeneraCsv.Location = new System.Drawing.Point(299, 539);
-            this.btnGeneraCsv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGeneraCsv.Location = new System.Drawing.Point(285, 494);
+            this.btnGeneraCsv.Margin = new System.Windows.Forms.Padding(4);
             this.btnGeneraCsv.Name = "btnGeneraCsv";
             this.btnGeneraCsv.Size = new System.Drawing.Size(173, 80);
             this.btnGeneraCsv.TabIndex = 21;
@@ -318,8 +321,8 @@
             this.btnArchivoIve.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnArchivoIve.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArchivoIve.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnArchivoIve.Location = new System.Drawing.Point(480, 539);
-            this.btnArchivoIve.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnArchivoIve.Location = new System.Drawing.Point(466, 494);
+            this.btnArchivoIve.Margin = new System.Windows.Forms.Padding(4);
             this.btnArchivoIve.Name = "btnArchivoIve";
             this.btnArchivoIve.Size = new System.Drawing.Size(173, 80);
             this.btnArchivoIve.TabIndex = 22;
@@ -333,8 +336,8 @@
             this.btnFinalizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinalizar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnFinalizar.Location = new System.Drawing.Point(661, 539);
-            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFinalizar.Location = new System.Drawing.Point(647, 494);
+            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(4);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(173, 80);
             this.btnFinalizar.TabIndex = 23;
@@ -348,8 +351,8 @@
             this.btnNuevosRegistros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNuevosRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevosRegistros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnNuevosRegistros.Location = new System.Drawing.Point(299, 452);
-            this.btnNuevosRegistros.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNuevosRegistros.Location = new System.Drawing.Point(285, 407);
+            this.btnNuevosRegistros.Margin = new System.Windows.Forms.Padding(4);
             this.btnNuevosRegistros.Name = "btnNuevosRegistros";
             this.btnNuevosRegistros.Size = new System.Drawing.Size(173, 80);
             this.btnNuevosRegistros.TabIndex = 24;
@@ -363,8 +366,8 @@
             this.btnVerificarModificaciones.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVerificarModificaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerificarModificaciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnVerificarModificaciones.Location = new System.Drawing.Point(480, 452);
-            this.btnVerificarModificaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVerificarModificaciones.Location = new System.Drawing.Point(466, 407);
+            this.btnVerificarModificaciones.Margin = new System.Windows.Forms.Padding(4);
             this.btnVerificarModificaciones.Name = "btnVerificarModificaciones";
             this.btnVerificarModificaciones.Size = new System.Drawing.Size(173, 80);
             this.btnVerificarModificaciones.TabIndex = 25;
@@ -378,8 +381,8 @@
             this.btnBitacoras.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBitacoras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBitacoras.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
-            this.btnBitacoras.Location = new System.Drawing.Point(661, 452);
-            this.btnBitacoras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBitacoras.Location = new System.Drawing.Point(647, 407);
+            this.btnBitacoras.Margin = new System.Windows.Forms.Padding(4);
             this.btnBitacoras.Name = "btnBitacoras";
             this.btnBitacoras.Size = new System.Drawing.Size(173, 80);
             this.btnBitacoras.TabIndex = 26;
@@ -392,12 +395,44 @@
             this.btnCopiarConclusion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnCopiarConclusion.Image = ((System.Drawing.Image)(resources.GetObject("btnCopiarConclusion.Image")));
             this.btnCopiarConclusion.Location = new System.Drawing.Point(773, 187);
-            this.btnCopiarConclusion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCopiarConclusion.Margin = new System.Windows.Forms.Padding(4);
             this.btnCopiarConclusion.Name = "btnCopiarConclusion";
             this.btnCopiarConclusion.Size = new System.Drawing.Size(44, 41);
             this.btnCopiarConclusion.TabIndex = 95;
             this.btnCopiarConclusion.UseVisualStyleBackColor = true;
             this.btnCopiarConclusion.Click += new System.EventHandler(this.btnCopiarConclusion_Click);
+            // 
+            // chkConexion
+            // 
+            this.chkConexion.AutoSize = true;
+            this.chkConexion.Location = new System.Drawing.Point(566, 637);
+            this.chkConexion.Name = "chkConexion";
+            this.chkConexion.Size = new System.Drawing.Size(18, 17);
+            this.chkConexion.TabIndex = 129;
+            this.chkConexion.UseVisualStyleBackColor = true;
+            // 
+            // lblConexion
+            // 
+            this.lblConexion.AutoSize = true;
+            this.lblConexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConexion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(255)))), ((int)(((byte)(241)))));
+            this.lblConexion.Location = new System.Drawing.Point(185, 629);
+            this.lblConexion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblConexion.Name = "lblConexion";
+            this.lblConexion.Size = new System.Drawing.Size(186, 25);
+            this.lblConexion.TabIndex = 128;
+            this.lblConexion.Text = "Tipo De Conexión";
+            // 
+            // cmbConexion
+            // 
+            this.cmbConexion.FormattingEnabled = true;
+            this.cmbConexion.Items.AddRange(new object[] {
+            "Principal",
+            "Contingencia"});
+            this.cmbConexion.Location = new System.Drawing.Point(397, 633);
+            this.cmbConexion.Name = "cmbConexion";
+            this.cmbConexion.Size = new System.Drawing.Size(152, 24);
+            this.cmbConexion.TabIndex = 127;
             // 
             // frmDv17
             // 
@@ -405,6 +440,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1067, 663);
+            this.Controls.Add(this.chkConexion);
+            this.Controls.Add(this.lblConexion);
+            this.Controls.Add(this.cmbConexion);
             this.Controls.Add(this.btnCopiarConclusion);
             this.Controls.Add(this.btnBitacoras);
             this.Controls.Add(this.btnVerificarModificaciones);
@@ -433,7 +471,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDv17";
             this.Text = "Reporte DV-17";
             this.ResumeLayout(false);
@@ -471,5 +509,8 @@
         private System.Windows.Forms.Button btnVerificarModificaciones;
         private System.Windows.Forms.Button btnBitacoras;
         private System.Windows.Forms.Button btnCopiarConclusion;
+        private System.Windows.Forms.CheckBox chkConexion;
+        private System.Windows.Forms.Label lblConexion;
+        private System.Windows.Forms.ComboBox cmbConexion;
     }
 }

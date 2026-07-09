@@ -34,7 +34,9 @@ namespace ReportesRegulatorios.Vistas
             btnGeneraCsv.Enabled = false;
             btnArchivoIve.Enabled = false;
             btnFinalizar.Enabled = false;
-            
+            cmbConexion.Enabled = false;
+            cmbConexion.SelectedIndex = 0;
+
         }
 
         private void Limpiar()
@@ -206,11 +208,12 @@ namespace ReportesRegulatorios.Vistas
 
         private Boolean Consultar()
         {
+            string tipoConexion = cmbConexion.Text;
             //DeshabilitarBotones();
             btnConsultar.BackColor = Color.DarkBlue;
             btnConsultar.Enabled = true;
 
-            if (cmbMes.Text != "" && txtAnio.Text != "")
+            if (cmbMes.Text != "" && txtAnio.Text != "" && tipoConexion != "")
             {
                 string mes = "00";
                 string anioMes;
@@ -219,7 +222,7 @@ namespace ReportesRegulatorios.Vistas
                 anioMes = txtAnio.Text + mes;
 
                 EncaDv17Controller encabezadoController = new EncaDv17Controller();
-                dt = encabezadoController.ObtenerEncabezado(Convert.ToInt32(anioMes));
+                dt = encabezadoController.ObtenerEncabezado(Convert.ToInt32(anioMes), tipoConexion);
                 if (dt.Rows.Count > 0)
                 {
 
@@ -476,6 +479,7 @@ namespace ReportesRegulatorios.Vistas
 
         private async void btnGeneraCsv_Click(object sender, EventArgs e)
         {
+            string tipoConexion = cmbConexion.Text;
             DeshabilitarBotones();
             if (cmbMes.Text != "" && txtAnio.Text != "")
             {
@@ -493,7 +497,7 @@ namespace ReportesRegulatorios.Vistas
                 cargando.Show();
                 await Task.Run(() =>
                 {
-                    dt = detalleDv17Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+                    dt = detalleDv17Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 cargando.Close();
@@ -511,8 +515,9 @@ namespace ReportesRegulatorios.Vistas
 
         private void ProcesoNuevosRegistros(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
+            string tipoConexion = cmbConexion.Text;
             DetalleDv17Controller detalleDv17Controller = new DetalleDv17Controller();
-            bool resultado = detalleDv17Controller.InsertarDetalleDv17Bulk(tabla);
+            bool resultado = detalleDv17Controller.InsertarDetalleDv17Bulk(tabla, tipoConexion);
 
             if (resultado)
             {
@@ -527,9 +532,10 @@ namespace ReportesRegulatorios.Vistas
                                                           fechaActual,
                                                           null,
                                                           null,
-                                                          link);
+                                                          link,
+                                                          tipoConexion);
 
-                detalleDv17BitController.InsertarDetalleDv17BitBulk(tabla, usuario);
+                detalleDv17BitController.InsertarDetalleDv17BitBulk(tabla, usuario, tipoConexion);
 
                 PlayNotificationSound();
                 MessageBox.Show("Datos Exportados Correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -596,7 +602,8 @@ namespace ReportesRegulatorios.Vistas
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            if(!txtLink.Text.Equals(""))
+            string tipoConexion = cmbConexion.Text;
+            if (!txtLink.Text.Equals(""))
             {
                 EncaDv17Controller encabezadoController = new EncaDv17Controller();
                 string mes = "00";
@@ -637,7 +644,8 @@ namespace ReportesRegulatorios.Vistas
                                                                 fechaActual,
                                                                 usuario,
                                                                 fechaActual,
-                                                                txtLink.Text
+                                                                txtLink.Text,
+                                                                tipoConexion
                                                              );
                 
             }
@@ -651,6 +659,7 @@ namespace ReportesRegulatorios.Vistas
 
         private DataTable VerificarModificaciones(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
+            string tipoConexion = cmbConexion.Text;
             EncaDv17Controller encabezadoController = new EncaDv17Controller();
             DetalleDv17TmpController detalleDv17TmpController = new DetalleDv17TmpController();
             DetalleDv17BitController detalleDv17BitController = new DetalleDv17BitController();
@@ -658,34 +667,32 @@ namespace ReportesRegulatorios.Vistas
 
             bool resultado = false;
 
-            detalleDv17TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
-            resultado = detalleDv17TmpController.InsertarDetalleDv17TmpBulk(tabla);
+            detalleDv17TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes), tipoConexion);
+            resultado = detalleDv17TmpController.InsertarDetalleDv17TmpBulk(tabla, tipoConexion);
 
-            DataTable validacionCantidadRegistros = detalleDv17TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
+            DataTable validacionCantidadRegistros = detalleDv17TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes), tipoConexion);
             string resultadoCantidadRegistros = validacionCantidadRegistros.Rows[0]["RESULTADO"].ToString();
             string detalleCantidadRegistros = validacionCantidadRegistros.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionConteoDetalle = detalleDv17TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes));
+            DataTable validacionConteoDetalle = detalleDv17TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes), tipoConexion);
             string resultadoConteoDetalle = validacionConteoDetalle.Rows[0]["RESULTADO"].ToString();
             string detalleConteoDetalle = validacionConteoDetalle.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionJustificacion = detalleDv17TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes));
-
+            DataTable validacionJustificacion = detalleDv17TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes), tipoConexion);
             if (resultado && resultadoCantidadRegistros == "1" && resultadoConteoDetalle == "1" && validacionJustificacion.Rows.Count == 0)
             {
                 PlayNotificationSound();
                 MessageBox.Show("Datos Validados Correctamente, Espere mientras se guardan los cambios", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                encabezadoController.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link);
+                encabezadoController.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link, tipoConexion);
 
-                DataTable dtVerificacion = detalleDv17BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes));
-                detalleDv17BitController.InsertarDetalleDv17VerBitBulk(dtVerificacion, usuario);
-                detalleDv17BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes));
+                DataTable dtVerificacion = detalleDv17BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes), tipoConexion);
+                detalleDv17BitController.InsertarDetalleDv17VerBitBulk(dtVerificacion, usuario, tipoConexion);
+                detalleDv17BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes), tipoConexion);
+                DataTable dtNuevosRegistrosEnDetalle = detalleDv17BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes), tipoConexion);
+                detalleDv17Controller.InsertarDetalleDv17Bulk(dtNuevosRegistrosEnDetalle, tipoConexion);
 
-                DataTable dtNuevosRegistrosEnDetalle = detalleDv17BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes));
-                detalleDv17Controller.InsertarDetalleDv17Bulk(dtNuevosRegistrosEnDetalle);
-
-                detalleDv17BitController.ActualizarEstadoBit(Convert.ToInt32(anioMes));
+                detalleDv17BitController.ActualizarEstadoBit(Convert.ToInt32(anioMes), tipoConexion);
 
 
                 PlayNotificationSound();
@@ -786,7 +793,8 @@ namespace ReportesRegulatorios.Vistas
 
         private async void btnBitacoras_Click(object sender, EventArgs e)
         {
-            if (cmbMes.Text != "" && txtAnio.Text != "")
+            string tipoConexion = cmbConexion.Text;
+            if (cmbMes.Text != "" && txtAnio.Text != "" && cmbConexion.Text != "")
             {
 
                 string anioMes = null;
@@ -803,7 +811,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleDv17BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+                    dt = detalleDv17BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 //ExportarDataTableACsv(dt);
@@ -817,7 +825,8 @@ namespace ReportesRegulatorios.Vistas
 
         private async void btnArchivoIve_Click(object sender, EventArgs e)
         {
-            if (cmbMes.Text != "" && txtAnio.Text != "")
+            string tipoConexion = cmbConexion.Text;
+            if (cmbMes.Text != "" && txtAnio.Text != "" && cmbConexion.Text != "")
             {
                 DeshabilitarBotones();
                 string anioMes = null;
@@ -834,7 +843,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleDv17Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+                    dt = detalleDv17Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 ExportarDataTableATxt(dt);

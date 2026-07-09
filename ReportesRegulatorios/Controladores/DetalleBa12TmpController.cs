@@ -10,40 +10,40 @@ namespace ReportesRegulatorios.Controladores
 {
     internal class DetalleBa12TmpController
     {
-        public DataTable ObtenerDetalleTempCsv(int anioMes)
+        public DataTable ObtenerDetalleTempCsv(int anioMes, string tipoConexion)
         {
             DetalleBa12Temp detalleBa12Tmp = new DetalleBa12Temp();
-            return detalleBa12Tmp.ObtenerDetalleTmpCsv(anioMes);
+            return detalleBa12Tmp.ObtenerDetalleTmpCsv(anioMes, tipoConexion);
         }
 
-        public bool InsertarDetalleBa12TmpBulk(DataTable tabla)
+        public bool InsertarDetalleBa12TmpBulk(DataTable tabla, string tipoConexion)
         {
             DetalleBa12Temp detalleBa12Tmp = new DetalleBa12Temp();
-            return detalleBa12Tmp.InsertarDetalleBa12TmpBulk(tabla);
+            return detalleBa12Tmp.InsertarDetalleBa12TmpBulk(tabla, tipoConexion);
         }
 
-        public DataTable ValidacionCantidadRegistros(int anioMes)
+        public DataTable ValidacionCantidadRegistros(int anioMes, string tipoConexion)
         {
             DetalleBa12Temp detalleBa12Tmp = new DetalleBa12Temp();
-            return detalleBa12Tmp.ValidacionCantidadRegistros(anioMes);
+            return detalleBa12Tmp.ValidacionCantidadRegistros(anioMes, tipoConexion);
         }
 
-        public DataTable ValidacionConteoDetalle(int anioMes)
+        public DataTable ValidacionConteoDetalle(int anioMes, string tipoConexion)
         {
             DetalleBa12Temp detalleBa12Tmp = new DetalleBa12Temp();
-            return detalleBa12Tmp.ValidacionConteoDetalle(anioMes);
+            return detalleBa12Tmp.ValidacionConteoDetalle(anioMes, tipoConexion);
         }
 
-        public DataTable ValidacionCampoJustificacion(int anioMes)
+        public DataTable ValidacionCampoJustificacion(int anioMes, string tipoConexion)
         {
             DetalleBa12Temp detalleBa12Tmp = new DetalleBa12Temp();
-            return detalleBa12Tmp.ValidacionCampoJustificacion(anioMes);
+            return detalleBa12Tmp.ValidacionCampoJustificacion(anioMes, tipoConexion);
         }
 
-        public bool EliminarCamposDetalleTmp(int anioMes)
+        public bool EliminarCamposDetalleTmp(int anioMes, string tipoConexion)
         {
             DetalleBa12Temp detalleBa12Tmp = new DetalleBa12Temp();
-            return detalleBa12Tmp.EliminarCamposDetalleTmp(anioMes);
+            return detalleBa12Tmp.EliminarCamposDetalleTmp(anioMes, tipoConexion);
         }
     }
 }

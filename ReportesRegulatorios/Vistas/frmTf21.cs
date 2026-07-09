@@ -34,6 +34,8 @@ namespace ReportesRegulatorios.Vistas
             btnGeneraCsv.Enabled = false;
             btnArchivoIve.Enabled = false;
             btnFinalizar.Enabled = false;
+            cmbConexion.Enabled = false;
+            cmbConexion.SelectedIndex = 0;
         }
 
         private void Limpiar()
@@ -348,20 +350,20 @@ namespace ReportesRegulatorios.Vistas
             DetalleTf21Controller detalleTf21Controller = new DetalleTf21Controller();
 
             bool resultado = false;
+            string tipoConexion = cmbConexion.Text;
 
-            detalleTf21TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes));
-            resultado = detalleTf21TmpController.InsertarDetalleTf21TmpBulk(tabla);
+            detalleTf21TmpController.EliminarCamposDetalleTmp(Convert.ToInt32(anioMes), tipoConexion);
+            resultado = detalleTf21TmpController.InsertarDetalleTf21TmpBulk(tabla, tipoConexion);
 
-            DataTable validacionCantidadRegistros = detalleTf21TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes));
+            DataTable validacionCantidadRegistros = detalleTf21TmpController.ValidacionCantidadRegistros(Convert.ToInt32(anioMes), tipoConexion);
             string resultadoCantidadRegistros = validacionCantidadRegistros.Rows[0]["RESULTADO"].ToString();
             string detalleCantidadRegistros = validacionCantidadRegistros.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionConteoDetalle = detalleTf21TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes));
+            DataTable validacionConteoDetalle = detalleTf21TmpController.ValidacionConteoDetalle(Convert.ToInt32(anioMes), tipoConexion);
             string resultadoConteoDetalle = validacionConteoDetalle.Rows[0]["RESULTADO"].ToString();
             string detalleConteoDetalle = validacionConteoDetalle.Rows[0]["DETALLE"].ToString();
 
-            DataTable validacionJustificacion = detalleTf21TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes));
-
+            DataTable validacionJustificacion = detalleTf21TmpController.ValidacionCampoJustificacion(Convert.ToInt32(anioMes), tipoConexion);
             if (resultado && resultadoCantidadRegistros == "1" && resultadoConteoDetalle == "1" && validacionJustificacion.Rows.Count == 0)
             {
                 PlayNotificationSound();
@@ -369,13 +371,12 @@ namespace ReportesRegulatorios.Vistas
 
                 encaTf21Controller.ActualizarEncabezado(Convert.ToInt32(anioMes), "V", usuarioOperado, fechaOperado, usuario, fechaActual, null, null, link);
 
-                DataTable dtVerificacion = detalleTf21BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes));
-                detalleTf21BitController.InsertarDetalleTf21VerBitBulk(dtVerificacion, usuario);
-                detalleTf21BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes));
+                DataTable dtVerificacion = detalleTf21BitController.ObtenerCambiosBit(Convert.ToInt32(anioMes), tipoConexion);
+                detalleTf21BitController.InsertarDetalleTf21VerBitBulk(dtVerificacion, usuario, tipoConexion);
+                detalleTf21BitController.EliminarCamposDetalle(Convert.ToInt32(anioMes), tipoConexion);
 
-                DataTable dtNuevosRegistrosEnDetalle = detalleTf21BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes));
-                detalleTf21Controller.InsertarDetalleTf21Bulk(dtNuevosRegistrosEnDetalle);
-
+                DataTable dtNuevosRegistrosEnDetalle = detalleTf21BitController.InsertarNuevosEnDetalle(Convert.ToInt32(anioMes), tipoConexion);
+                detalleTf21Controller.InsertarDetalleTf21Bulk(dtNuevosRegistrosEnDetalle, tipoConexion);
                 PlayNotificationSound();
                 MessageBox.Show("Cambios guardados correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -505,8 +506,9 @@ namespace ReportesRegulatorios.Vistas
 
         private void ProcesoNuevosRegistros(DataTable tabla, string anioMes, string usuario, string fechaActual, string usuarioOperado, string fechaOperado, string link)
         {
+            string tipoConexion = cmbConexion.Text;
             DetalleTf21Controller detalleTf21Controller = new DetalleTf21Controller();
-            bool resultado = detalleTf21Controller.InsertarDetalleTf21Bulk(tabla);
+            bool resultado = detalleTf21Controller.InsertarDetalleTf21Bulk(tabla, tipoConexion);
 
             if (resultado)
             {
@@ -523,7 +525,7 @@ namespace ReportesRegulatorios.Vistas
                                                           null,
                                                           link);
 
-                detalleTf21BitController.InsertarDetalleTf21BitBulk(tabla, usuario);
+                detalleTf21BitController.InsertarDetalleTf21BitBulk(tabla, usuario, tipoConexion);
 
                 PlayNotificationSound();
                 MessageBox.Show("Datos Exportados Correctamente", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -659,6 +661,7 @@ namespace ReportesRegulatorios.Vistas
 
                 string anioMes = null;
                 string mes = null;
+                string tipoConexion = cmbConexion.Text;
                 DataTable dt = new DataTable();
                 DetalleTf21BitController detalleTf21BitController = new DetalleTf21BitController();
 
@@ -671,7 +674,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleTf21BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes));
+                    dt = detalleTf21BitController.ObtenerDetalleBit(Convert.ToInt32(anioMes), tipoConexion);
                 });
                 
 
@@ -728,6 +731,7 @@ namespace ReportesRegulatorios.Vistas
 
                 string anioMes = null;
                 string mes = null;
+                string tipoConexion = cmbConexion.Text;
                 DataTable dt = new DataTable();
                 DetalleTf21Controller detalleTf21Controller = new DetalleTf21Controller();
 
@@ -740,7 +744,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleTf21Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes));
+                    dt = detalleTf21Controller.ObtenerDetalleCsv(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 //ExportarDataTableACsv(dt);
@@ -759,6 +763,7 @@ namespace ReportesRegulatorios.Vistas
                 DeshabilitarBotones();
                 string anioMes = null;
                 string mes = null;
+                string tipoConexion = cmbConexion.Text;
                 DataTable dt = new DataTable();
                 DetalleTf21Controller detalleTf21Controller = new DetalleTf21Controller();
 
@@ -771,7 +776,7 @@ namespace ReportesRegulatorios.Vistas
 
                 await Task.Run(() =>
                 {
-                    dt = detalleTf21Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes));
+                    dt = detalleTf21Controller.ObtenerDetalleTxt(Convert.ToInt32(anioMes), tipoConexion);
                 });
 
                 ExportarDataTableATxt(dt);
@@ -851,6 +856,18 @@ namespace ReportesRegulatorios.Vistas
                 MessageBox.Show("Error al copiar texto al portapapeles: " +
                     Environment.NewLine + err.Message, "Error al copiar",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chkConexion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkConexion.Checked)
+            {
+                cmbConexion.Enabled = true;
+            }
+            else
+            {
+                cmbConexion.Enabled = false;
             }
         }
     }
