@@ -25,6 +25,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@AnioMes", anioMes);
 
                         using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
@@ -47,6 +48,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@AnioMes", anioMes);
 
                         using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
@@ -121,6 +123,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@AnioMes", anioMes);
 
                         using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
@@ -143,6 +146,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@AnioMes", anioMes);
 
                         using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
@@ -276,6 +280,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@AnioMes", anioMes);
                         using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
                         {
@@ -297,6 +302,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@AnioMes", anioMes);
                         using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
                         {
@@ -327,6 +333,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@anioMes", anioMes);
                         int filasAfectadas = cmd.ExecuteNonQuery();
                         // Puedes usar filasAfectadas para verificar si se actualizó algo
@@ -348,6 +355,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@anioMes", anioMes);
                         int filasAfectadas = cmd.ExecuteNonQuery();
                         // Puedes usar filasAfectadas para verificar si se actualizó algo
@@ -380,6 +388,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@anioMes", anioMes);
                         int filasAfectadas = cmd.ExecuteNonQuery();
 
@@ -402,6 +411,7 @@ namespace ReportesRegulatorios.Modelos
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
+                        cmd.CommandTimeout = 300; // tiempo en segundos (ej: 5 minutos)
                         cmd.Parameters.AddWithValue("@anioMes", anioMes);
                         int filasAfectadas = cmd.ExecuteNonQuery();
                         // Puedes usar filasAfectadas para verificar si se eliminó algo

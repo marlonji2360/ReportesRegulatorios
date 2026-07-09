@@ -618,7 +618,7 @@ namespace ReportesRegulatorios.Vistas
             HabilitarBotonoes();
         }
 
-        private async void btnVerificarModificaciones_Click(object sender, EventArgs e)
+        private async void btnVerificarModificaciones_Click(object sender, EventArgs e)        
         {
             DeshabilitarBotones();
             DataTable tabla = new DataTable();
@@ -656,6 +656,8 @@ namespace ReportesRegulatorios.Vistas
                         {
                             error = VerificarModificaciones(tabla, anioMes, usuario, fechaActual, usuarioOperado, fechaOperado, link);
                         });
+
+                        //error = VerificarModificaciones(tabla, anioMes, usuario, fechaActual, usuarioOperado, fechaOperado, link);
 
                         cargando.Close();
                         if (error != null && error.Rows.Count > 0)
@@ -915,6 +917,18 @@ namespace ReportesRegulatorios.Vistas
             {
                 PlayNotificationSound();
                 MessageBox.Show("No hay datos para Exportar !!!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void chkConexion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkConexion.Checked)
+            {
+                cmbConexion.Enabled = true;
+            }
+            else
+            {
+                cmbConexion.Enabled = false;
             }
         }
     }

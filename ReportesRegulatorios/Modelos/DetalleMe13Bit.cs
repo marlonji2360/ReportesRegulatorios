@@ -196,7 +196,7 @@ namespace ReportesRegulatorios.Modelos
                 // Limpiar datos antes de insertar
                 LimpiarDataTable(dataTable);
 
-                if(tipoConexion == "")
+                if(tipoConexion == "Principal")
                 {
                     Conexion conexion = new Conexion();
                     using (SqlConnection conn = conexion.AbrirConexion())
@@ -388,7 +388,7 @@ namespace ReportesRegulatorios.Modelos
             {
                 try
                 {
-                    Conexion conexion = new Conexion();
+                    ConexionContingencia conexion = new ConexionContingencia();
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
@@ -528,7 +528,7 @@ namespace ReportesRegulatorios.Modelos
             {
                 try
                 {
-                    Conexion conexion = new Conexion();
+                    ConexionContingencia conexion = new ConexionContingencia();
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {
@@ -666,7 +666,7 @@ namespace ReportesRegulatorios.Modelos
             {
                 try
                 {
-                    Conexion conexion = new Conexion();
+                    ConexionContingencia conexion = new ConexionContingencia();
                     using (SqlConnection conn = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(consulta, conn))
                     {

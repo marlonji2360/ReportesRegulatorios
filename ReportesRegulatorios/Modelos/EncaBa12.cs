@@ -85,14 +85,14 @@ namespace ReportesRegulatorios.Modelos
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@AnioMes", anioMes);
-                            cmd.Parameters.AddWithValue("@Estado", estado);
-                            cmd.Parameters.AddWithValue("@Usuario_genera", Usuario_genera);
-                            cmd.Parameters.AddWithValue("@Fecha_genera", Fecha_genera);
-                            cmd.Parameters.AddWithValue("@Usuario_upd", Usuario_upd);
-                            cmd.Parameters.AddWithValue("@Fecha_upd", Fecha_upd);
-                            cmd.Parameters.AddWithValue("@Usuario_Cierre", Usuario_Cierre);
-                            cmd.Parameters.AddWithValue("@Fecha_Cierre", Fecha_Cierre);
-                            cmd.Parameters.AddWithValue("@Doc_cierre", Doc_cierre);
+                            cmd.Parameters.AddWithValue("@Estado", string.IsNullOrEmpty(estado) ? (object)DBNull.Value : estado);
+                            cmd.Parameters.AddWithValue("@Usuario_genera", string.IsNullOrEmpty(Usuario_genera) ? (object)DBNull.Value : Usuario_genera);
+                            cmd.Parameters.AddWithValue("@Fecha_genera", string.IsNullOrEmpty(Fecha_genera) ? (object)DBNull.Value : Fecha_genera);
+                            cmd.Parameters.AddWithValue("@Usuario_upd", string.IsNullOrEmpty(Usuario_upd) ? (object)DBNull.Value : Usuario_upd);
+                            cmd.Parameters.AddWithValue("@Fecha_upd", string.IsNullOrEmpty(Fecha_upd) ? (object)DBNull.Value : Fecha_upd);
+                            cmd.Parameters.AddWithValue("@Usuario_Cierre", string.IsNullOrEmpty(Usuario_Cierre) ? (object)DBNull.Value : Usuario_Cierre);
+                            cmd.Parameters.AddWithValue("@Fecha_Cierre", string.IsNullOrEmpty(Fecha_Cierre) ? (object)DBNull.Value : Fecha_Cierre);
+                            cmd.Parameters.AddWithValue("@Doc_cierre", string.IsNullOrEmpty(Doc_cierre) ? (object)DBNull.Value : Doc_cierre);
 
                             cmd.ExecuteNonQuery();
                         }
@@ -115,14 +115,14 @@ namespace ReportesRegulatorios.Modelos
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@AnioMes", anioMes);
-                            cmd.Parameters.AddWithValue("@Estado", estado);
-                            cmd.Parameters.AddWithValue("@Usuario_genera", Usuario_genera);
-                            cmd.Parameters.AddWithValue("@Fecha_genera", Fecha_genera);
-                            cmd.Parameters.AddWithValue("@Usuario_upd", Usuario_upd);
-                            cmd.Parameters.AddWithValue("@Fecha_upd", Fecha_upd);
-                            cmd.Parameters.AddWithValue("@Usuario_Cierre", Usuario_Cierre);
-                            cmd.Parameters.AddWithValue("@Fecha_Cierre", Fecha_Cierre);
-                            cmd.Parameters.AddWithValue("@Doc_cierre", Doc_cierre);
+                            cmd.Parameters.AddWithValue("@Estado", string.IsNullOrEmpty(estado) ? (object)DBNull.Value : estado);
+                            cmd.Parameters.AddWithValue("@Usuario_genera", string.IsNullOrEmpty(Usuario_genera) ? (object)DBNull.Value : Usuario_genera);
+                            cmd.Parameters.AddWithValue("@Fecha_genera", string.IsNullOrEmpty(Fecha_genera) ? (object)DBNull.Value : Fecha_genera);
+                            cmd.Parameters.AddWithValue("@Usuario_upd", string.IsNullOrEmpty(Usuario_upd) ? (object)DBNull.Value : Usuario_upd);
+                            cmd.Parameters.AddWithValue("@Fecha_upd", string.IsNullOrEmpty(Fecha_upd) ? (object)DBNull.Value : Fecha_upd);
+                            cmd.Parameters.AddWithValue("@Usuario_Cierre", string.IsNullOrEmpty(Usuario_Cierre) ? (object)DBNull.Value : Usuario_Cierre);
+                            cmd.Parameters.AddWithValue("@Fecha_Cierre", string.IsNullOrEmpty(Fecha_Cierre) ? (object)DBNull.Value : Fecha_Cierre);
+                            cmd.Parameters.AddWithValue("@Doc_cierre", string.IsNullOrEmpty(Doc_cierre) ? (object)DBNull.Value : Doc_cierre);
 
                             cmd.ExecuteNonQuery();
                         }

@@ -664,10 +664,14 @@ namespace ReportesRegulatorios.Vistas
                         frmCargando cargando = new frmCargando("Verificando modificaciones...");
                         cargando.Show();
 
-                        await Task.Run(() =>
-                        {
+                        //await Task.Run(() =>
+                        //{
+                        //    error = VerificarModificaciones(tabla, anioMes, usuario, fechaActual, usuarioOperado, fechaOperado, link);
+                        //});
+
+                        
                             error = VerificarModificaciones(tabla, anioMes, usuario, fechaActual, usuarioOperado, fechaOperado, link);
-                        });
+                        
 
                         cargando.Close();
                         if (error != null && error.Rows.Count > 0)

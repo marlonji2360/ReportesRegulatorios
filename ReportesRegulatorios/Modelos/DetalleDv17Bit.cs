@@ -357,7 +357,7 @@ namespace ReportesRegulatorios.Modelos
                 // Limpiar datos antes de insertar
                 LimpiarDataTable(dataTable);
 
-                if(tipoConexion == "")
+                if(tipoConexion == "Principal")
                 {
                     Conexion conexion = new Conexion();
                     using (SqlConnection conn = conexion.AbrirConexion())

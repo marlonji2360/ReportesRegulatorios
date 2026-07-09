@@ -10,22 +10,22 @@ namespace ReportesRegulatorios.Controladores
 {
     internal class DetalleTf21Controller
     {
-        public DataTable ObtenerDetalleCsv(int anioMes)
+        public DataTable ObtenerDetalleCsv(int anioMes, string tipoConexion)
         {
             DetalleTf21 detalleTf21 = new DetalleTf21();
-            return detalleTf21.ObtenerDetalleCsv(anioMes);
+            return detalleTf21.ObtenerDetalleCsv(anioMes, tipoConexion);
         }
 
-        public DataTable ObtenerDetalleTxt(int anioMes)
+        public DataTable ObtenerDetalleTxt(int anioMes, string tipoConexion)
         {
             DetalleTf21 detalleTf21 = new DetalleTf21();
-            return detalleTf21.ObtenerDetalleTxt(anioMes);
+            return detalleTf21.ObtenerDetalleTxt(anioMes, tipoConexion);
         }
 
-        public bool InsertarDetalleTf21Bulk(DataTable tabla)
+        public bool InsertarDetalleTf21Bulk(DataTable tabla, string tipoConexion)
         {
             DetalleTf21 detalleTf21 = new DetalleTf21();
-            return detalleTf21.InsertarDetalleTf21Bulk(tabla);
+            return detalleTf21.InsertarDetalleTf21Bulk(tabla, tipoConexion);
         }
     }
 }
